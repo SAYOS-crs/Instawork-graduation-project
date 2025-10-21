@@ -5,6 +5,7 @@ import "./globals.css";
 
 import {Providers} from "./providers";
 import Navbar from "./_Component/Navbar/Navbar";
+import Footer from "./_Component/Footer/Footer";
 
 
 const geistSans = Geist({
@@ -33,9 +34,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <Navbar>
+          <Navbar/>
         {children}
-          </Navbar>
+          <Footer/>
         </Providers>
       </body>
     </html>

@@ -1,3 +1,6 @@
+@import url(https://db.onlinewebfonts.com/c/9285384f827ec9c11670023bc41a89fe?family=Lyon+Text+Web+Bold+Regular);
+/* fonts */
+
 @import "tailwindcss";
 
 @plugin './hero.ts';
@@ -5,3 +8,54 @@
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 
 @custom-variant dark (&:is(.dark *));
+
+@layer base {
+  h1 {
+    @apply text-3xl;
+    @apply font-bold;
+  }
+  h2 {
+    @apply text-2xl;
+    @apply font-normal;
+  }
+  h3 {
+    @apply text-xl;
+    @apply font-semibold;
+  }
+  body {
+    @apply font-Lyon;
+  }
+  .pointer {
+    span {
+      @apply cursor-pointer;
+    }
+  }
+
+  .SpanHover {
+    span {
+      position: relative;
+      &::after {
+        content: "";
+        left: 0;
+        bottom: -3px;
+        position: absolute;
+        height: 1px;
+        width: 0;
+        background-color: white;
+        transition: width 0.4s;
+      }
+      &:hover {
+        color: rgb(255, 255, 255);
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@theme {
+  --color-main-background: #1c1c1c;
+  --color-text-footer: #c3c3c3;
+  --font-Lyon: "Lyon", sans-serif;
+}
