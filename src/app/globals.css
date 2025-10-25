@@ -24,6 +24,7 @@
   }
   body {
     @apply font-Lyon;
+    @apply bg-[#e9e4e4];
   }
   .pointer {
     span {
@@ -34,6 +35,7 @@
   .SpanHover {
     span {
       position: relative;
+      transition: color 0.2s;
       &::after {
         content: "";
         left: 0;
@@ -56,6 +58,7 @@
 
 @theme {
   --color-main-background: #1c1c1c;
+  --color-primry-background: #c3c3c3;
   --color-text-footer: #c3c3c3;
   --font-Lyon: "Lyon", sans-serif;
 }

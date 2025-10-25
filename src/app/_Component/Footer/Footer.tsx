@@ -16,7 +16,7 @@ export default function Footer() {
         </div> */}
     <footer className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-1 lg:gap-3 container text-center m-auto pt-5 pointer'>
 
-      <div className='SpanHover' >
+      <div className='SpanHover' > 
 
         <h3 className='my-5 bg-[#2c2929] rounded-md p-1 '> تواصل معنا </h3>
 
@@ -47,7 +47,7 @@ export default function Footer() {
           </svg>
 
 
-          </span> 
+          </span>  
                 <span className='pe-2'>+20 1141874204</span> 
         </div>
 
@@ -66,6 +66,7 @@ export default function Footer() {
 
         </div>
           </div>
+
       </div>
 
       <div className='SpanHover'>
@@ -103,7 +104,7 @@ export default function Footer() {
 
       <div className=" md:col-span-2 lg:col-span-4 py-5 text-text-footer font-Lyon">
         <hr />
-        <p className='mt-4 inline-block'>© 2025 Instajob. جميع الحقوق محفوظة.</p>
+        <p className='mt-4 inline-block'>© 2025 InstaWork. جميع الحقوق محفوظة.</p>
       </div>
 
     </footer>

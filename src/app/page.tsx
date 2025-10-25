@@ -1,12 +1,8 @@
-
-
-import Image from "next/image";
-import {Button} from '@heroui/button'; 
-
+import backgroundimg from ""
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-            
-    </div>
+      <div className={`h-screen bg-primry-background text-center flex flex-col justify-center `}>
+        <article className="text-5xl  font-bold"> حيث يلتقي الابداع في الشرق الاوسط </article>
+      </div>
   );
 }
