@@ -5,7 +5,7 @@ import { FaRegHandshake } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div className=' bg-main-background text-amber-50 '>
+    <div className=' bg-gradient-to-r from-[#000000] to-[#434343] text-amber-50 '>
       {/* <div className=' inline-block mt-30' >
         <h1>جاهز للبدء</h1>
         <p className='p-4 '>انضم إلى آلاف المستخدمين الراضين واكتشف أسهل طريقة للعثور على الحرفيين المهرة</p>
@@ -18,7 +18,7 @@ export default function Footer() {
 
       <div className='SpanHover' > 
 
-        <h3 className='my-5 bg-[#2c2929] rounded-md p-1 '> تواصل معنا </h3>
+        <h3 className='my-5 bg-[#2c2929]  p-1 '> تواصل معنا </h3>
 
           <div className='text-text-footer my-4'>
 
@@ -70,7 +70,7 @@ export default function Footer() {
       </div>
 
       <div className='SpanHover'>
-          <h3 className='my-5 bg-[#2c2929] rounded-md p-1 '>الخدمات</h3>
+          <h3 className='my-5 bg-[#2c2929]  p-1 '>الخدمات</h3>
 
           <div className='my-4 text-text-footer'>
           <div className='py-2'><span className=''>للعملاء</span></div>
@@ -82,7 +82,7 @@ export default function Footer() {
       </div>
 
           <div className='pointer SpanHover'>
-          <h3 className='my-5 bg-[#2c2929] rounded-md p-1 '>روابط سريعة</h3>
+          <h3 className='my-5 bg-[#2c2929]  p-1 '>روابط سريعة</h3>
 
           <div className='my-4 text-text-footer'>
           <div className='py-2 ' > <Link href={'/services'}> <span>عن الموقع</span> </Link> </div>

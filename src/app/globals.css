@@ -10,6 +10,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
+  body {
+    @apply selection:bg-primry-background;
+    @apply selection:text-main-background;
+  }
   h1 {
     @apply text-3xl;
     @apply font-bold;
@@ -56,9 +60,22 @@
   }
 }
 
+@layer utilities {
+  .container {
+    @apply mx-auto;
+  }
+  .backgroundNavBar {
+    background-color: #e4e3e387;
+  }
+}
+
 @theme {
   --color-main-background: #1c1c1c;
   --color-primry-background: #c3c3c3;
   --color-text-footer: #c3c3c3;
   --font-Lyon: "Lyon", sans-serif;
 }
+
+/* NavBar */
+
+/* hero page  */

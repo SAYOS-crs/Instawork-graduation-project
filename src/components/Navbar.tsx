@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Navbar as NavbarComponent,
   NavbarBrand,
@@ -13,11 +13,13 @@ import {
 import { FaRegHandshake } from "react-icons/fa6";
 
 import Link from 'next/link'
+import Btn from "./AuthButtons";
+import { log } from "console";
 
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+   
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -31,10 +33,11 @@ export default function Navbar() {
     "Log Out",
   ];
 
-  return (
-    <NavbarComponent className="absolute" onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent >
 
+  return (
+    <NavbarComponent  className= 'backgroundNavBar '   onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent >
+      
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -46,36 +49,41 @@ export default function Navbar() {
           
         
         </NavbarBrand>
+        
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden sm:flex gap-4 " justify="center">
+
+
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            Services
           </Link>
         </NavbarItem>
+
         <NavbarItem isActive>
           <Link aria-current="page" href="#">
-            Customers
+            Jobs
           </Link>
+        
+        
         </NavbarItem>
+
+                  
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Dashbord
           </Link>
         </NavbarItem>
+
       </NavbarContent>
 
 
 
       <NavbarContent justify="end">
-        <NavbarItem className="flex">
-              <Button as={Link} className="me-3" color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-          <Button as={Link} className="ms-2" color="primary" href="#" variant="ghost">
-            Sign in
-          </Button>
+        <NavbarItem className="flex ">
+              <Btn  content={'Sign Up'} color={2} />
+              <Btn  content={'Sign In'} color={1} />
         </NavbarItem>
       </NavbarContent>
 
