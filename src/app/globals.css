@@ -13,6 +13,7 @@
   body {
     @apply selection:bg-primry-background;
     @apply selection:text-main-background;
+    @apply scroll-smooth;
   }
   h1 {
     @apply text-3xl;
@@ -65,7 +66,14 @@
     @apply mx-auto;
   }
   .backgroundNavBar {
-    background-color: #e4e3e387;
+    background-color: #1c1c1c9b;
+    color: var(--color-primry-background);
+  }
+  .custom-active-class[data-active="true"] {
+    @apply text-white;
+  }
+  .custom-grid-item:nth-child(3) {
+    @apply min-md:col-span-2 xl:col-span-1;
   }
 }
 
@@ -79,3 +87,66 @@
 /* NavBar */
 
 /* hero page  */
+.CommonBorder {
+  &::after {
+    content: "";
+
+    position: absolute;
+    transform: translateX(5%);
+    height: 50%;
+    width: 50%;
+
+    background-color: #c3c3c3;
+    border-bottom: var(--color-main-background) solid;
+    border-left: var(--color-main-background) solid;
+    top: 4px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+
+    transform: translateX(-105%);
+    height: 50%;
+    width: 50%;
+    background-color: #c3c3c3;
+    border-bottom: var(--color-main-background) solid;
+    border-right: var(--color-main-background) solid;
+  }
+}
+
+.tastmonial {
+  &::after {
+    content: "";
+
+    position: absolute;
+    transform: translateX(5%);
+
+    width: 50%;
+
+    background-color: var(--color-primry-background);
+    border-bottom: var(--color-main-background) solid;
+    border-left: var(--color-main-background) solid;
+    bottom: -25%;
+    top: 0;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -25%;
+    top: 0;
+    transform: translateX(-105%);
+    width: 50%;
+    background-color: var(--color-primry-background);
+    border-bottom: var(--color-main-background) solid;
+    border-right: var(--color-main-background) solid;
+  }
+}
+
+.AccordianSpan {
+  span {
+    color: var(--color-primry-background);
+    font-size: large;
+    font-weight: bold;
+  }
+}

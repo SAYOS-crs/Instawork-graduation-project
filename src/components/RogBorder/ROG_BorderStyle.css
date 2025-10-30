@@ -16,7 +16,7 @@
   .all-rog {
     position: absolute;
     inset: 0;
-    border: solid 1px var(--ROG-Color);
+    border: solid 1px #c3c3c366;
     opacity: 0;
     transition: opacity 0.4s;
   }
@@ -28,7 +28,7 @@
 
     &::after {
       content: "";
-      background-color: var(--ROG-Border);
+      background-color: white;
       width: calc(100% + 1px);
       height: 1px;
       position: absolute;
@@ -37,7 +37,7 @@
 
     &::before {
       content: "";
-      background-color: var(--ROG-Border);
+      background-color: white;
       width: 1px;
       height: 100%;
       position: absolute;
@@ -102,7 +102,7 @@
   }
 
   &:hover {
-    box-shadow: 0 0 5px var(--ROG-Color);
+    /* box-shadow: 0 0 5px var(--ROG-Color); */
     .roge-border-1 {
       &::after {
         transform: translateX(-93%);

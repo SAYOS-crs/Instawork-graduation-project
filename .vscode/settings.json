@@ -7,4 +7,17 @@
     "**/Thumbs.db": true
   },
   "hide-files.files": []
+  ,
+
+  {
+  "typescript.format.enable": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+  }
+
+
+
+  
 }
+

@@ -1,14 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Login() {
-  
-
-
-    console.log('Login');
-    
-
-
-
-
-
+  console.log("Login");
 }

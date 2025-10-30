@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Navbar as NavbarComponent,
@@ -8,18 +8,18 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Button,
 } from "@heroui/react";
 import { FaRegHandshake } from "react-icons/fa6";
 
-import Link from 'next/link'
-import Btn from "./AuthButtons";
-import { log } from "console";
+import Link from "next/link";
 
+import { Button } from "@heroui/button";
+
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-   
+
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -33,61 +33,61 @@ export default function Navbar() {
     "Log Out",
   ];
 
+  const path = usePathname();
+
+  const NavItems = [
+    { lable: "services", href: "/services" },
+    { lable: "Jobs", href: "/Jobs" },
+    { lable: "Dashbord", href: "/Dashbord" },
+  ];
 
   return (
-    <NavbarComponent  className= 'backgroundNavBar '   onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent >
-      
+    <NavbarComponent
+      className="backgroundNavBar "
+      onMenuOpenChange={setIsMenuOpen}
+    >
+      <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand>
-          
-         <FaRegHandshake className="text-3xl"/>
-        <Link href={"/"} className="font-bold text-inherit ps-3">InstaWork</Link>
-          
-        
+        <NavbarBrand className={path === "/" && "text-white"}>
+          <FaRegHandshake className="text-4xl" />
+          <Link href={"/"} className="font-bold text-inherit text-xl ps-3">
+            InstaWork
+          </Link>
         </NavbarBrand>
-        
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4 " justify="center">
-
-
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Services
-          </Link>
-        </NavbarItem>
-
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
-            Jobs
-          </Link>
-        
-        
-        </NavbarItem>
-
-                  
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Dashbord
-          </Link>
-        </NavbarItem>
-
+        {NavItems.map((item) => (
+          <NavbarItem
+            className="custom-active-class text-xl font-sans mx-3"
+            isActive={item.href === path}
+          >
+            <Link className="relative" color="foreground" href={item.href}>
+              {item.lable}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
-
-
 
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
-              <Btn  content={'Sign Up'} color={2} />
-              <Btn  content={'Sign In'} color={1} />
+          <Link
+            className="hover:bg-primry-background hover:text-main-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-main-background border-primry-background border-1"
+            href={"/Register"}
+          >
+            sign up
+          </Link>
+          <Link
+            className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
+            href={"/Login"}
+          >
+            Login
+          </Link>
         </NavbarItem>
       </NavbarContent>
-
-
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
@@ -95,7 +95,11 @@ export default function Navbar() {
             <Link
               className="w-full"
               color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
               }
               href="#"
               size="lg"
@@ -108,4 +112,3 @@ export default function Navbar() {
     </NavbarComponent>
   );
 }
-
