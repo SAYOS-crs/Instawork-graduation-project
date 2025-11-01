@@ -3,6 +3,7 @@ import RogBorder from "../RogBorder/RogBorder";
 import { GiBlacksmith, GiDrill } from "react-icons/gi";
 import { RiBrush4Line } from "react-icons/ri";
 import { IoIosHammer } from "react-icons/io";
+import { InfiniteMovingCardsDemo } from "./InfiniteMovingCards";
 
 export default function CommonProfessions() {
   const services = [
@@ -15,7 +16,7 @@ export default function CommonProfessions() {
   return (
     <>
       <div className="bg-linear-to-r from-[#000000] to-[#434343] bg-fixed mb-10 grid md:grid-cols-2 lg:grid-cols-4   ">
-        <div className=" md:col-span-2 mb-6 lg:col-span-4 relative overflow-hidden ">
+        <div className=" md:col-span-2 lg:col-span-4 relative overflow-hidden ">
           <h2 className="bg-primry-background text-main-background p-2 text-3xl font-bold my-1 CommonBorder tracking-widest">
             Common professions
           </h2>
@@ -24,23 +25,9 @@ export default function CommonProfessions() {
             Choose from a wide range of speciali zations.
           </p>
         </div>
-
-        {services.map((service) => (
-          <RogBorder>
-            <div className=" h-fit my-5 flex flex-col gap-5 mx-auto justify-center p-6 ">
-              <div className="bg-primry-background  w-fit mx-auto cursor-pointer text-main-background hover:bg-main-background hover:text-primry-background transition-all my-3 p-4 rounded-full">
-                <service.icon className="text-5xl   mx-auto" />
-              </div>
-              <header className="my-1"> {service.label} </header>
-              <span> {"عدد مقدمين الخدمه في هذه الحرفة (10)"} </span>
-              <p className="mb-3">
-                {" "}
-                {" خدمات تساعدك في انجاز عملك مع الشخص المناسب للمهمه"}{" "}
-              </p>
-            </div>
-          </RogBorder>
-        ))}
       </div>
+      <InfiniteMovingCardsDemo />
+
       <div>
         <header className="mb-10">
           <h3 className="tracking-widest text-2xl p-2">Why instawork ?</h3>

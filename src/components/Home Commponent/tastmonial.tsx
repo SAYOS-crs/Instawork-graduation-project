@@ -5,7 +5,7 @@ import { MdPostAdd } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 import { TfiGallery } from "react-icons/tfi";
 
-export default function tastmonial() {
+export default function Tastmonial() {
   const provide = [
     {
       for: "client",

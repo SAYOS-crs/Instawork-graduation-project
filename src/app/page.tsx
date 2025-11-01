@@ -18,12 +18,15 @@ import "./_imgs/az9nwc.png";
 import AccordionCommponent from "@/components/Home Commponent/Accordin";
 import CommonProfessions from "@/components/Home Commponent/CommonProfessions";
 import AD from "@/components/Home Commponent/AD";
+import Tastmonial from "@/components/Home Commponent/tastmonial";
+import HeroParallaxDemo from "@/components/Home Commponent/Parallax";
+import { InfiniteMovingCardsDemo } from "@/components/Home Commponent/InfiniteMovingCards";
 export default function Home() {
   return (
     <>
       <section className="  bg-linear-to-r from-[#000000] to-[#434343] text-primry-background text-center flex flex-col justify-center  ">
         {/* header */}
-        <div
+        {/* <div
           className={` bg-[url(./_imgs/az9nwc.png)] max-md:bg-center bg-fixed bg-cover bg-bg-no-repeat flex flex-col justify-center h-screen`}
         >
           <header className="pb-7">
@@ -54,14 +57,15 @@ export default function Home() {
               View services
             </Button>
           </div>
-        </div>
-
+        </div> */}
+        <HeroParallaxDemo />
         {/* tastmonial */}
 
-        <div className=" overflow-hidden"></div>
+        <div className="  overflow-hidden">
+          <Tastmonial />
+        </div>
 
         {/* CommonProfessions */}
-
         <CommonProfessions />
 
         {/* AD */}
