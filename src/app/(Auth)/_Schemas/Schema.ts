@@ -7,7 +7,7 @@ export const LogInScheme = zod.object({
       .regex(/^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/, 'phoneNumber is InValid'),
     password : zod.string()
       .nonempty('password is required')
-      // .regex( /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/ , 'password is InValid'),
+      .regex( /^[0-9]{6,}$/ , 'password is InValid'),
     
   })
 
@@ -23,8 +23,8 @@ export const RegisterScheme = zod.object({
       .nonempty('phone Number is required')
       .regex( /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/ , 'phone Number is invalid'),
     password : zod.string()
-      .nonempty('password is required'),
-      // .regex( /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ , 'password is invalid'),
+      .nonempty('password is required')
+      .regex( /^[0-9]{6,}$/ , 'password is invalid'),
     rePassword : zod.string()
       .nonempty('Repassword is required'),
     gender : zod.string()

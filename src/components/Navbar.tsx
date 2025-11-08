@@ -14,25 +14,13 @@ import { FaRegHandshake } from "react-icons/fa6";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
-
   const path = usePathname();
+  const { status } = useSession();
 
   const NavItems = [
     { lable: "services", href: "/services" },
@@ -42,7 +30,7 @@ export default function Navbar() {
 
   return (
     <NavbarComponent
-      className="backgroundNavBar "
+      className="backgroundNavBar  "
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
@@ -74,43 +62,48 @@ export default function Navbar() {
 
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
-          <Link
-            className="hover:bg-primry-background hover:text-main-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-main-background border-primry-background border-1"
-            href={"/Register"}
-          >
-            sign up
-          </Link>
-          <Link
-            className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
-            href={"/Login"}
-          >
-            Login
-          </Link>
-          <Button
-            onPress={() => signOut()}
-            className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
-          >
-            LogOut
-          </Button>
+          {status === "authenticated" ? (
+            <Button
+              onPress={() => signOut({ callbackUrl: "/" })}
+              className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
+            >
+              LogOut{" "}
+            </Button>
+          ) : (
+            <>
+              <Link
+                className="hover:bg-primry-background hover:text-main-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-main-background border-primry-background border-1"
+                href={"/Register"}
+              >
+                sign up
+              </Link>
+
+              <Link
+                className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
+                href={"/Login"}
+              >
+                Login
+              </Link>
+            </>
+          )}
         </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
+        {NavItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full"
               color={
                 index === 2
                   ? "primary"
-                  : index === menuItems.length - 1
+                  : index === NavItems.length - 1
                   ? "danger"
                   : "foreground"
               }
-              href="#"
-              size="lg"
+              href={item.href}
             >
-              {item}
+              {item.lable}
             </Link>
           </NavbarMenuItem>
         ))}

@@ -1,11 +1,6 @@
 "use client";
-import Loader from "@/components/Loader";
-import React from "react";
+import Loading from "@/app/loading";
 
 export default function page() {
-  return (
-    <div>
-      <Loader />
-    </div>
-  );
+  return <Loading />;
 }

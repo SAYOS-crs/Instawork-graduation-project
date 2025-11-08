@@ -53,7 +53,10 @@ export default function AccordionCommponent() {
           <article className="text-left outline-none">
             <p className="inline-block tracking-widest ">{i.content} </p>{" "}
             {i.href && (
-              <Link className="inline-block px-1 text-primary " href={i.href}>
+              <Link
+                className="inline-block px-1 text-primary-400 "
+                href={i.href}
+              >
                 {" "}
                 {i.LinkConent}{" "}
               </Link>
