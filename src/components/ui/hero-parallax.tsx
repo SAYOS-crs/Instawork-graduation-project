@@ -154,8 +154,8 @@ export const ProductCard = ({
             </div>
           </div>
           <div className=" grid grid-cols-4   h-30">
-            {product.UserWorkImages.map((imgWork) => (
-              <div className=" m-2">
+            {product.UserWorkImages.map((imgWork, index) => (
+              <div key={index} className=" m-2">
                 {" "}
                 <img src={imgWork} alt={product.UserSkills} />{" "}
               </div>

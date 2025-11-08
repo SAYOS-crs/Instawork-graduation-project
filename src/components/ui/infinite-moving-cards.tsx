@@ -94,7 +94,7 @@ export const InfiniteMovingCards = ({
           <RogBorder>
             <li
               className="relative w-[350px] m-1 max-w-full shrink-0 rounded-xl   text-primry-background bg-main-background md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
-              key={item.label}
+              key={`${item}-${idx}`}
             >
               <div className=" h-fit flex flex-col gap-5 mx-auto  justify-center p-6 selection:bg-main-background  selection:text-primry-background ">
                 <div className="bg-primry-background text-main-background   w-fit mx-auto cursor-pointer  hover:bg-primry-background hover:text-main-background transition-all my-3 p-4 rounded-full  ">

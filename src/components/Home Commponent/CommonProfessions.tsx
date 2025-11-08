@@ -6,13 +6,6 @@ import { IoIosHammer } from "react-icons/io";
 import { InfiniteMovingCardsDemo } from "./InfiniteMovingCards";
 
 export default function CommonProfessions() {
-  const services = [
-    { label: "حداد", icon: GiBlacksmith },
-    { label: "نقاش", icon: RiBrush4Line },
-    { label: "نجار", icon: IoIosHammer },
-    { label: "كهربائي", icon: GiDrill },
-  ];
-
   return (
     <>
       <div className="bg-linear-to-r from-[#000000] to-[#434343] bg-fixed mb-10 grid md:grid-cols-2 lg:grid-cols-4   ">
@@ -26,8 +19,9 @@ export default function CommonProfessions() {
           </p>
         </div>
       </div>
-      <InfiniteMovingCardsDemo />
-
+      <div>
+        <InfiniteMovingCardsDemo />
+      </div>
       <div>
         <header className="mb-10">
           <h3 className="tracking-widest text-2xl p-2">Why instawork ?</h3>

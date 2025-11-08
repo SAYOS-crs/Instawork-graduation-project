@@ -1,27 +1,11 @@
-import HomeCart from "@/components/HomeCart";
-import { Button } from "@heroui/button";
-import { div, label } from "framer-motion/client";
-import { RiBrush4Line } from "react-icons/ri";
-import { GiBlacksmith } from "react-icons/gi";
-import { IoIosHammer } from "react-icons/io";
-import { LuUserRoundSearch } from "react-icons/lu";
-import { GiDrill } from "react-icons/gi";
-import RogBorder from "@/components/RogBorder/RogBorder";
-import { IoCheckmark } from "react-icons/io5";
-import { TbListDetails } from "react-icons/tb";
-import { MdPostAdd } from "react-icons/md";
-import { TfiGallery } from "react-icons/tfi";
-import { MdStarRate } from "react-icons/md";
-import Loader from "@/components/Loader";
-import headerIMG from "@/app/_imgs/az9nwc.png";
-import "./_imgs/az9nwc.png";
 import AccordionCommponent from "@/components/Home Commponent/Accordin";
 import CommonProfessions from "@/components/Home Commponent/CommonProfessions";
 import AD from "@/components/Home Commponent/AD";
 import Tastmonial from "@/components/Home Commponent/tastmonial";
 import HeroParallaxDemo from "@/components/Home Commponent/Parallax";
-import { InfiniteMovingCardsDemo } from "@/components/Home Commponent/InfiniteMovingCards";
-export default function Home() {
+import { useSession } from "next-auth/react";
+
+export default async function Home() {
   return (
     <>
       <section className="  bg-linear-to-r from-[#000000] to-[#434343] text-primry-background text-center flex flex-col justify-center  ">

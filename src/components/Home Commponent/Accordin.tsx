@@ -1,7 +1,6 @@
 "use client";
 import { Accordion, AccordionItem } from "@heroui/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function AccordionCommponent() {
   const Content = [
