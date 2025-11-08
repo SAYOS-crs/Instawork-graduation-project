@@ -38,8 +38,11 @@ export default function AD() {
   return (
     <>
       <div className="w-8/10 mx-auto gap-6 justify-center grid md:grid-cols-2 xl:grid-cols-3">
-        {ADs.map((ad) => (
-          <div className=" transition-all  custom-grid-item  flex flex-col gap-y-6 justify-between">
+        {ADs.map((ad, index) => (
+          <div
+            key={index}
+            className=" transition-all  custom-grid-item  flex flex-col gap-y-6 justify-between"
+          >
             <RogBorder>
               <div className="p-5 mx-auto">
                 <div className="border-b-1 p-5 my-2">
@@ -50,6 +53,7 @@ export default function AD() {
                     {ad.price} EG
                   </h4>
                 </div>
+
                 <span className="text-5xl ">{ad.rank}</span>
                 <p className="text-xl py-2 px-3 border-x-1">
                   {" "}
@@ -60,8 +64,9 @@ export default function AD() {
                     {ad.PostedDate}{" "}
                   </span>
                 </p>
-                {ad.Additionalfeatures?.map((feature) => (
-                  <p className="py-7">
+
+                {ad.Additionalfeatures?.map((feature, index) => (
+                  <p key={index} className="py-7">
                     {" "}
                     <MdStarRate className="inline-block text-2xl" /> {feature}{" "}
                   </p>
@@ -72,6 +77,7 @@ export default function AD() {
                   lists, which means you have a long window of time until the
                   earliest date you can reach investigators.
                 </p>
+
                 <p>
                   Make your offering stand out from the crowd! Artisanes' custom
                   upgrade packages help you increase your visibility, attract

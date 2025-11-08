@@ -8,7 +8,7 @@ import { IoIosHammer } from "react-icons/io";
 
 export function InfiniteMovingCardsDemo() {
   return (
-    <div className="h-[40rem] rounded-md flex flex-col antialiased bg-linear-to-r from-[#000000] to-[#434343] dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+    <div className="h-160 rounded-md flex flex-col antialiased bg-linear-to-r from-[#000000] to-[#434343] dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards items={services} direction="right" speed="normal" />
     </div>
   );

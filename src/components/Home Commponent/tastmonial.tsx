@@ -53,9 +53,12 @@ export default function Tastmonial() {
             <h2 className="text-3xl font-bold">For the Artisanes</h2>
           </header>
           {provide.map(
-            (prov) =>
+            (prov, index) =>
               prov.for === "worker" && (
-                <div className="group hover hover:bg-primry-background hover:text-main-background max-lg:hover:scale-105 lg:hover:translate-x-[2%] lg:hover:translate-y-[2%] transition-all max-h-65 p-7  border-1 flex flex-col justify-between border-primry-background text-center">
+                <div
+                  key={index}
+                  className="group hover hover:bg-primry-background hover:text-main-background max-lg:hover:scale-105 lg:hover:translate-x-[2%] lg:hover:translate-y-[2%] transition-all max-h-65 p-7  border-1 flex flex-col justify-between border-primry-background text-center"
+                >
                   <div>
                     <i className="group-hover:text-primry-background group-hover:bg-main-background inline-block bg-primry-background text-main-background text-4xl p-4 my-3  rounded-full  ">
                       <prov.icon />
@@ -74,9 +77,12 @@ export default function Tastmonial() {
           </header>
           <div className="grid gap-10 my-10">
             {provide.map(
-              (prov) =>
+              (prov, index) =>
                 prov.for === "client" && (
-                  <div className="group hover: max-lg:hover:scale-105 lg:hover:translate-x-[-2%] lg:hover:translate-y-[2%] hover:bg-primry-background hover:text-main-background transition-all max-h-65 p-9  flex flex-col justify-between border-1 border-primry-background text-center">
+                  <div
+                    key={index}
+                    className="group hover: max-lg:hover:scale-105 lg:hover:translate-x-[-2%] lg:hover:translate-y-[2%] hover:bg-primry-background hover:text-main-background transition-all max-h-65 p-9  flex flex-col justify-between border-1 border-primry-background text-center"
+                  >
                     <div>
                       <i className=" inline-block bg-primry-background text-main-background text-4xl p-4 my-3 group-hover:text-primry-background group-hover:bg-main-background  rounded-full  ">
                         <prov.icon />
