@@ -25,7 +25,7 @@ export default function Navbar() {
   const NavItems = [
     { lable: "services", href: "/services" },
     { lable: "Jobs", href: "/Jobs" },
-    { lable: "Dashbord", href: "/Dashbord" },
+    { lable: "Dashbord", href: "/Dashbord/Profile" },
   ];
 
   return (
