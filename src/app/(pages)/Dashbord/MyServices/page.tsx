@@ -36,11 +36,11 @@ export default function page() {
 
   return (
     <section className="bg-primry-background w-full h-screen flex flex-col">
-      <div className="bg-red-600 h-fit  overflow-hidden">
+      <form className="bg-red-600 h-fit  overflow-hidden">
         <div className=" m-3">
           <Input
             color="default"
-            className="p-3"
+            className="p-3 cursor-pointer"
             label="Titel"
             placeholder="Enter Service Titel"
             type="text  "
@@ -49,7 +49,7 @@ export default function page() {
 
         <div className="m-3 ">
           <Input
-            className="p-3"
+            className="p-3 cursor-pointer"
             label="Email"
             placeholder="Enter your email"
             type="email"
@@ -58,16 +58,17 @@ export default function page() {
 
         <div className=" m-3">
           <Input
-            className="p-3 "
+            className="p-3 cursor-pointer"
             label="Experince in the skill field"
             placeholder="Experince"
             type="Number"
           />
         </div>
-        <div className=" ms-6 m-2">
-          <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+
+        <div className=" md:flex gap-4 justify-around ms-6 m-2">
+          <div className="flex w-fit  flex-wrap md:flex-nowrap gap-4">
             {/* /////////// Skill selection ///////////////  */}
-            <Autocomplete className="max-w-xs" label="Skill">
+            <Autocomplete className="max-w-xs cursor-pointer" label="Skill">
               {Skills.map((skill) => (
                 <AutocompleteItem key={skill.label}>
                   {skill.label}
@@ -77,7 +78,7 @@ export default function page() {
             {/* /////////// Skill selection ///////////////  */}
             {/* //////////////////////////////////////////////// */}
             {/* ///////////////////Address selection ///////////////// */}
-            <Autocomplete className="max-w-xs" label="Address">
+            <Autocomplete className="max-w-xs cursor-pointer" label="Address">
               {ServiceAddress.map((address) => (
                 <AutocompleteItem key={address.Address}>
                   {address.Address}
@@ -87,7 +88,7 @@ export default function page() {
             {/* ///////////////////Address selection ///////////////// */}
             {/* //////////////////////////////////////////////// */}
             {/* ///////////////////KeyWord selection ///////////////// */}
-            <Autocomplete className="max-w-xs" label="KeyWord">
+            <Autocomplete className="max-w-xs cursor-pointer" label="KeyWord">
               {KeyWords.map((keyword) => (
                 <AutocompleteItem key={keyword.keyword}>
                   {keyword.keyword}
@@ -97,12 +98,12 @@ export default function page() {
             {/* ///////////////////KeyWord selection ///////////////// */}
             {/* //////////////////////////////////////////////// */}
           </div>
-          <div>
-            {" "}
-            <Button>Supmit Service</Button>{" "}
+
+          <div className=" content-center w-fit  max-sm:my-7 ">
+            <Button className="w-full cursor-pointer">Supmite Service</Button>
           </div>
         </div>
-      </div>
+      </form>
       <div className="bg-blue-600 "></div>
     </section>
   );
