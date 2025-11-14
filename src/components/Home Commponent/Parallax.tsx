@@ -21,6 +21,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -36,6 +37,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -51,6 +53,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -66,6 +69,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -81,6 +85,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -96,6 +101,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
@@ -111,6 +117,7 @@ export const products = [
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
     ],
   },
+
   {
     UserImg:
       "https://img.freepik.com/free-vector/business-user-cog_78370-7040.jpg?semt=ais_hybrid&w=740&q=80",
