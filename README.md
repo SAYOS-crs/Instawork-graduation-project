@@ -1,5 +1,5 @@
 # Technologies used in the project
-## - NEXT.JS 15
+## - NEXT.JS 16.0.3
 ## - Tawillendcss
 ## - HeroUI
 
