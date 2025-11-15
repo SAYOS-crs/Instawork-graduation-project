@@ -143,6 +143,8 @@ export default function page() {
   }
 
   const phoneRegix = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/;
+  const EmailRegix = /^[\w\.-]+@[\w\.-]+\.\w{2,}$/;
+
   async function EditUserInfo() {
     const Updated_data: UpDatedInfo = {
       Fullname: CountroledNameInput,
@@ -154,7 +156,7 @@ export default function page() {
       DateOfBirth: DateOFberthValue,
     };
     console.log(Updated_data);
-
+    // regix for the rest of the inputs and handel erorrs also and in the last send the updated data to api
     if (phoneRegix.test(EditInputPhone1Value.replace("+", ""))) {
       const PhoneNumber1 = EditInputPhone1Value;
       Updated_data.PhoneNumber = PhoneNumber1;
