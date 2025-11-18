@@ -20,13 +20,13 @@ export default function Register() {
     reset,
   } = useForm({
     defaultValues: {
-      name: " ",
-      email: " ",
-      password: " ",
-      rePassword: " ",
-      phoneNumber: " ",
-      gender: " ",
-      dateOfBirth: " ",
+      name: "",
+      email: "",
+      password: "",
+      rePassword: "",
+      phoneNumber: "",
+      gender: "",
+      dateOfBirth: "",
     },
     resolver: zodResolver(RegisterScheme),
     mode: "onSubmit",
@@ -100,7 +100,9 @@ export default function Register() {
                 variant={"flat"}
                 className=" h-20 "
                 label="Password"
-                type="text"
+                type={`${
+                  process.env.NODE_ENV === "development" ? "text" : "password"
+                }`}
                 {...register("password")}
               />
             </div>
@@ -113,7 +115,9 @@ export default function Register() {
                 variant={"flat"}
                 className=" h-20 "
                 label="Confirm Password"
-                type="text"
+                type={`${
+                  process.env.NODE_ENV === "development" ? "text" : "password"
+                }`}
                 {...register("rePassword")}
               />
             </div>

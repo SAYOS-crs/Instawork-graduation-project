@@ -126,7 +126,7 @@ export default function Login() {
         </form>
         <p className="text-primry-background text-center">
           {" "}
-          Dont Account yet !?{" "}
+          Dont have Account yet !?{" "}
           <span
             className="text-blue-600 cursor-pointer"
             onClick={() => {

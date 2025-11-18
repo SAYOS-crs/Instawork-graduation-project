@@ -20,12 +20,12 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const path = usePathname();
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   const NavItems = [
-    { lable: "services", href: "/services" },
+    { lable: "Services", href: "/services" },
     { lable: "Jobs", href: "/Jobs" },
-    { lable: "Dashbord", href: "/Dashbord/Profile" },
+    { lable: "Dashboard", href: "/Dashbord/Profile" },
   ];
 
   return (
