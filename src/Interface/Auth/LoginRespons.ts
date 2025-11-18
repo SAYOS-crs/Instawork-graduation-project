@@ -7,15 +7,22 @@ export interface SuccessRespons {
 
 export type LogedUser = {
         userId: string
-        fullname: string
+        fullname:string
         phoneNumber: string
-        role: string
+        secondPhoneNumber: string | null
         email: string
-        bio:string
-        profileImageUrl: string
+        role: string
+        gender:Gender
+        dateOfBirth: string
+        address: string | null
+        profileImage: string | null
+        bio: string | null
+        balance: number
+        isSuspended: boolean,
+        createdAt: number
     }
 
-
+    type Gender = 'Male' | 'Femal'
 
 export interface ErorrRespons {
     error : string
