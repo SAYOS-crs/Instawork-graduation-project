@@ -23,9 +23,9 @@ export default function Navbar() {
   const { status, data } = useSession();
 
   const NavItems = [
+    { lable: "Dashboard", href: "/Dashbord/Profile" },
     { lable: "Services", href: "/services" },
     { lable: "Jobs", href: "/Jobs" },
-    { lable: "Dashboard", href: "/Dashbord/Profile" },
   ];
 
   return (
@@ -67,7 +67,7 @@ export default function Navbar() {
               onPress={() => signOut({ callbackUrl: "/" })}
               className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
             >
-              LogOut{" "}
+              Logout{" "}
             </Button>
           ) : (
             <>
@@ -75,7 +75,7 @@ export default function Navbar() {
                 className="hover:bg-primry-background hover:text-main-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-main-background border-primry-background border-1"
                 href={"/Register"}
               >
-                sign up
+                Sign up
               </Link>
 
               <Link
@@ -98,8 +98,8 @@ export default function Navbar() {
                 index === 2
                   ? "primary"
                   : index === NavItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                    ? "danger"
+                    : "foreground"
               }
               href={item.href}
             >
