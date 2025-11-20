@@ -4,6 +4,8 @@ import AD from "@/components/Home Commponent/AD";
 import Tastmonial from "@/components/Home Commponent/tastmonial";
 import HeroParallaxDemo from "@/components/Home Commponent/Parallax";
 import { useSession } from "next-auth/react";
+import { cookies } from "next/headers";
+import { decode, getToken } from "next-auth/jwt";
 
 export default async function Home() {
   return (
