@@ -93,7 +93,7 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <RogBorder>
             <li
-              className="relative w-[350px] m-1 max-w-full shrink-0 rounded-xl   text-primry-background bg-main-background md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
+              className="relative w-[350px] m-1 max-w-full shrink-0 rounded-xl   text-primry-background bg-amber-500 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
               key={`${item}-${idx}`}
             >
               <div className=" h-fit flex flex-col gap-5 mx-auto  justify-center p-6 selection:bg-main-background  selection:text-primry-background ">

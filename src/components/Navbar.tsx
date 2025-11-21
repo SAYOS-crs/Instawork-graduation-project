@@ -98,8 +98,8 @@ export default function Navbar() {
                 index === 2
                   ? "primary"
                   : index === NavItems.length - 1
-                    ? "danger"
-                    : "foreground"
+                  ? "danger"
+                  : "foreground"
               }
               href={item.href}
             >

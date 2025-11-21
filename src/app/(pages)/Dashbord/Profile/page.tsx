@@ -308,7 +308,7 @@ export default function page() {
     setCountroledPhone_1_Input(Data.phoneNumber.replace("+", ""));
     //
     //phone (2)
-    setCountroledPhone_2_Input(Data.secondPhoneNumber.replace("+", ""));
+    setCountroledPhone_2_Input(Data.secondPhoneNumber!.replace("+", ""));
     //
     //emile
     setCountroledEmailInput(Data.email);
@@ -328,14 +328,11 @@ export default function page() {
   //
   //
   // did amount
-
+  const [test, settest] = useState<boolean>(false);
   // amount update
   useEffect(() => {
     //
     //
-
-    //
-
     if (
       (CountroledInputBIO != UserIFON?.bio && CountroledInputBIO != null) ||
       //
@@ -380,25 +377,13 @@ export default function page() {
     ImgeInputURL,
   ]);
 
-  //
-  //
-
-  //
-  //
-  //
-  //
+  useEffect(() => {
+    UserInfo();
+  }, [test]);
 
   useEffect(() => {
     //
-    //
-
-    //
-
-    UserInfo();
-    //
-
-    //
-
+    settest(!test);
     //
   }, []);
 
