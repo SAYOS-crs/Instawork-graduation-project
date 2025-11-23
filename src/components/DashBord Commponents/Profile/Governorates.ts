@@ -1,5 +1,5 @@
   export  const Governorates = [
-  {label: "Giza"},
+  {label: "Giza"  },
   {label: "Cairo"},
   {label: "Alexandria"},
   {label: "Aswan"},
