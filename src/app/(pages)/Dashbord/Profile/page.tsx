@@ -247,7 +247,7 @@ export default function page() {
     } else {
       addToast({
         title: "Error",
-        color: "success",
+        color: "danger",
       });
     }
   }
