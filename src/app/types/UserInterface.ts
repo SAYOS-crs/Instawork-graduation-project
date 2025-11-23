@@ -10,7 +10,7 @@ export  interface UserData {
         bio: string| null,
         fullname: string
         phoneNumber: string
-        secondPhoneNumber : string
+        secondPhoneNumber : string | null
         gender : "Male" | "Female"
         email: string 
         dateOfBirth: string
