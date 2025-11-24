@@ -18,6 +18,12 @@ export default function page() {
     { label: "كهربائي" },
     { label: "نجار" },
     { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
   ];
   const ServiceAddress = [
     { Address: "الجيزه" },
@@ -156,6 +162,7 @@ export default function page() {
 
       ClearServiceFilds();
       console.log(respons);
+      setAddServiceTogel(false);
     } else {
       setIsloading(false);
     }
