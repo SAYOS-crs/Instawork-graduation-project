@@ -11,6 +11,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+body {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     @apply selection:bg-primry-background;

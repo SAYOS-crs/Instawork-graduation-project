@@ -18,6 +18,12 @@ export default function page() {
     { label: "كهربائي" },
     { label: "نجار" },
     { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
+    { label: "سباك" },
   ];
   const ServiceAddress = [
     { Address: "الجيزه" },
@@ -85,17 +91,45 @@ export default function page() {
         color: "danger",
       });
     }
-    if (Imge_2) {
+    if (Imge_2 && Imge_2.type === "image/jpeg") {
       setimgeURl_2(URL.createObjectURL(Imge_2));
+    } else if (Imge_2 && Imge_2.type !== "image/jpeg") {
+      setimgeURl_2(null);
+      setImge_2(null);
+      addToast({
+        title: "upload imge type jpg only !!",
+        color: "danger",
+      });
     }
-    if (Imge_3) {
+    if (Imge_3 && Imge_3.type === "image/jpeg") {
       setimgeURl_3(URL.createObjectURL(Imge_3));
+    } else if (Imge_3 && Imge_3.type !== "image/jpeg") {
+      setimgeURl_3(null);
+      setImge_3(null);
+      addToast({
+        title: "upload imge type jpg only !!",
+        color: "danger",
+      });
     }
-    if (Imge_4) {
+    if (Imge_4 && Imge_4.type === "image/jpeg") {
       setimgeURl_4(URL.createObjectURL(Imge_4));
+    } else if (Imge_4 && Imge_4.type !== "image/jpeg") {
+      setimgeURl_4(null);
+      setImge_4(null);
+      addToast({
+        title: "upload imge type jpg only !!",
+        color: "danger",
+      });
     }
-    if (Imge_5) {
+    if (Imge_5 && Imge_5.type === "image/jpeg") {
       setimgeURl_5(URL.createObjectURL(Imge_5));
+    } else if (Imge_5 && Imge_5.type !== "image/jpeg") {
+      setimgeURl_5(null);
+      setImge_5(null);
+      addToast({
+        title: "upload imge type jpg only !!",
+        color: "danger",
+      });
     }
   }, [Imge_1, Imge_2, Imge_3, Imge_4, Imge_5]);
 
@@ -156,6 +190,7 @@ export default function page() {
 
       ClearServiceFilds();
       console.log(respons);
+      setAddServiceTogel(false);
     } else {
       setIsloading(false);
     }
