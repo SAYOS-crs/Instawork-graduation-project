@@ -2,49 +2,24 @@ import AccordionCommponent from "@/components/Home Commponent/Accordin";
 import CommonProfessions from "@/components/Home Commponent/CommonProfessions";
 import AD from "@/components/Home Commponent/AD";
 import Tastmonial from "@/components/Home Commponent/tastmonial";
+import FloatingCards from "@/components/Home Commponent/FloatingCards";
+import SpotlightHero from "@/components/Home Commponent/SpotlightHero";
 import HeroParallaxDemo from "@/components/Home Commponent/Parallax";
 import { useSession } from "next-auth/react";
 import { cookies } from "next/headers";
 import { decode, getToken } from "next-auth/jwt";
+import { Button } from "@heroui/button";
 
 export default async function Home() {
   return (
     <>
-      <section className="  bg-linear-to-r from-[#000000] to-[#434343] text-primry-background text-center flex flex-col justify-center  ">
-        {/* header */}
-        {/* <div
-          className={` bg-[url(./_imgs/az9nwc.png)] max-md:bg-center bg-fixed bg-cover bg-bg-no-repeat flex flex-col justify-center h-screen`}
-        >
-          <header className="pb-7">
-            <h1 className="text-5xl text-white font-bold">
-              {" "}
-              Match your skills to <br /> your career opportunities{" "}
-            </h1>
-            <p className="mt-5 text-white">
-              Instajob is a platform that connects craftspeople with clients.{" "}
-              <br /> Whether you're looking for a skilled craftsman or a new job
-              opportunity, <br /> we're here to help.
-            </p>
-          </header>
+      <section className="text-primry-background text-center flex flex-col justify-center">
+        {/* Spotlight Hero */}
+        <SpotlightHero />
 
-          <div className="mt-5">
-            <Button
-              color="default"
-              variant="ghost"
-              className="text-white m-2 outline-none hover:text-black"
-            >
-              Find a job
-            </Button>
-            <Button
-              color="default"
-              variant="ghost"
-              className="text-white m-2 outline-none hover:text-black"
-            >
-              View services
-            </Button>
-          </div>
-        </div> */}
-        <HeroParallaxDemo />
+        {/* Floating Cards Animation */}
+        <FloatingCards />
+
         {/* tastmonial */}
 
         <div className="  overflow-hidden">
@@ -55,28 +30,40 @@ export default async function Home() {
         <CommonProfessions />
 
         {/* AD */}
-        <div id="AD" className="my-15">
-          <header className="my-10">
-            <h3 className="text-3xl tracking-widest">
-              Distinguish your offer and make the customer notice you first
-            </h3>
-          </header>
-
-          <AD />
+        <div
+          id="AD"
+          className="my-20 py-12 bg-linear-to-b from-gray-50 to-white"
+        >
+          <div className="container mx-auto px-4">
+            <header className="mb-16 text-center">
+              <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-main-background mb-4">
+                Distinguish your offer
+              </h3>
+              <p className="text-xl text-gray-600 mb-6">
+                Make the customer notice you first
+              </p>
+              <div className="h-1 w-24 bg-linear-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+            </header>
+            <AD />
+          </div>
         </div>
 
-        {/* Comments and ratings */}
-        {/* ؟؟ */}
-
         {/* Frequently Asked Questions */}
-
-        <div className="w-7/8 mx-auto my-15 AccordianSpan ">
-          <header>
-            <h2 className="my-5 text-3xl tracking-wider">
-              Frequently Asked Questions
-            </h2>
-          </header>
-          <AccordionCommponent />
+        <div className="w-full mx-auto my-20 py-16 bg-linear-to-b from-white via-gray-50 to-white">
+          <div className="container mx-auto px-4">
+            <header className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-main-background tracking-wider mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600">
+                Find answers to common questions about InstaWork
+              </p>
+              <div className="h-1 w-24 bg-linear-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-4"></div>
+            </header>
+            <div className="max-w-4xl mx-auto">
+              <AccordionCommponent />
+            </div>
+          </div>
         </div>
       </section>
     </>
