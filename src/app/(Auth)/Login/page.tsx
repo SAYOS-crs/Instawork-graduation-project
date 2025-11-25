@@ -93,7 +93,7 @@ export default function Login() {
             <div className="inline-flex items-center justify-center w-14 h-14 bg-linear-to-br from-main-background to-orange-600 rounded-full mb-4">
               <span className="text-2xl text-white font-bold text-center">
                 {" "}
-                <SlLogin />
+                <SlLogin className="" />
               </span>
             </div>
             <h1 className="text-4xl font-bold text-white">SIGN IN</h1>
