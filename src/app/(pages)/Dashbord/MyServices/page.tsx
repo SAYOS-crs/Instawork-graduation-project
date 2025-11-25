@@ -223,7 +223,7 @@ export default function page() {
   }
 
   return (
-    <section className=" w-full h-screen flex flex-col">
+    <section className="min-h-screen w-full flex flex-col bg-linear-to-b from-white to-gray-50 py-8">
       {AddServiceTogel ? (
         <div className="   ">
           {/* skill - titel */}
@@ -280,20 +280,21 @@ export default function page() {
           {/* imges */}
           <div className="flex justify-center flex-wrap gap-5  ">
             {/* --------- imge 1 --------------- */}
-            <div className="w-30 h-30 relative rounded-md  overflow-hidden group">
+            <div className="w-30 h-30 relative rounded-2xl overflow-hidden group shadow-lg border border-gray-100">
               {Imge_1 ? (
                 <div className="relative">
                   <img src={imgeURl_1} alt="" />
                   <MdCancel
                     onClick={() => {
-                      setimgeURl_1(null), setImge_1(null);
+                      setimgeURl_1(null);
+                      setImge_1(null);
                     }}
                     className=" cursor-pointer absolute top-0 right-0 text-2xl text-main-background"
                   />
                 </div>
               ) : (
-                <span className="  opacity-80 absolute inset-0 cursor-pointer flex flex-col justify-center group-hover:opacity-100 ">
-                  <CiSquarePlus className="text-9xl  transition-all  mx-auto w-fit  text-main-background" />
+                <span className="absolute inset-0 cursor-pointer flex flex-col justify-center items-center gap-2 bg-white/70 p-3">
+                  <CiSquarePlus className="text-6xl transition-all text-main-background" />
                   <label
                     htmlFor="Imge_1"
                     className="absolute inset-0 cursor-pointer"
@@ -308,20 +309,21 @@ export default function page() {
               )}{" "}
             </div>
             {/* ---------- imge 2 ------------- */}
-            <div className="w-30 h-30 relative rounded-md  overflow-hidden group">
+            <div className="w-30 h-30 relative rounded-2xl overflow-hidden group shadow-lg border border-gray-100">
               {Imge_2 ? (
                 <div className="relative">
                   <img src={imgeURl_2} alt="" />
                   <MdCancel
                     onClick={() => {
-                      setimgeURl_2(null), setImge_2(null);
+                      setimgeURl_2(null);
+                      setImge_2(null);
                     }}
                     className=" cursor-pointer absolute top-0 right-0 text-2xl text-main-background"
                   />
                 </div>
               ) : (
-                <span className="  opacity-80 absolute inset-0 cursor-pointer flex flex-col justify-center group-hover:opacity-100 ">
-                  <CiSquarePlus className="text-9xl  transition-all  mx-auto w-fit  text-main-background" />
+                <span className="absolute inset-0 cursor-pointer flex flex-col justify-center items-center gap-2 bg-white/70 p-3">
+                  <CiSquarePlus className="text-6xl transition-all text-main-background" />
                   <label
                     htmlFor="Imge_2"
                     className="absolute inset-0 cursor-pointer"
@@ -336,20 +338,21 @@ export default function page() {
               )}{" "}
             </div>
             {/* --------- imge 3 ------------- */}
-            <div className="w-30 h-30 relative rounded-md  overflow-hidden group">
+            <div className="w-30 h-30 relative rounded-2xl overflow-hidden group shadow-lg border border-gray-100">
               {Imge_3 ? (
                 <div className="relative">
                   <img src={imgeURl_3} alt="" />
                   <MdCancel
                     onClick={() => {
-                      setimgeURl_3(null), setImge_3(null);
+                      setimgeURl_3(null);
+                      setImge_3(null);
                     }}
                     className=" cursor-pointer absolute top-0 right-0 text-2xl text-main-background"
                   />
                 </div>
               ) : (
-                <span className="  opacity-80 absolute inset-0 cursor-pointer flex flex-col justify-center group-hover:opacity-100 ">
-                  <CiSquarePlus className="text-9xl  transition-all  mx-auto w-fit  text-main-background" />
+                <span className="absolute inset-0 cursor-pointer flex flex-col justify-center items-center gap-2 bg-white/70 p-3">
+                  <CiSquarePlus className="text-6xl transition-all text-main-background" />
                   <label
                     htmlFor="Imge_3"
                     className="absolute inset-0 cursor-pointer"
@@ -364,20 +367,21 @@ export default function page() {
               )}{" "}
             </div>
             {/* ---------- imge 4 ----------- */}
-            <div className="w-30 h-30 relative rounded-md  overflow-hidden group">
+            <div className="w-30 h-30 relative rounded-2xl overflow-hidden group shadow-lg border border-gray-100">
               {Imge_4 ? (
                 <div className="relative">
                   <img src={imgeURl_4} alt="" />
                   <MdCancel
                     onClick={() => {
-                      setimgeURl_4(null), setImge_4(null);
+                      setimgeURl_4(null);
+                      setImge_4(null);
                     }}
                     className=" cursor-pointer absolute top-0 right-0 text-2xl text-main-background"
                   />
                 </div>
               ) : (
-                <span className="  opacity-80 absolute inset-0 cursor-pointer flex flex-col justify-center group-hover:opacity-100 ">
-                  <CiSquarePlus className="text-9xl  transition-all  mx-auto w-fit  text-main-background" />
+                <span className="absolute inset-0 cursor-pointer flex flex-col justify-center items-center gap-2 bg-white/70 p-3">
+                  <CiSquarePlus className="text-6xl transition-all text-main-background" />
                   <label
                     htmlFor="Imge_4"
                     className="absolute inset-0 cursor-pointer"
@@ -392,20 +396,21 @@ export default function page() {
               )}{" "}
             </div>
             {/* ----------- imge 5 ----------- */}
-            <div className="w-30 h-30 relative rounded-md  overflow-hidden group">
+            <div className="w-30 h-30 relative rounded-2xl overflow-hidden group shadow-lg border border-gray-100">
               {Imge_5 ? (
                 <div className="relative">
                   <img src={imgeURl_5} alt="" />
                   <MdCancel
                     onClick={() => {
-                      setimgeURl_5(null), setImge_5(null);
+                      setimgeURl_5(null);
+                      setImge_5(null);
                     }}
                     className=" cursor-pointer absolute top-0 right-0 text-2xl text-main-background"
                   />
                 </div>
               ) : (
-                <span className="  opacity-80 absolute inset-0 cursor-pointer flex flex-col justify-center group-hover:opacity-100 ">
-                  <CiSquarePlus className="text-9xl  transition-all  mx-auto w-fit  text-main-background" />
+                <span className="absolute inset-0 cursor-pointer flex flex-col justify-center items-center gap-2 bg-white/70 p-3">
+                  <CiSquarePlus className="text-6xl transition-all text-main-background" />
                   <label
                     htmlFor="Imge_5"
                     className="absolute inset-0 cursor-pointer"
@@ -452,32 +457,14 @@ export default function page() {
         </div>
       )}
 
-      <div className="w-full p-2 overflow-auto  ">
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
+      <div className="w-full p-2 overflow-auto">
+        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
           Service -
         </div>
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
+        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
           Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
-          Service -
-        </div>{" "}
-        <div className="w-full h-20 my-5 bg-main-background text-white text-5xl text-center ">
+        </div>
+        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
           Service -
         </div>
       </div>

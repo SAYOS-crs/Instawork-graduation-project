@@ -21,6 +21,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdEdit, MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 import { Governorates } from "@/components/DashBord Commponents/Profile/Governorates";
+import Loader from "@/components/Loader";
 
 export default function page() {
   //
@@ -31,6 +32,7 @@ export default function page() {
 
   //
   //
+  const [LoadingPage, setLoadingPage] = useState<boolean>(true);
   //
   /////////////--------- Edit mode trigger ---------////////////
   const [EditeMode, setEditeMode] = useState<boolean>(false);
@@ -164,12 +166,16 @@ export default function page() {
     //
     //////////////-----------phone (2) ////////////////
     if ("+" + CountroledPhone_2_Input === UserIFON?.secondPhoneNumber) {
+      setErorrPhone_2(null);
     } else if (phoneRegix.test(CountroledPhone_2_Input!)) {
       formdata.append("SecondPhoneNumber", "+" + CountroledPhone_2_Input);
       setErorrPhone_2(null);
     } else if (CountroledPhone_2_Input === "") {
       setErorrPhone_2(null);
-    } else {
+    } else if (
+      CountroledPhone_2_Input !== null &&
+      CountroledPhone_2_Input! !== ""
+    ) {
       setErorrPhone_2("Second Phone Number inValid");
     }
     ///////////////////////////////////////////////
@@ -289,6 +295,7 @@ export default function page() {
         data?.user.userId
       );
       if (respons) {
+        setLoadingPage(false);
         setUserIFON(respons.data);
         BindingData(respons.data);
       }
@@ -305,10 +312,23 @@ export default function page() {
     setCountroledNameInput(Data.fullname);
     //
     //phone (1)
-    setCountroledPhone_1_Input(Data.phoneNumber.replace("+", ""));
+    // guard replace in case values are null/undefined
+    try {
+      setCountroledPhone_1_Input(
+        Data.phoneNumber ? Data.phoneNumber.replace("+", "") : null
+      );
+    } catch (e) {
+      setCountroledPhone_1_Input(Data.phoneNumber ?? null);
+    }
     //
     //phone (2)
-    setCountroledPhone_2_Input(Data.secondPhoneNumber!.replace("+", ""));
+    try {
+      setCountroledPhone_2_Input(
+        Data.secondPhoneNumber ? Data.secondPhoneNumber.replace("+", "") : null
+      );
+    } catch (e) {
+      setCountroledPhone_2_Input(Data.secondPhoneNumber ?? null);
+    }
     //
     //emile
     setCountroledEmailInput(Data.email);
@@ -335,7 +355,6 @@ export default function page() {
     //
     if (
       (CountroledInputBIO != UserIFON?.bio && CountroledInputBIO != null) ||
-      //
       (CountroledNameInput != UserIFON?.fullname &&
         CountroledNameInput != null) ||
       //
@@ -359,11 +378,8 @@ export default function page() {
     ) {
       setEditeMode(true);
     }
-
     //
-
     //
-
     //
   }, [
     CountroledInputBIO,
@@ -388,240 +404,292 @@ export default function page() {
   }, []);
 
   return (
-    <section
-      className={` ${
-        EditeMode && "mt-10"
-      }   bg-primry-background min-h-screen w-full  selection:bg-main-background selection:text-primry-background  `}
-    >
-      {/* -Profile header- */}
-      <header className="  w-full pt-7 grid max-md:justify-center  md:grid-cols-5 ">
-        {/* ------------------ img ----------------------- */}
-        <div className=" max-lg:col-span-2  rounded-full w-30 h-30 mx-auto my-2 group overflow-hidden relative ">
-          <img
-            src={
-              ImgeInputURL
-                ? ImgeInputURL
-                : "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
-            }
-            className=" h-fit w-fit  "
-            alt=""
-          />
-          <span className="absolute cursor-pointer  bottom-0 left-0 right-0 h-40 translate-y-40 group-hover:translate-y-30 transition-all bg-main-background opacity-80">
-            <MdOutlineAddPhotoAlternate className="text-2xl my-2 mx-auto text-white" />
-            <label
-              htmlFor="ImgInput"
-              className="absolute inset-0 cursor-pointer "
-            >
-              <input
-                onChange={(e) => ExtraxtingImgeFile(e)}
-                id="ImgInput"
-                className="hidden"
-                type="file"
-              />
-            </label>
-          </span>
-        </div>
-        {/* -------------------- Name & email--------------------- */}
-        <div className="  col-span-3 max-md:text-center  grid grid-cols-1 ">
-          <div className="my-auto pb-3 ">
-            <h3 className="py-1 text-md text-gray-800 ">
-              {" "}
-              {UserIFON?.fullname}{" "}
-            </h3>
-            <span className=" text-md text-gray-700 "> {UserIFON?.email} </span>
+    <>
+      {LoadingPage ? (
+        <div className="h-screen content-center text-center">
+          <div className="-translate-y-full">
+            <Loader />
+            <span className="ps-6  my-3">Loading . . .</span>
           </div>
         </div>
-        {/* ---------------------- Edit Btn & Save --------------- */}
-        <div
-          className={` ${
-            EditeMode &&
-            "fixed top-0  translate-y-15 bg-main-background w-full z-40"
-          }   col-span-1 flex justify-center gap-10 p-2 `}
+      ) : (
+        <section
+          className={` bg-linear-to-b from-primry-background via-gray-50 to-white min-h-screen w-full selection:bg-main-background selection:text-primry-background`}
         >
-          {EditeMode && (
-            <>
-              {/* save */}
-              <Button
-                color="success"
-                variant="shadow"
-                isLoading={LoadingSaveBtn}
-                onPress={() => {
-                  CollectNewData();
-                }}
-                className={` `}
-              >
-                Save
-              </Button>
-              {/* cancel */}
-              <Button
-                color="warning"
-                variant="shadow"
-                onPress={() => {
-                  setEditeMode(!EditeMode),
-                    setUnlockGenderInput(false),
-                    setUnlockInput(false);
-                  BindingData(UserIFON!);
-                  setLoadingSaveBtn(false);
-                }}
-                className=""
-              >
-                Cancel
-              </Button>
-            </>
-          )}
-        </div>
-      </header>
-      {/* ------------ bio --------------------- */}
-      <div className="p-5 w-2/3 mx-auto  ">
-        <Textarea
-          isInvalid={Boolean(ErorrBio)}
-          errorMessage={ErorrBio}
-          onChange={(e) => setCountroledInputBIO(e.target.value)}
-          value={CountroledInputBIO!}
-          maxLength={200}
-          variant="faded"
-          type="text"
-          label="Bio."
-        />
-        {CountroledInputBIO && (
-          <span className="text-gray-600 ms-2">
-            {" "}
-            {200 - CountroledInputBIO.length}{" "}
-          </span>
-        )}
-      </div>
-      {/* -Profile Body- */}
-      <div className="  w-full grid grid-cols-2 ">
-        <div className="  ">
-          {/* ----------------- name ------------- */}
-          <div className="p-10   ">
-            <Input
-              isInvalid={Boolean(ErorrName)}
-              errorMessage={ErorrName}
-              onChange={(e) => setCountroledNameInput(e.target.value)}
-              value={CountroledNameInput!}
-              variant="faded"
-              type="text"
-              label="Name"
-            />
-          </div>
-          {/* ----------------- Phone 1 -----------  */}
-          <div className="p-10   ">
-            <Input
-              isInvalid={Boolean(ErorrPhone_1)}
-              errorMessage={ErorrPhone_1}
-              onChange={(e) => setCountroledPhone_1_Input(e.target.value)}
-              value={CountroledPhone_1_Input!}
-              variant="faded"
-              type="text"
-              label="Phone Number"
-            />
-          </div>
-          {/* ------------------- Phone 2 ------------- */}
-          <div className="p-10   ">
-            <Input
-              isInvalid={Boolean(ErorrPhone_2)}
-              errorMessage={ErorrPhone_2}
-              onChange={(e) => setCountroledPhone_2_Input(e.target.value)}
-              value={CountroledPhone_2_Input!}
-              type="text"
-              variant="faded"
-              label="Second Phone Number"
-            />
-          </div>
-        </div>
-        {/* --////-------/////----------//////------///////-----////////-------/////////---/////--- */}
-        {/* --////-------/////----------//////------///////-----////////-------/////////---/////--- */}
-        <div className="">
-          {/* ---------------- Email ------------ */}
-          <div className="p-10 ">
-            <Input
-              isInvalid={Boolean(ErorrEmail)}
-              errorMessage={ErorrEmail}
-              onChange={(e) => setCountroledEmailInput(e.target.value)}
-              value={CountroledEmailInput!}
-              variant="faded"
-              type="text"
-              label="Email"
-            />
-          </div>
-          {/* ----------- Address & Gender ------------ */}
-          <div className="flex max-lg:flex-col">
-            {/* addres */}
-            <div className="p-10  w-fit ">
-              {UnlockInput ? (
-                <Autocomplete
-                  isInvalid={Boolean(ErorrAddress)}
-                  errorMessage={ErorrAddress}
-                  onInputChange={(S) => setCountroledAddress_Selection(S)}
-                  className="max-w-xs"
-                  defaultItems={Governorates}
-                  label="المكان"
-                  placeholder="المحافظة"
+          {/* -Profile header- */}
+          <header className="relative w-full pt-8 pb-12 bg-linear-to-r from-main-background to-orange-700 shadow-xl rounded-b-2xl overflow-hidden">
+            <div className="container mx-auto px-4">
+              <div className="grid max-md:justify-center md:grid-cols-5 gap-6 items-center">
+                {/* Profile Image */}
+                <div className="max-lg:col-span-2 mx-auto">
+                  <div className="relative w-40 h-40 rounded-full overflow-hidden group shadow-2xl ring-2 ring-white border-4 border-primry-background hover:shadow-3xl transition-all duration-300">
+                    <img
+                      src={
+                        ImgeInputURL
+                          ? ImgeInputURL
+                          : "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                      }
+                      className="h-full w-full object-cover"
+                      alt="Profile"
+                    />
+                    <span className="absolute cursor-pointer bottom-0 left-0 right-0 h-full bg-main-background/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center">
+                      <MdOutlineAddPhotoAlternate className="text-4xl text-primry-background mb-2" />
+                      <p className="text-primry-background text-sm font-semibold">
+                        تغيير الصورة
+                      </p>
+                      <label
+                        htmlFor="ImgInput"
+                        className="absolute inset-0 cursor-pointer"
+                      >
+                        <input
+                          onChange={(e) => ExtraxtingImgeFile(e)}
+                          id="ImgInput"
+                          className="hidden"
+                          type="file"
+                        />
+                      </label>
+                    </span>
+                  </div>
+                </div>
+
+                {/* User Info */}
+                <div className="col-span-3 max-md:text-center text-primry-background">
+                  <h2 className="text-4xl font-bold mb-2">
+                    {UserIFON?.fullname}
+                  </h2>
+                  <p className="text-lg font-semibold opacity-90">
+                    {UserIFON?.email}
+                  </p>
+                  <p className="text-sm mt-3 opacity-75 max-w-md">
+                    {UserIFON?.bio || "أضف نبذة عن نفسك"}
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div
+                  className={`${
+                    EditeMode &&
+                    " fixed top-0 left-0 right-0 bg-main-background shadow-xl z-40 py-4"
+                  } col-span-1 flex justify-center gap-4 p-2`}
                 >
-                  {(Governorate) => (
-                    <AutocompleteItem key={Governorate.label}>
-                      {Governorate.label}
-                    </AutocompleteItem>
+                  {EditeMode && (
+                    <div className="flex gap-3">
+                      {/* Save Button */}
+                      <Button
+                        onPress={() => CollectNewData()}
+                        isLoading={LoadingSaveBtn}
+                        className="bg-linear-to-r from-main-background to-orange-600 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                      >
+                        <span className="text-lg">✓</span> حفظ
+                      </Button>
+                      {/* Cancel Button */}
+                      <Button
+                        onPress={() => {
+                          setEditeMode(!EditeMode),
+                            setUnlockGenderInput(false),
+                            setUnlockInput(false);
+                          BindingData(UserIFON!);
+                          setLoadingSaveBtn(false);
+                        }}
+                        className="bg-linear-to-r from-red-500 to-red-600 text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                      >
+                        <span className="text-lg">✕</span> إلغاء
+                      </Button>
+                    </div>
                   )}
-                </Autocomplete>
-              ) : (
-                <Button
-                  onPress={() => setUnlockInput(!UnlockInput)}
-                  className="p-7 w-47 text-gray-600"
-                >
-                  {CountroledAddress_Selection}
-                </Button>
-              )}
+                </div>
+              </div>
             </div>
-            {/*  gender */}
-            <div className="p-10  w-fit ">
-              {UnlockGenderInput ? (
-                <Autocomplete
-                  isRequired
-                  isInvalid={Boolean(ErorrGender)}
-                  errorMessage={ErorrGender}
-                  onInputChange={(S) => setCountroledGender_Selection(S)}
-                  value={CountroledGender_Selection!}
-                  className="max-w-xs"
-                  defaultItems={Governorates}
-                  label="Gender"
-                >
-                  <AutocompleteItem>Male</AutocompleteItem>
-                  <AutocompleteItem>Female</AutocompleteItem>
-                </Autocomplete>
-              ) : (
-                <Button
-                  onPress={() => setUnlockGenderInput(!UnlockGenderInput)}
-                  className="p-7 w-47 text-gray-600"
-                >
-                  {CountroledGender_Selection}
-                </Button>
-              )}
-            </div>
-          </div>
-          {/* ------------ DateOfBarth ------------ */}
-          <div className="p-10 ">
-            <div className="flex w-full flex-wrap  md:flex-nowrap gap-4">
-              <Input
-                isInvalid={Boolean(ErorrDateOfBirth)}
-                errorMessage={ErorrDateOfBirth}
-                onChange={(e) =>
-                  setCountroledDateOfBirth_Selection(e.target.value)
-                }
+          </header>
+          {/* ------------ bio --------------------- */}
+          <div className="p-5  ">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-l-8 border-main-background">
+              <label className="block text-main-background font-bold text-lg mb-3">
+                نبذة عن نفسك
+              </label>
+              <Textarea
+                isInvalid={Boolean(ErorrBio)}
+                errorMessage={ErorrBio}
+                onChange={(e) => setCountroledInputBIO(e.target.value)}
                 value={
-                  CountroledDateOfBirth_Selection &&
-                  CountroledDateOfBirth_Selection.split("T")[0]
+                  CountroledInputBIO! === "null" ? "" : CountroledInputBIO!
                 }
-                className="max-w-sm mx-auto"
-                label={"Birth date"}
-                type="date"
-                // placeholderValue={new CalendarDate(1995, 11, 6)}
+                maxLength={200}
+                placeholder="اكتب نبذة عن نفسك وخبرتك"
+                variant="faded"
+                type="text"
+                className="rounded-lg"
               />
+              {CountroledInputBIO && (
+                <span className="text-gray-500 text-sm mt-2 block">
+                  المتبقي: {200 - CountroledInputBIO.length} أحرف
+                </span>
+              )}
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+
+          {/* -Profile Body- */}
+          <div className="w-full bg-linear-to-b from-white to-gray-50 py-12">
+            <div className="container mx-auto px-4">
+              <div className="grid max-sm:grid-cols-1 grid-cols-2  gap-8">
+                {/* Column 1 - Name, Phone Numbers - Email */}
+                {/* Name Input */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-blue-500 mb-6 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    الاسم الكامل
+                  </label>
+                  <Input
+                    isInvalid={Boolean(ErorrName)}
+                    errorMessage={ErorrName}
+                    onChange={(e) => setCountroledNameInput(e.target.value)}
+                    value={CountroledNameInput!}
+                    variant="faded"
+                    type="text"
+                    placeholder="أدخل اسمك الكامل"
+                  />
+                </div>
+
+                {/* Phone 1 Input */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-main-background mb-6 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    رقم الهاتف الأول
+                  </label>
+                  <Input
+                    isInvalid={Boolean(ErorrPhone_1)}
+                    errorMessage={ErorrPhone_1}
+                    onChange={(e) => setCountroledPhone_1_Input(e.target.value)}
+                    value={CountroledPhone_1_Input!}
+                    variant="faded"
+                    type="text"
+                    placeholder="01xxxxxxxxx"
+                  />
+                </div>
+
+                {/* Phone 2 Input */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-purple-500 mb-6 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    رقم الهاتف الثاني
+                  </label>
+                  <Input
+                    isInvalid={Boolean(ErorrPhone_2)}
+                    errorMessage={ErorrPhone_2}
+                    onChange={(e) => setCountroledPhone_2_Input(e.target.value)}
+                    value={CountroledPhone_2_Input!}
+                    type="text"
+                    variant="faded"
+                    placeholder="01xxxxxxxxx"
+                  />
+                </div>
+                {/* Email Input */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-red-500 mb-6 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    البريد الإلكتروني
+                  </label>
+                  <Input
+                    isInvalid={Boolean(ErorrEmail)}
+                    errorMessage={ErorrEmail}
+                    onChange={(e) => setCountroledEmailInput(e.target.value)}
+                    value={CountroledEmailInput!}
+                    variant="faded"
+                    type="email"
+                    placeholder="example@email.com"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2 - Email, Address, Gender, Date */}
+            <div className="  ">
+              {/* Address & Gender */}
+              <div className="grid max-sm:grid-cols-1 grid-cols-3 gap-6 mb-6 p-4">
+                {/* Address */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-orange-500 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    المحافظة
+                  </label>
+                  {UnlockInput ? (
+                    <Autocomplete
+                      isInvalid={Boolean(ErorrAddress)}
+                      errorMessage={ErorrAddress}
+                      onInputChange={(S) => setCountroledAddress_Selection(S)}
+                      className="w-full"
+                      defaultItems={Governorates}
+                      placeholder="اختر المحافظة"
+                    >
+                      {(Governorate) => (
+                        <AutocompleteItem key={Governorate.label}>
+                          {Governorate.label}
+                        </AutocompleteItem>
+                      )}
+                    </Autocomplete>
+                  ) : (
+                    <Button
+                      onPress={() => setUnlockInput(!UnlockInput)}
+                      className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold p-3 rounded-lg hover:shadow-lg transition-all duration-300"
+                    >
+                      {CountroledAddress_Selection === "null" ? (
+                        <span className="text-purple-700">"add address !"</span>
+                      ) : (
+                        CountroledAddress_Selection
+                      )}
+                    </Button>
+                  )}
+                </div>
+
+                {/* Gender */}
+                <div className="p-6 bg-white rounded-2xl shadow-lg border-l-8 border-pink-500 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    النوع
+                  </label>
+                  {UnlockGenderInput ? (
+                    <Autocomplete
+                      isRequired
+                      isInvalid={Boolean(ErorrGender)}
+                      errorMessage={ErorrGender}
+                      onInputChange={(S) => setCountroledGender_Selection(S)}
+                      value={CountroledGender_Selection!}
+                      className="w-full"
+                      placeholder="اختر النوع"
+                    >
+                      <AutocompleteItem>Male</AutocompleteItem>
+                      <AutocompleteItem>Female</AutocompleteItem>
+                    </Autocomplete>
+                  ) : (
+                    <Button
+                      onPress={() => setUnlockGenderInput(!UnlockGenderInput)}
+                      className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white font-semibold p-3 rounded-lg hover:shadow-lg transition-all duration-300"
+                    >
+                      {CountroledGender_Selection}
+                    </Button>
+                  )}
+                </div>
+
+                {/* Date of Birth */}
+                <div className="p-6 w-full mx-auto bg-white rounded-2xl shadow-lg border-l-8 border-cyan-500 hover:shadow-xl transition-all duration-300">
+                  <label className="block text-main-background font-bold text-lg mb-2">
+                    تاريخ الميلاد
+                  </label>
+                  <div className="flex w-full gap-4">
+                    <Input
+                      isInvalid={Boolean(ErorrDateOfBirth)}
+                      errorMessage={ErorrDateOfBirth}
+                      onChange={(e) =>
+                        setCountroledDateOfBirth_Selection(e.target.value)
+                      }
+                      value={
+                        CountroledDateOfBirth_Selection &&
+                        CountroledDateOfBirth_Selection.split("T")[0]
+                      }
+                      className="w-full"
+                      type="date"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
