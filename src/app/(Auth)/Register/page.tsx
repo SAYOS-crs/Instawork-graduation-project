@@ -110,7 +110,7 @@ export default function Register() {
                   errorMessage={errors.name?.message}
                   variant={"faded"}
                   label="Full Name"
-                  placeholder="John Doe"
+                  placeholder="Tony Montana"
                   type="text"
                   className="bg-white/5"
                   {...register("name")}
@@ -128,7 +128,7 @@ export default function Register() {
                   errorMessage={errors.email?.message}
                   variant={"faded"}
                   label="Email"
-                  placeholder="john@example.com"
+                  placeholder="Montana@example.com"
                   type="email"
                   className="bg-white/5"
                   {...register("email")}
