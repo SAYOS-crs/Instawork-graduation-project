@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { RegisterScheme } from "../_Schemas/Schema";
 import { useRouter } from "next/navigation";
 import { DatePicker } from "@heroui/react";
+import { motion } from "framer-motion";
 
 // import RegisterRoute from "../RoutHandler/RegisterRoute";
 import { log } from "console";
@@ -56,139 +57,245 @@ export default function Register() {
     setisLooding(false);
   }
 
+  const inputVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.1, duration: 0.4 },
+    }),
+  };
+
   return (
-    <>
-      <section className=" py-20 min-h-screen bg-linear-to-r from-[#000000] to-[#434343] selection:bg-main-background selection:text-primry-background ">
-        <div className="  p-10 shadow-2xl border-primry-background border-1 text-center md:w-3xl lg:w-4xl xl:w-5xl mx-auto  rounded-xl text-primry-background">
-          <form
-            className=" grid  gap-6 md:grid-cols-2 "
-            onSubmit={handleSubmit(sendData)}
+    <section className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 selection:bg-main-background selection:text-primry-background flex items-center justify-center p-4 font-poppins py-10 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-main-background/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-orange-600/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative z-10 w-full max-w-2xl"
+      >
+        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-center mb-8"
           >
-            <h1 className="text-4xl md:col-span-2 mb-2   pt-3">Register</h1>
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-linear-to-br from-main-background to-orange-600 rounded-full mb-4">
+              <span className="text-2xl text-white font-bold">⭐</span>
+            </div>
+            <h1 className="text-4xl font-bold text-white">CREATE ACCOUNT</h1>
+            <p className="text-gray-300 text-sm mt-2">
+              Join InstaWork and start your freelance journey
+            </p>
+          </motion.div>
 
-            {/* --------------------- name */}
-            <div className=" ">
-              <Input
-                isInvalid={Boolean(errors.name)}
-                errorMessage={errors.name?.message}
-                variant={"flat"}
-                className=" h-20 "
-                label="Name"
-                type="text"
-                {...register("name")}
-              />
+          <form onSubmit={handleSubmit(sendData)} className="space-y-4">
+            {/* Row 1: Name & Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                custom={0}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  isInvalid={Boolean(errors.name)}
+                  errorMessage={errors.name?.message}
+                  variant={"faded"}
+                  label="Full Name"
+                  placeholder="John Doe"
+                  type="text"
+                  className="bg-white/5"
+                  {...register("name")}
+                />
+              </motion.div>
+
+              <motion.div
+                custom={1}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  isInvalid={Boolean(errors.email) && dirtyFields.email}
+                  errorMessage={errors.email?.message}
+                  variant={"faded"}
+                  label="Email"
+                  placeholder="john@example.com"
+                  type="email"
+                  className="bg-white/5"
+                  {...register("email")}
+                />
+              </motion.div>
             </div>
 
-            {/* --------------------- email */}
-            <div className="">
-              <Input
-                isInvalid={Boolean(errors.email) && dirtyFields.email}
-                errorMessage={errors.email?.message}
-                variant={"flat"}
-                className=" h-20 "
-                label="Email"
-                type="text"
-                {...register("email")}
-              />
+            {/* Row 2: Password & Confirm Password */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                custom={2}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  isInvalid={Boolean(errors.password) && dirtyFields.password}
+                  errorMessage={errors.password?.message}
+                  variant={"faded"}
+                  label="Password"
+                  placeholder="Enter your password"
+                  type={`${
+                    process.env.NODE_ENV === "development" ? "text" : "password"
+                  }`}
+                  className="bg-white/5"
+                  {...register("password")}
+                />
+              </motion.div>
+
+              <motion.div
+                custom={3}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  isInvalid={
+                    Boolean(errors.rePassword) && dirtyFields.rePassword
+                  }
+                  errorMessage={errors.rePassword?.message}
+                  variant={"faded"}
+                  label="Confirm Password"
+                  placeholder="Confirm your password"
+                  type={`${
+                    process.env.NODE_ENV === "development" ? "text" : "password"
+                  }`}
+                  className="bg-white/5"
+                  {...register("rePassword")}
+                />
+              </motion.div>
             </div>
 
-            {/* --------------------- password */}
-            <div className="">
-              <Input
-                isInvalid={Boolean(errors.password) && dirtyFields.password}
-                errorMessage={errors.password?.message}
-                variant={"flat"}
-                className=" h-20 "
-                label="Password"
-                type={`${
-                  process.env.NODE_ENV === "development" ? "text" : "password"
-                }`}
-                {...register("password")}
-              />
+            {/* Row 3: Phone Number & Date of Birth */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                custom={4}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  isInvalid={
+                    Boolean(errors.phoneNumber) && dirtyFields.phoneNumber
+                  }
+                  errorMessage={errors.phoneNumber?.message}
+                  variant={"faded"}
+                  color="default"
+                  label="Phone Number"
+                  placeholder="01XXXXXXXXX"
+                  type="text"
+                  className="bg-white/5"
+                  {...register("phoneNumber")}
+                />
+              </motion.div>
+
+              <motion.div
+                custom={5}
+                variants={inputVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Input
+                  label="Date of Birth"
+                  type="date"
+                  variant="faded"
+                  className="bg-white/5"
+                  {...register("dateOfBirth")}
+                />
+              </motion.div>
             </div>
 
-            {/* --------------------- rePassword */}
-            <div className="">
-              <Input
-                isInvalid={Boolean(errors.rePassword) && dirtyFields.rePassword}
-                errorMessage={errors.rePassword?.message}
-                variant={"flat"}
-                className=" h-20 "
-                label="Confirm Password"
-                type={`${
-                  process.env.NODE_ENV === "development" ? "text" : "password"
-                }`}
-                {...register("rePassword")}
-              />
-            </div>
-
-            {/* --------------------- phoneNumber */}
-            <div className="">
-              <Input
+            {/* Row 4: Gender */}
+            <motion.div
+              custom={6}
+              variants={inputVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Select
+                label="Gender"
+                variant="faded"
+                placeholder="Select your gender"
                 isInvalid={
-                  Boolean(errors.phoneNumber) && dirtyFields.phoneNumber
+                  Boolean(errors.gender?.message) && dirtyFields.gender
                 }
-                errorMessage={errors.phoneNumber?.message}
-                variant={"flat"}
-                color="default"
-                className=" h-20 "
-                label="phoneNumber"
-                type="text"
-                {...register("phoneNumber")}
-              />
-            </div>
-
-            <div className="flex w-full flex-wrap md:flex-nowrap gap-4 ">
-              <Input
-                className=""
-                label="Date of Burth"
-                type="date"
-                {...register("dateOfBirth")}
-              />
-
-              <Select className="" label="Gender" {...register("gender")}>
+                errorMessage={errors.gender?.message}
+                className="bg-white/5"
+                {...register("gender")}
+              >
                 <SelectItem key={"Male"}>Male</SelectItem>
                 <SelectItem key={"Female"}>Female</SelectItem>
               </Select>
-            </div>
+            </motion.div>
 
-            {ApiRespons === "User registered successfully." ? (
-              <span className="block text-green-500 md:col-span-2 ">
+            {/* Error/Success Message */}
+            {ApiRespons && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={`text-center text-sm p-3 rounded-lg border ${
+                  ApiRespons === "User registered successfully."
+                    ? "text-green-400 bg-green-500/10 border-green-500/20"
+                    : "text-red-400 bg-red-500/10 border-red-500/20"
+                }`}
+              >
+                {ApiRespons === "User registered successfully." ? "✅" : "❌"}{" "}
                 {ApiRespons}
-              </span>
-            ) : (
-              <span className="block text-red-600 md:col-span-2">
-                {ApiRespons}
-              </span>
+              </motion.p>
             )}
 
-            <div className="content-center  md:col-span-2  text-center ">
+            {/* Submit Button */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex gap-3 pt-4"
+            >
               <Button
                 isLoading={isLooding}
                 isDisabled={isLooding}
                 type="submit"
-                className="my-10 w-1/2 text-md"
-                color="primary"
+                className="flex-1 bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-main-background/50 transition-all duration-300"
               >
-                SignUp
+                {isLooding ? "Creating Account..." : "Create Account"}
               </Button>
-            </div>
+            </motion.div>
           </form>
 
-          <p>
-            {" "}
-            Have Already an Account ?{" "}
-            <span
-              className="text-blue-600 cursor-pointer"
-              onClick={() => {
-                Route.push("/Login");
-              }}
-            >
-              LogIn
-            </span>{" "}
-          </p>
+          {/* Sign In Link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="text-center mt-8 pt-6 border-t border-white/10"
+          >
+            <p className="text-gray-300 text-sm">
+              Have Already an Account?{" "}
+              <span
+                className="text-main-background font-semibold cursor-pointer hover:text-orange-600 transition-colors duration-300"
+                onClick={() => Route.push("/Login")}
+              >
+                LogIn here
+              </span>
+            </p>
+          </motion.div>
         </div>
-      </section>
-    </>
+      </motion.div>
+    </section>
   );
 }
