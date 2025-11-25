@@ -21,13 +21,15 @@ export default function Navbar() {
 
   const path = usePathname();
   const { status, data } = useSession();
+  const session = useSession();
 
   const NavItems = [
     { lable: "Dashboard", href: "/Dashbord/Profile" },
     { lable: "Services", href: "/services" },
     { lable: "Jobs", href: "/Jobs" },
   ];
-
+  if (session.data?.user.role === "admin") {
+  }
   return (
     <NavbarComponent
       className="backgroundNavBar"
@@ -39,7 +41,7 @@ export default function Navbar() {
           className="sm:hidden"
         />
         <NavbarBrand className={`${path === "/" && "text-white"}`}>
-          <FaRegHandshake className="text-4xl" />
+          {/* <FaRegHandshake className="text-4xl" /> */}
           <Link href={"/"} className="font-bold text-inherit text-xl ps-3">
             InstaWork
           </Link>

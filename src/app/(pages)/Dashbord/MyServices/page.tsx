@@ -9,43 +9,9 @@ import { CiSquarePlus } from "react-icons/ci";
 import AddServiceAPI from "@/services/AddService";
 import AddServiceRespons from "@/Interface/Service/AddService";
 import { GoPlus } from "react-icons/go";
+import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
 
 export default function page() {
-  const Skills = [
-    { label: "نقاش" },
-    { label: "حداد" },
-    { label: "سيراميك" },
-    { label: "كهربائي" },
-    { label: "نجار" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-  ];
-  const ServiceAddress = [
-    { Address: "الجيزه" },
-    { Address: "البحيره" },
-    { Address: "الدقهلية" },
-    { Address: "الاسماعليه" },
-    { Address: "مرسي مطروح" },
-    { Address: "سكندريه" },
-    { Address: "شمال سيناء" },
-    { Address: "الخرطوم" },
-  ];
-  const KeyWords = [
-    { keyword: "دهانات حديثه" },
-    { keyword: "ديكور" },
-    { keyword: "ورق حائط" },
-    { keyword: "تشطيبات فاخرة" },
-    { keyword: "أنظمة أمان" },
-    { keyword: "صيانة" },
-    { keyword: "تمديدات كهربائية" },
-    { keyword: "إضاءة" },
-    { keyword: "كشف تسربات" },
-  ];
   // {-----------------------------------State section----------------------------------------}
   const [TitelInput, setTitelInput] = useState<string | null>(null);
   const [ErrorTitelInput, setErrorTitelInput] = useState<string | null>(null);
@@ -167,11 +133,18 @@ export default function page() {
     }
 
     if (formdata.has("title") && formdata.has("description")) {
-      await CallingServiceAPI(formdata);
-      setIsloading(false);
+      if (formdata.has("serviceImages")) {
+        await CallingServiceAPI(formdata);
+        setIsloading(false);
+      } else {
+        addToast({
+          title: "there must at least one Image",
+          color: "danger",
+        });
+      }
     } else {
       addToast({
-        title: "title and the description is Required !!",
+        title: "title or description is Required !!",
         color: "danger",
       });
       setIsloading(false);
