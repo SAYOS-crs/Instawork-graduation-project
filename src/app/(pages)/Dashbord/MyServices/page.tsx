@@ -18,12 +18,6 @@ export default function page() {
     { label: "كهربائي" },
     { label: "نجار" },
     { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
-    { label: "سباك" },
   ];
   const ServiceAddress = [
     { Address: "الجيزه" },

@@ -21,13 +21,15 @@ export default function Navbar() {
 
   const path = usePathname();
   const { status, data } = useSession();
+  const session = useSession();
 
   const NavItems = [
     { lable: "Dashboard", href: "/Dashbord/Profile" },
     { lable: "Services", href: "/services" },
     { lable: "Jobs", href: "/Jobs" },
   ];
-
+  if (session.data?.user.role === "admin") {
+  }
   return (
     <NavbarComponent
       className="backgroundNavBar"
