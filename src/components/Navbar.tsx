@@ -41,7 +41,7 @@ export default function Navbar() {
           className="sm:hidden"
         />
         <NavbarBrand className={`${path === "/" && "text-white"}`}>
-          <FaRegHandshake className="text-4xl" />
+          {/* <FaRegHandshake className="text-4xl" /> */}
           <Link href={"/"} className="font-bold text-inherit text-xl ps-3">
             InstaWork
           </Link>
