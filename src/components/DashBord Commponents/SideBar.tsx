@@ -35,36 +35,44 @@ export default function SideBar() {
 
   return (
     <>
-      <div className="  h-fit  w-full md:h-screen shadow-2xl border-r-2 border-primry-background ">
-        <Link
-          className={` ${
-            pathname === "/Dashbord/Profile" &&
-            "bg-main-background text-primry-background hover:text-main-background"
-          } block p-5 my-3 hover:bg-primry-background transition-all`}
-          href={"/Dashbord/Profile"}
-        >
-          Profile
-        </Link>
+      <div className="h-fit w-full md:h-screen  border-primry-background bg-white/5 rounded-r-xl">
+        <nav className="flex flex-col gap-2 px-2">
+          <Link
+            href={"/Dashbord/Profile"}
+            className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+              pathname === "/Dashbord/Profile"
+                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                : "hover:bg-primry-background/20"
+            }`}
+          >
+            <MdDashboardCustomize className="text-xl" />
+            <span>Profile</span>
+          </Link>
 
-        <Link
-          className={` ${
-            pathname === "/Dashbord/MyServices" &&
-            "bg-main-background text-primry-background hover:text-main-background"
-          } block p-5 my-3 hover:bg-primry-background transition-all`}
-          href={"/Dashbord/MyServices"}
-        >
-          MyServices
-        </Link>
+          <Link
+            href={"/Dashbord/MyServices"}
+            className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+              pathname === "/Dashbord/MyServices"
+                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                : "hover:bg-primry-background/20"
+            }`}
+          >
+            <MdArrowForwardIos className="text-sm rotate-180" />
+            <span>MyServices</span>
+          </Link>
 
-        <Link
-          className={` ${
-            pathname === "/Dashbord/MyJobs" &&
-            "bg-main-background text-primry-background hover:text-main-background"
-          } block p-5 my-3 hover:bg-primry-background transition-all`}
-          href={"/Dashbord/MyJobs"}
-        >
-          MyJobs
-        </Link>
+          <Link
+            href={"/Dashbord/MyJobs"}
+            className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+              pathname === "/Dashbord/MyJobs"
+                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                : "hover:bg-primry-background/20"
+            }`}
+          >
+            <MdArrowForwardIos className="text-sm" />
+            <span>MyJobs</span>
+          </Link>
+        </nav>
       </div>
     </>
   );

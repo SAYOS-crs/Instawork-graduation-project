@@ -42,29 +42,79 @@ export default function AccordionCommponent() {
   ];
 
   return (
-    <Accordion className="outline-none">
-      {Content.map((i, index) => (
-        <AccordionItem
-          className="outline-none my-5 p-2 border-b-1"
-          key={index + 1}
-          aria-label={i.label}
-          title={i.label}
-        >
-          <article className="text-left outline-none">
-            <p className="inline-block tracking-widest ">{i.content} </p>{" "}
-            {i.href && (
-              <Link
-                className="inline-block px-1 text-primary-400 "
-                href={i.href}
-              >
-                {" "}
-                {i.LinkConent}{" "}
-              </Link>
-            )}{" "}
-            {i.ContentAfterLink && <p> {i.ContentAfterLink} </p>}{" "}
-          </article>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="space-y-4 font-poppins">
+      <Accordion className="outline-none space-y-3" variant="light">
+        {Content.map((i, index) => {
+          const colors = [
+            {
+              bg: "from-blue-50 to-blue-100",
+              border: "border-blue-200 hover:border-blue-400",
+              accent: "bg-linear-to-r from-blue-500 to-blue-600",
+              icon: "💡",
+            },
+            {
+              bg: "from-purple-50 to-purple-100",
+              border: "border-purple-200 hover:border-purple-400",
+              accent: "bg-linear-to-r from-purple-500 to-purple-600",
+              icon: "🎯",
+            },
+            {
+              bg: "from-orange-50 to-orange-100",
+              border: "border-orange-200 hover:border-orange-400",
+              accent: "bg-linear-to-r from-main-background to-orange-600",
+              icon: "📝",
+            },
+            {
+              bg: "from-orange-50 to-orange-100",
+              border: "border-orange-200 hover:border-orange-400",
+              accent: "bg-linear-to-r from-orange-500 to-orange-600",
+              icon: "🚀",
+            },
+            {
+              bg: "from-rose-50 to-rose-100",
+              border: "border-rose-200 hover:border-rose-400",
+              accent: "bg-linear-to-r from-rose-500 to-rose-600",
+              icon: "📊",
+            },
+          ];
+          const color = colors[index % colors.length];
+
+          return (
+            <AccordionItem
+              className={`outline-none p-0 border-2 ${color.border} rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg`}
+              key={index + 1}
+              aria-label={i.label}
+              title={
+                <div
+                  className={`flex items-center gap-3 bg-linear-to-r ${color.bg} px-6 py-4 font-bold text-lg text-gray-800`}
+                >
+                  <span className="text-2xl">{color.icon}</span>
+                  <span>{i.label}</span>
+                </div>
+              }
+            >
+              <article className="text-left outline-none bg-white px-6 py-6 space-y-4">
+                <p className="text-gray-700 leading-relaxed tracking-wide text-base">
+                  {i.content}
+                  {i.href && (
+                    <Link
+                      className={`${color.accent} text-white px-3 py-1 rounded-lg inline-block ml-2 font-semibold hover:shadow-lg transition-all`}
+                      href={i.href}
+                    >
+                      {i.LinkConent}
+                    </Link>
+                  )}
+                </p>
+                {i.ContentAfterLink && (
+                  <p className="text-gray-600 leading-relaxed text-sm bg-gray-50 p-4 rounded-lg border-l-4 border-gray-300">
+                    {i.ContentAfterLink}
+                  </p>
+                )}
+              </article>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+    </div>
   );
 }
