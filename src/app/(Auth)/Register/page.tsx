@@ -128,7 +128,7 @@ export default function Register() {
                   errorMessage={errors.email?.message}
                   variant={"faded"}
                   label="Email"
-                  placeholder="Montana@example.com"
+                  placeholder="Montana@SAYOS.com"
                   type="email"
                   className="bg-white/5"
                   {...register("email")}
