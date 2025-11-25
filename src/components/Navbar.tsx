@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <NavbarComponent
-      className="backgroundNavBar  "
+      className="backgroundNavBar"
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
@@ -50,7 +50,7 @@ export default function Navbar() {
         {NavItems.map((item, index) => (
           <NavbarItem
             key={`${item}-${index}`}
-            className="custom-active-class text-xl font-sans mx-3 hover:text-white transition-all "
+            className="custom-active-class text-lg font-semibold mx-3 text-primry-background hover:text-white transition-all duration-300"
             isActive={item.href === path}
           >
             <Link className="relative" color="foreground" href={item.href}>
@@ -65,21 +65,21 @@ export default function Navbar() {
           {status === "authenticated" ? (
             <Button
               onPress={() => signOut({ callbackUrl: "/" })}
-              className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
+              className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
             >
-              Logout{" "}
+              Logout
             </Button>
           ) : (
             <>
               <Link
-                className="hover:bg-primry-background hover:text-main-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-main-background border-primry-background border-1"
+                className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Register"}
               >
                 Sign up
               </Link>
 
               <Link
-                className="hover:bg-main-background hover:text-primry-background transition-all py-2 px-4 min-w-20 m-2 rounded-lg text-center bg-primry-background text-main-background border-1 border-primry-background"
+                className="hover:bg-main-background hover:text-primry-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-primry-background text-main-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Login"}
               >
                 Login

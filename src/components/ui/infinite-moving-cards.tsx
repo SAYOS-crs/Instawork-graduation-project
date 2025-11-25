@@ -78,7 +78,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-7xl overflow-hidden bg-linear-to-r from-transparent via-white to-transparent rounded-3xl",
         className
       )}
     >
@@ -91,27 +91,25 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-          <RogBorder>
-            <li
-              className="relative w-[350px] m-1 max-w-full shrink-0 rounded-xl   text-primry-background bg-main-background md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
-              key={`${item}-${idx}`}
-            >
-              <div className=" h-fit flex flex-col gap-5 mx-auto  justify-center p-6 selection:bg-main-background  selection:text-primry-background ">
-                <div className="bg-primry-background text-main-background   w-fit mx-auto cursor-pointer  hover:bg-primry-background hover:text-main-background transition-all my-3 p-4 rounded-full  ">
-                  <item.icon className="text-5xl   mx-auto" />
-                </div>
-                <header className="my-1 text-3xl"> {item.label} </header>
-                <span className="text-xl">
-                  {" "}
-                  {` Number of service providers in this field (${item.NumberOfWorkers}+) `}{" "}
-                </span>
-                <p className="mb-3 text-2xl">
-                  {" "}
-                  {" خدمات تساعدك في انجاز عملك مع الشخص المناسب للمهمه"}{" "}
-                </p>
+          <li
+            className="relative w-[350px] m-1 max-w-full shrink-0 rounded-2xl text-main-background bg-linear-to-br from-primry-background to-gray-100 md:w-[450px] border-2 border-primry-background/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            key={`${item}-${idx}`}
+          >
+            <div className="h-fit flex flex-col gap-5 mx-auto justify-center p-8 selection:bg-main-background selection:text-primry-background">
+              <div className="bg-linear-to-br from-blue-500 to-cyan-600 text-white w-fit mx-auto cursor-pointer hover:shadow-xl transition-all my-3 p-5 rounded-full shadow-lg">
+                <item.icon className="text-5xl mx-auto" />
               </div>
-            </li>
-          </RogBorder>
+              <header className="my-2 text-3xl font-bold text-main-background">
+                {item.label}
+              </header>
+              <span className="text-lg text-main-background font-semibold">
+                عدد مقدمي الخدمات ({item.NumberOfWorkers}+)
+              </span>
+              <p className="mb-3 text-lg text-main-background leading-relaxed">
+                خدمات تساعدك في إنجاز عملك مع الشخص المناسب للمهمة
+              </p>
+            </div>
+          </li>
         ))}
       </ul>
     </div>

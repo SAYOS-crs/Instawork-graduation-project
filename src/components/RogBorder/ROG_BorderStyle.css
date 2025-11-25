@@ -16,7 +16,7 @@
   .all-rog {
     position: absolute;
     inset: 0;
-    border: solid 1px #c3c3c366;
+    border: solid 1px #c3c3c3;
     opacity: 0;
     transition: opacity 0.4s;
   }
@@ -28,7 +28,7 @@
 
     &::after {
       content: "";
-      background-color: white;
+      background-color: #1c1c1c;
       width: calc(100% + 1px);
       height: 1px;
       position: absolute;
@@ -37,7 +37,7 @@
 
     &::before {
       content: "";
-      background-color: white;
+      background-color: #1c1c1c;
       width: 1px;
       height: 100%;
       position: absolute;

@@ -5,24 +5,18 @@ import { FaRegHandshake } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div className=" bg-gradient-to-r from-[#000000] to-[#434343] text-amber-50 ">
-      {/* <div className=' inline-block mt-30' >
-        <h1>جاهز للبدء</h1>
-        <p className='p-4 '>انضم إلى آلاف المستخدمين الراضين واكتشف أسهل طريقة للعثور على الحرفيين المهرة</p>
-        </div>
-        <div className="">
-          <Button variant='ghost' color='primary' className='m-5'>تصفح العمال </Button>
-          <Button variant='ghost' color='primary' className='m-5'>انشاء حساب مجاني </Button>
-        </div> */}
-      <footer className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-1 lg:gap-3 container w-[90%] text-center m-auto pt-5 pointer">
+    <div className="text-primry-background bg-linear-to-b from-main-background via-main-background to-slate-900 font-poppins">
+      <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 container w-[90%] text-center m-auto pt-12 pb-8 pointer">
         <div className="SpanHover">
-          <h3 className="my-5 bg-[#2c2929]  p-1 "> تواصل معنا </h3>
+          <h3 className="my-5 bg-linear-to-r from-main-background to-orange-600 text-white p-3 rounded-lg font-bold text-lg">
+            تواصل معنا
+          </h3>
 
-          <div className="text-text-footer my-4">
-            <div className="flex py-2 align-baseline w-fit lg:me-auto m-auto">
+          <div className="text-primry-background my-4 space-y-4">
+            <div className="flex py-2 align-baseline w-fit lg:me-auto m-auto hover:translate-x-2 transition-all duration-300">
               <span className="">
                 <svg
-                  className="w-6 h-6 text-text-footer dark:text-gray-800"
+                  className="w-6 h-6 text-primry-background"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -38,10 +32,10 @@ export default function Footer() {
               <span className="px-2">Eslam.mohamed.ki123@gmail.com</span>
             </div>
 
-            <div className="flex py-2 align-baseline w-fit lg:me-auto m-auto">
+            <div className="flex py-2 align-baseline w-fit lg:me-auto m-auto hover:translate-x-2 transition-all duration-300">
               <span className="">
                 <svg
-                  className="w-6 h-6 text-text-footer dark:text-black"
+                  className="w-6 h-6 text-primry-background"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -55,10 +49,10 @@ export default function Footer() {
               <span className="pe-2">+20 1141874204</span>
             </div>
 
-            <div className="flex py-2 align-baseline  w-fit lg:me-auto m-auto">
+            <div className="flex py-2 align-baseline w-fit lg:me-auto m-auto hover:translate-x-2 transition-all duration-300">
               <span className="">
                 <svg
-                  className="w-6 h-6 text-text-footer dark:text-gray-800"
+                  className="w-6 h-6 text-primry-background"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -89,91 +83,79 @@ export default function Footer() {
         </div>
 
         <div className="SpanHover">
-          <h3 className="my-5 bg-[#2c2929]  p-1 ">الخدمات</h3>
+          <h3 className="my-5 bg-linear-to-r from-blue-600 to-cyan-600 text-white p-3 rounded-lg font-bold text-lg">
+            الخدمات
+          </h3>
 
-          <div className="my-4 text-text-footer">
-            <div className="py-2">
+          <div className="my-4 text-primry-background space-y-3">
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <span className="">للعملاء</span>
             </div>
-            <div className="py-2">
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <span>للعمال</span>
             </div>
-            <div className="py-2">
-              {" "}
-              <span>نشر عمل </span>{" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
+              <span>نشر عمل </span>
             </div>
-            <div className="py-2">
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <span>عرض خدمات</span>
             </div>
-            <div className="py-2">
-              {" "}
-              <span>المدونة</span>{" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
+              <span>المدونة</span>
             </div>
           </div>
         </div>
 
         <div className="pointer SpanHover">
-          <h3 className="my-5 bg-[#2c2929]  p-1 ">روابط سريعة</h3>
+          <h3 className="my-5 bg-linear-to-r from-purple-600 to-pink-600 text-white p-3 rounded-lg font-bold text-lg">
+            روابط سريعة
+          </h3>
 
-          <div className="my-4 text-text-footer">
-            <div className="py-2 ">
-              {" "}
+          <div className="my-4 text-primry-background space-y-3">
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <Link href={"/services"}>
-                {" "}
-                <span>عن الموقع</span>{" "}
-              </Link>{" "}
+                <span>عن الموقع</span>
+              </Link>
             </div>
-            <div className="py-2">
-              {" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <Link href={""}>
-                {" "}
-                <span>كيف نعمل </span>{" "}
-              </Link>{" "}
+                <span>كيف نعمل </span>
+              </Link>
             </div>
-            <div className="py-2">
-              {" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <Link href={""}>
-                {" "}
-                <span>الاسئله الشائعة</span>{" "}
-              </Link>{" "}
+                <span>الاسئله الشائعة</span>
+              </Link>
             </div>
-            <div className="py-2">
-              {" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <Link href={""}>
-                {" "}
-                <span>سياسة الخصوصية</span>{" "}
-              </Link>{" "}
+                <span>سياسة الخصوصية</span>
+              </Link>
             </div>
-            <div className="py-2">
-              {" "}
+            <div className="py-2 hover:translate-x-2 transition-all duration-300">
               <Link href={""}>
-                {" "}
-                <span>شروط الاستخدام</span>{" "}
-              </Link>{" "}
+                <span>شروط الاستخدام</span>
+              </Link>
             </div>
           </div>
         </div>
 
-        <div
-          className="  lg:text-right
-          "
-        >
-          <h2 className="my-5 me-5 text-2xl">
-            {" "}
-            <FaRegHandshake className="text-4xl inline-block" /> Instawork{" "}
+        <div className="text-right">
+          <h2 className="my-5 text-3xl font-bold">
+            <FaRegHandshake className="text-5xl inline-block me-3 text-orange-400" />{" "}
+            Instawork
           </h2>
 
-          <div className="my-4 text-text-footer">
-            <p className="py-2 px-5">
+          <div className="my-4 text-primry-background">
+            <p className="py-3 px-5 leading-relaxed text-lg">
               منصة عمل حر مصممة خصيصًا لأصحاب المهن اليدوية في مصر. نربط بين
               العملاء والعمال المهرة بسهولة وأمان.
             </p>
           </div>
         </div>
 
-        <div className=" md:col-span-2 lg:col-span-4 py-5 text-text-footer font-Lyon">
-          <hr />
-          <p className="mt-4 inline-block">
+        <div className="md:col-span-2 lg:col-span-4 py-8 text-primry-background font-Lyon border-t border-primry-background/20">
+          <p className="inline-block text-lg font-semibold">
             © 2025 InstaWork. جميع الحقوق محفوظة.
           </p>
         </div>
