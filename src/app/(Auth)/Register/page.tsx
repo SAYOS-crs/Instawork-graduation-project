@@ -30,7 +30,8 @@ export default function Register() {
       dateOfBirth: "",
     },
     resolver: zodResolver(RegisterScheme),
-    mode: "onSubmit",
+    mode: "onBlur",
+    reValidateMode: "onChange",
   });
 
   const Route = useRouter();
@@ -112,7 +113,7 @@ export default function Register() {
                   label="Full Name"
                   placeholder="Tony Montana"
                   type="text"
-                  className="bg-white/5"
+                  className=""
                   {...register("name")}
                 />
               </motion.div>
@@ -130,7 +131,7 @@ export default function Register() {
                   label="Email"
                   placeholder="Montana@SAYOS.com"
                   type="email"
-                  className="bg-white/5"
+                  className=""
                   {...register("email")}
                 />
               </motion.div>
@@ -153,7 +154,7 @@ export default function Register() {
                   type={`${
                     process.env.NODE_ENV === "development" ? "text" : "password"
                   }`}
-                  className="bg-white/5"
+                  className=""
                   {...register("password")}
                 />
               </motion.div>
@@ -175,7 +176,7 @@ export default function Register() {
                   type={`${
                     process.env.NODE_ENV === "development" ? "text" : "password"
                   }`}
-                  className="bg-white/5"
+                  className=""
                   {...register("rePassword")}
                 />
               </motion.div>
@@ -199,7 +200,7 @@ export default function Register() {
                   label="Phone Number"
                   placeholder="01XXXXXXXXX"
                   type="text"
-                  className="bg-white/5"
+                  className=""
                   {...register("phoneNumber")}
                 />
               </motion.div>
@@ -211,10 +212,12 @@ export default function Register() {
                 animate="visible"
               >
                 <Input
+                  isInvalid={Boolean(errors.dateOfBirth)}
+                  errorMessage={errors.dateOfBirth?.message}
                   label="Date of Birth"
                   type="date"
                   variant="faded"
-                  className="bg-white/5"
+                  className=""
                   {...register("dateOfBirth")}
                 />
               </motion.div>
@@ -235,7 +238,7 @@ export default function Register() {
                   Boolean(errors.gender?.message) && dirtyFields.gender
                 }
                 errorMessage={errors.gender?.message}
-                className="bg-white/5"
+                className=""
                 {...register("gender")}
               >
                 <SelectItem key={"Male"}>Male</SelectItem>
