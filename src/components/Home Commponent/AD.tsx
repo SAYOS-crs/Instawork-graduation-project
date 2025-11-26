@@ -1,37 +1,35 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 import RogBorder from "../RogBorder/RogBorder";
 import { MdStarRate } from "react-icons/md";
 import { Button } from "@heroui/button";
 
 export default function AD() {
+  const t = useTranslations("AD");
+
   const ADs = [
     {
-      plan: "Plan 1",
+      plan: t("plan1_name"),
       price: 50,
       rank: "I",
-      postedService: "- Post one Service for ",
-      PostedDate: "10 days",
+      postedService: t("postedservice"),
+      PostedDate: t("plan1_time"),
     },
     {
-      plan: "Plan 2",
+      plan: t("plan2_name"),
       price: 100,
       rank: "I I",
-      postedService: "- Post your Services for ",
-      PostedDate: "20 days",
-      Additionalfeatures: [
-        "Show up among the first applicants on the list of job applicants",
-      ],
+      postedService: t("postedservice"),
+      PostedDate: t("plan2_time"),
+      Additionalfeatures: [t("plan2_feature")],
     },
     {
-      plan: "Plan 3",
+      plan: t("plan3_name"),
       price: 125,
       rank: "I I I",
-      postedService: "- Post your Services for ",
-      PostedDate: "30 days",
-      Additionalfeatures: [
-        "Show up among the first applicants on the list of job applicants",
-        "Recommend clients who are interested in your fields.",
-      ],
+      postedService: t("postedservice"),
+      PostedDate: t("plan3_time"),
+      Additionalfeatures: [t("plan2_feature"), t("plan3_feature")],
     },
   ];
 
@@ -122,14 +120,9 @@ export default function AD() {
 
                 <div className="space-y-3 text-sm text-gray-600 leading-relaxed border-t-2 border-gray-200 pt-6">
                   <p className="font-semibold text-gray-700">
-                    🎯 Highlight your Service and get noticed first!
+                    {t("highlight_text")}
                   </p>
-                  <p>
-                    Stand out from the crowd with our custom upgrade packages
-                    designed to increase your visibility, attract more clients,
-                    and boost your chances of being selected for the perfect
-                    projects.
-                  </p>
+                  <p>{t("stand_out_text")}</p>
                 </div>
               </div>
 
@@ -137,7 +130,7 @@ export default function AD() {
                 <Button
                   className={`w-full py-6 px-6 font-bold text-lg rounded-lg transition-all duration-300 bg-linear-to-r ${accentColors[index]} text-white hover:shadow-lg hover:scale-105`}
                 >
-                  Check out Plan
+                  {t("checkout")}
                 </Button>
               </div>
             </div>

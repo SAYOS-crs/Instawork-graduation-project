@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Textarea } from "@heroui/react";
 import { Autocomplete, AutocompleteItem } from "@heroui/react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { MdAddPhotoAlternate, MdCancel } from "react-icons/md";
 import { CiSquarePlus } from "react-icons/ci";
 import AddServiceAPI from "@/services/AddService";
@@ -53,7 +54,7 @@ export default function page() {
       setimgeURl_1(null);
       setImge_1(null);
       addToast({
-        title: "upload imge type jpg only !!",
+        title: t("upload_image_jpg_only"),
         color: "danger",
       });
     }
@@ -63,7 +64,7 @@ export default function page() {
       setimgeURl_2(null);
       setImge_2(null);
       addToast({
-        title: "upload imge type jpg only !!",
+        title: t("upload_image_jpg_only"),
         color: "danger",
       });
     }
@@ -73,7 +74,7 @@ export default function page() {
       setimgeURl_3(null);
       setImge_3(null);
       addToast({
-        title: "upload imge type jpg only !!",
+        title: t("upload_image_jpg_only"),
         color: "danger",
       });
     }
@@ -83,7 +84,7 @@ export default function page() {
       setimgeURl_4(null);
       setImge_4(null);
       addToast({
-        title: "upload imge type jpg only !!",
+        title: t("upload_image_jpg_only"),
         color: "danger",
       });
     }
@@ -93,7 +94,7 @@ export default function page() {
       setimgeURl_5(null);
       setImge_5(null);
       addToast({
-        title: "upload imge type jpg only !!",
+        title: t("upload_image_jpg_only"),
         color: "danger",
       });
     }
@@ -106,15 +107,15 @@ export default function page() {
       formdata.append("title", TitelInput);
       setErrorTitelInput(null);
     } else if (TitelInput === "" || TitelInput === null) {
-      setErrorTitelInput("Titel Required");
+      setErrorTitelInput(t("title_required"));
     } else {
-      setErrorTitelInput("inValid Titel");
+      setErrorTitelInput(t("invalid_title"));
     }
     if (descriptionInput) {
       formdata.append("description", descriptionInput);
       setErrordescriptionInput(null);
     } else if (descriptionInput === "") {
-      setErrordescriptionInput("description Required");
+      setErrordescriptionInput(t("description_required"));
     }
     if (Imge_1) {
       formdata.append("serviceImages", Imge_1);
@@ -207,7 +208,7 @@ export default function page() {
                 onInputChange={(S) => setTitelInput(S)}
                 isClearable={true}
                 className=" cursor-pointer"
-                label="Title"
+                label={t("title_label")}
                 isInvalid={Boolean(ErrorTitelInput)}
                 errorMessage={ErrorTitelInput}
               >
@@ -242,8 +243,8 @@ export default function page() {
               value={descriptionInput!}
               maxLength={200}
               className="p-3 cursor-pointer"
-              label="skill description"
-              placeholder="description"
+              label={t("skill_description")}
+              placeholder={t("description_placeholder")}
               type="text"
             />
             <span className="ms-5 text-sm text-gray-500">
@@ -406,7 +407,7 @@ export default function page() {
               className=" cursor-pointer"
               color="success"
             >
-              Supmit Service
+              {t("submit_service")}
             </Button>
             <Button
               onPress={() => {
@@ -414,7 +415,7 @@ export default function page() {
               }}
               color="danger"
             >
-              Cancel
+              {t("cancel")}
             </Button>
           </div>
         </div>
@@ -425,20 +426,20 @@ export default function page() {
             className="bg-main-background text-primry-background"
           >
             {" "}
-            <GoPlus className="text-4xl inline-block " /> add Service
+            <GoPlus className="text-4xl inline-block " /> {t("add_service")}
           </Button>
         </div>
       )}
 
       <div className="w-full p-2 overflow-auto">
         <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          Service -
+          {t("service_section")} -
         </div>
         <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          Service -
+          {t("service_section")} -
         </div>
         <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          Service -
+          {t("service_section")} -
         </div>
       </div>
     </section>
