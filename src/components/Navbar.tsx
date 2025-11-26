@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from './language-switcher';
 import {
   Navbar as NavbarComponent,
   NavbarBrand,
@@ -18,15 +20,15 @@ import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const t = useTranslations("NavBar");
   const path = usePathname();
   const { status, data } = useSession();
 
   const NavItems = [
-    { lable: "Dashboard", href: "/Dashbord/Profile" },
-    { lable: "Services", href: "/services" },
-    { lable: "Jobs", href: "/Jobs" },
-  ];
+  { lable: t("services_lab"), href: "/services" },
+  { lable: t("jobs_lab"),      href: "/Jobs" },
+  { lable: t("dashbord_lab"),  href: "/Dashbord" },
+];
 
   return (
     <NavbarComponent
@@ -41,7 +43,8 @@ export default function Navbar() {
         <NavbarBrand className={`${path === "/" && "text-white"}`}>
           <FaRegHandshake className="text-4xl" />
           <Link href={"/"} className="font-bold text-inherit text-xl ps-3">
-            InstaWork
+            
+            {t("instawork")}
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -59,15 +62,15 @@ export default function Navbar() {
           </NavbarItem>
         ))}
       </NavbarContent>
-
       <NavbarContent justify="end">
+        <LanguageSwitcher/>
         <NavbarItem className="flex ">
           {status === "authenticated" ? (
             <Button
               onPress={() => signOut({ callbackUrl: "/" })}
               className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
             >
-              Logout
+              {t("logout")}
             </Button>
           ) : (
             <>
@@ -75,14 +78,14 @@ export default function Navbar() {
                 className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Register"}
               >
-                Sign up
+                 {t("signup")}
               </Link>
 
               <Link
                 className="hover:bg-main-background hover:text-primry-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-primry-background text-main-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Login"}
               >
-                Login
+                {t("login")}
               </Link>
             </>
           )}
@@ -90,6 +93,7 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarMenu>
+        <LanguageSwitcher/>
         {NavItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
