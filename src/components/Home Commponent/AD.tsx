@@ -82,7 +82,7 @@ export default function AD() {
                     {ad.plan}
                   </h3>
                   <div
-                    className={`inline-block bg-linear-to-r ${accentColors[index]} text-white py-2 px-4 rounded-lg font-bold shadow-lg`}
+                    className={`inline-block bg-linear-to-r ${accentColors[index]} text-white py-2 px-4  rounded-lg font-bold shadow-lg`}
                   >
                     {ad.price} EG
                   </div>
@@ -97,17 +97,18 @@ export default function AD() {
                 </div>
 
                 <div className="space-y-4 mb-6">
+                  <span
+                    className={`inline-block bg-linear-to-r ${accentColors[index]}  text-white px-3 py-1 rounded-lg text-sm font-semibold mt-2`}
+                  >
+                    {ad.PostedDate}
+                  </span>
                   <div className="flex items-start gap-3">
                     <MdStarRate className="text-2xl text-yellow-500 shrink-0 mt-1" />
+
                     <div>
                       <p className="text-gray-700 font-medium">
                         {ad.postedService}
                       </p>
-                      <span
-                        className={`inline-block bg-linear-to-r ${accentColors[index]} text-white px-3 py-1 rounded-lg text-sm font-semibold mt-2`}
-                      >
-                        {ad.PostedDate}
-                      </span>
                     </div>
                   </div>
 
