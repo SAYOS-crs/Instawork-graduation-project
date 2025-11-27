@@ -28,7 +28,7 @@ export default function Navbar() {
   const NavItems = [
     { lable: t("services_lab"), href: "/services" },
     { lable: t("jobs_lab"), href: "/Jobs" },
-    { lable: t("dashbord_lab"), href: "/Dashbord" },
+    { lable: t("dashbord_lab"), href: "/Dashbord/Profile" },
   ];
 
   return (
@@ -93,9 +93,9 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarMenu>
-        <LanguageSwitcher />
         {NavItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
+            <LanguageSwitcher />
             <Link
               className="w-full"
               color={

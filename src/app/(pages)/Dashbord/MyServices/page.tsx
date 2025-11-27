@@ -13,6 +13,7 @@ import { GoPlus } from "react-icons/go";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
 
 export default function page() {
+  const t = useTranslations("MyServices");
   // {-----------------------------------State section----------------------------------------}
   const [TitelInput, setTitelInput] = useState<string | null>(null);
   const [ErrorTitelInput, setErrorTitelInput] = useState<string | null>(null);
