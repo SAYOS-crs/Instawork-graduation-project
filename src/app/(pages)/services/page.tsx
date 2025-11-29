@@ -11,8 +11,11 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function page() {
+  const Router = useRouter();
   // ---------------------------------------------------------------------------//
   const [FilteredService, setFilteredService] = useState<
     ServicesInterface[] | null
@@ -186,7 +189,12 @@ export default function page() {
                     <p className="text-gray-700 line-clamp-3 mb-4 leading-relaxed">
                       {service.description}
                     </p>
-                    <Button className="w-full bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 mb-4">
+                    <Button
+                      onPress={() =>
+                        Router.push(`/services/${service.serviceId}`)
+                      }
+                      className="w-full bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 mb-4"
+                    >
                       عرض التفاصيل
                     </Button>
                   </div>

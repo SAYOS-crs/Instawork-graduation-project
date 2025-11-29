@@ -13,10 +13,12 @@ import {
   Button,
 } from "@heroui/react";
 import { FaRegHandshake } from "react-icons/fa6";
+import Instawork_icon from "@/../public/Icon/Instawork-logo-white.png";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -30,21 +32,28 @@ export default function Navbar() {
     { lable: t("jobs_lab"), href: "/Jobs" },
     { lable: t("dashbord_lab"), href: "/Dashbord/Profile" },
   ];
+  console.log(isMenuOpen);
 
   return (
     <NavbarComponent
-      className="backgroundNavBar"
+      className="backgroundNavBar py-2  "
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent>
+      <NavbarContent className="">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="sm:hidden "
         />
         <NavbarBrand className={`${path === "/" && "text-white"}`}>
           {/* <FaRegHandshake className="text-4xl" /> */}
-          <Link href={"/"} className="font-bold text-inherit text-xl ps-3">
-            {t("instawork")}
+          <Link href={"/"} className="font-bold text-inherit text-xl  ps-3">
+            <Image
+              className="mx-auto "
+              src={Instawork_icon}
+              width={60}
+              height={60}
+              alt="s"
+            />
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -62,8 +71,8 @@ export default function Navbar() {
           </NavbarItem>
         ))}
       </NavbarContent>
+
       <NavbarContent justify="end">
-        <LanguageSwitcher />
         <NavbarItem className="flex ">
           {status === "authenticated" ? (
             <Button
@@ -92,10 +101,13 @@ export default function Navbar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className="py-10">
         {NavItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <LanguageSwitcher />
+          <NavbarMenuItem
+            onClick={() => setIsMenuOpen(false)}
+            className="p-5 hover:bg-main-background rounded-md"
+            key={`${item}-${index}`}
+          >
             <Link
               className="w-full"
               color={
@@ -112,6 +124,7 @@ export default function Navbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <LanguageSwitcher />
     </NavbarComponent>
   );
 }
