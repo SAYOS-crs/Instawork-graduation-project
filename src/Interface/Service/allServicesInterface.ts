@@ -8,13 +8,12 @@ export default interface AllServicesRespons{
 
 
 export interface ServicesInterface {
-            serviceId: string
-            serviceName:string
-            description: string
-
+    user: ServiceProviderInfo
+    
+    serviceName:string
             serviceImages: string[],
-
-            user: ServiceProviderInfo
+            serviceId: string
+            description: string
             createdAt: number
 
 

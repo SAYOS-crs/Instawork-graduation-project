@@ -41,7 +41,7 @@ export default function SideBar() {
             href={"/Dashbord/Profile"}
             className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
               pathname === "/Dashbord/Profile"
-                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                ? "bg-linear-to-r from-main-background to-primry-background text-black"
                 : "hover:bg-primry-background/20"
             }`}
           >
@@ -53,7 +53,7 @@ export default function SideBar() {
             href={"/Dashbord/MyServices"}
             className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
               pathname === "/Dashbord/MyServices"
-                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                ? "bg-linear-to-r from-main-background to-primry-background text-black"
                 : "hover:bg-primry-background/20"
             }`}
           >
@@ -65,7 +65,7 @@ export default function SideBar() {
             href={"/Dashbord/MyJobs"}
             className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
               pathname === "/Dashbord/MyJobs"
-                ? "bg-linear-to-r from-main-background to-primry-background text-white"
+                ? "bg-linear-to-r from-main-background to-primry-background text-black"
                 : "hover:bg-primry-background/20"
             }`}
           >
