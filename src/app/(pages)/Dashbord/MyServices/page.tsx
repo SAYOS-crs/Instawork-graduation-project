@@ -11,8 +11,15 @@ import AddServiceAPI from "@/services/AddService";
 import AddServiceRespons from "@/Interface/Service/AddService";
 import { GoPlus } from "react-icons/go";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
+import GetUserServices from "@/services/GetUserServices";
+import { useSession } from "next-auth/react";
+import ServiceCard from "@/components/Services Commponents/ServiceCard";
+import Image from "next/image";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export default function page() {
+  const { data } = useSession();
   const t = useTranslations("MyServices");
   // {-----------------------------------State section----------------------------------------}
   const [TitelInput, setTitelInput] = useState<string | null>(null);
@@ -23,6 +30,9 @@ export default function page() {
     string | null
   >(null);
   // {--------------------------------------------------------------------------------------------}
+  const [UserServices, setUserServices] = useState<UserServicesData | null>(
+    null
+  );
   // {--------------------------------------------------------------------------------------------}
   // {------------------------------------- {imges } ---------------------------------------------}
   const [Imge_1, setImge_1] = useState<any>(null);
@@ -46,6 +56,23 @@ export default function page() {
   // {--------------------------------------- loading state -----------------------------------------------------}
   const [Isloading, setIsloading] = useState<boolean>(false);
   // {--------------------------------------------------------------------------------------------}
+
+  async function CallingUserServicesAPI(id: string) {
+    const respos: UserServicesRespons = await GetUserServices(id);
+    if (respos.message === "User services retrieved successfully.") {
+      setUserServices(respos.data);
+    }
+  }
+
+  useEffect(() => {
+    console.log(UserServices);
+  }, [UserServices]);
+
+  useEffect(() => {
+    if (data?.user.userId) {
+      CallingUserServicesAPI(data.user.userId);
+    }
+  }, []);
 
   useEffect(() => {
     if (Imge_1 && Imge_1.type === "image/jpeg") {
@@ -157,6 +184,7 @@ export default function page() {
   async function CallingServiceAPI(formData: any) {
     const respons: AddServiceRespons = await AddServiceAPI(formData);
     if (respons.message) {
+      CallingUserServicesAPI(data!.user.userId);
       addToast({
         title: respons.message,
         color: "success",
@@ -431,16 +459,163 @@ export default function page() {
           </Button>
         </div>
       )}
+      {/*  ------------- user services  -------------- */}
+      <div className="w-full p-4 md:p-8">
+        {/* Header section */}
+        <div className="mb-8">
+          <div className="flex items-end justify-between gap-4 mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              {" "}
+              Your Services{" "}
+            </h2>
+            <span className="inline-block px-4 py-2 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-full text-sm font-medium text-orange-700">
+              {UserServices?.services.length ?? 0} Service
+            </span>
+          </div>
+          <div className="h-1 w-16 bg-linear-to-r from-orange-500 to-orange-400 rounded-full"></div>
+        </div>
 
-      <div className="w-full p-2 overflow-auto">
-        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          {t("service_section")} -
-        </div>
-        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          {t("service_section")} -
-        </div>
-        <div className="w-full h-20 my-5 bg-linear-to-r from-main-background to-primry-background text-white text-3xl text-center rounded-lg flex items-center justify-center shadow-md">
-          {t("service_section")} -
+        {/* Services grid - stacked layout */}
+        <div className="space-y-8 ">
+          {UserServices?.services.map((UserService, index) => (
+            <>
+              <div className=" group relative ">
+                <article
+                  key={index}
+                  className="z-10 relative group-hover:translate-x-17 bg-white  border border-orange-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                >
+                  <div className="p-6 md:p-8 border-l-5  border-main-background">
+                    {/* Top section: Title + Meta */}
+                    <div className="mb-2 pb-3 border-b border-orange-100">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+                        <h3 className="text-xl md:text-2xl font-bold text-gray-900  transition-colors">
+                          <span className="text-main-background  font-bold">
+                            Skill type :
+                          </span>{" "}
+                          {UserService.serviceName}
+                        </h3>
+                        <span className="inline-flex px-3 py-1 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg w-fit">
+                          ID: {UserService.serviceId}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 font-medium text-lg">
+                        <span className="text-main-background  font-bold">
+                          Provider:
+                        </span>{" "}
+                        {UserServices?.fullname}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <div className="mb-6">
+                      <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                        <span className="text-main-background font-bold">
+                          Description
+                        </span>{" "}
+                        : {UserService.description}
+                      </p>
+                    </div>
+
+                    {/* Images gallery */}
+                    {UserService.serviceImages &&
+                      UserService.serviceImages.length > 0 && (
+                        <div className="mb-6">
+                          <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4 flex items-center gap-2">
+                            <span className="inline-block w-2 h-2 bg-orange-500 rounded-full"></span>
+                            {t("gallery")} ({UserService.serviceImages.length})
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {UserService.serviceImages.map((img, i) => (
+                              <div
+                                key={i}
+                                className="relative rounded-xl overflow-hidden bg-linear-to-br from-gray-100 to-gray-50 border border-orange-200 group/image hover:border-orange-400 transition-all duration-300 aspect-video"
+                              >
+                                <Image
+                                  src={`https://gp2025.runasp.net${img}`}
+                                  alt={`${UserService.serviceName}-${i}`}
+                                  width={400}
+                                  height={300}
+                                  className="object-cover w-full h-full group-hover/image:scale-110 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                  <span className="opacity-0 group-hover/image:opacity-100 text-white text-xs font-bold transition-opacity duration-300">
+                                    {i + 1}
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                    {/* Footer: User info + Stats */}
+                    <div className="pt-4 border-t border-orange-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold">
+                          {UserServices?.fullname?.charAt(0).toUpperCase() ??
+                            "U"}
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500 uppercase tracking-wide">
+                            Provider
+                          </p>
+                          <p className="text-sm font-semibold text-gray-900">
+                            {UserServices?.fullname}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <span className="px-3 py-1 bg-gray-100 rounded-lg">
+                          User ID:{" "}
+                          <span className="font-mono font-bold">
+                            {UserServices?.userId}
+                          </span>
+                        </span>
+                        <span className="px-3 py-1 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-lg font-medium text-orange-700">
+                          {UserService.serviceImages?.length ?? 0} Image
+                          {(UserService.serviceImages?.length ?? 0) !== 1
+                            ? "s"
+                            : ""}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                {/*  Delete & Edite ICons -- */}
+                <span className=" bg-linear-to-r from-[#ea6412] to-[#DE3602] absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
+                  <MdDelete className=" cursor-pointer  hover:text-red-600 transition-all " />
+                  <FaEdit className="  cursor-pointer  hover:text-green-600  transition-all" />
+                </span>
+              </div>
+            </>
+          ))}
+
+          {/* Empty state */}
+          {(!UserServices?.services || UserServices.services.length === 0) && (
+            <div className="py-16 text-center">
+              <div className="inline-block p-4 bg-orange-100 rounded-full mb-4">
+                <svg
+                  className="w-8 h-8 text-orange-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6v6m0 0v6m0-6h6m0 0h6m-6-6h-6m0 0H6m6 6H6m6 0h6"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                No Services Yet
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Create your first service to showcase your skills.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

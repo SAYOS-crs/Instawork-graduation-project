@@ -30,13 +30,21 @@ export default async function page({ params }: { params: any }) {
       <div className="relative bg-main-background rounded-b-2xl overflow-hidden">
         <div className=" py-20 lg:py-10 flex justify-center">
           <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-primry-background bg-white shadow-lg">
-            <Image
-              className="object-cover w-full h-full"
-              width={192}
-              height={192}
-              src={UserInfo.profileImage}
-              alt={UserInfo.fullname}
-            />
+            {UserInfo.profileImage ? (
+              <Image
+                className="object-cover w-full h-full"
+                width={192}
+                height={192}
+                src={UserInfo.profileImage}
+                alt={UserInfo.fullname}
+              />
+            ) : (
+              <img
+                className="object-cover w-full h-full"
+                src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                alt=""
+              />
+            )}
           </div>
         </div>
 
