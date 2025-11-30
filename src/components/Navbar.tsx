@@ -44,7 +44,9 @@ export default function Navbar() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden "
         />
-        <NavbarBrand className={`${path === "/" && "text-white"}`}>
+        <NavbarBrand
+          className={`${path === "/" && "text-white"} max-sm:hidden `}
+        >
           {/* <FaRegHandshake className="text-4xl" /> */}
           <Link href={"/"} className="font-bold text-inherit text-xl  ps-3">
             <Image
@@ -76,7 +78,6 @@ export default function Navbar() {
           </NavbarItem>
         ))}
       </NavbarContent>
-      <LanguageSwitcher />
 
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
