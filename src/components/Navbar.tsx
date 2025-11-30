@@ -73,10 +73,10 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
-        <div className="ms-20">
-          <LanguageSwitcher />
-        </div>
+        
+        
       </NavbarContent>
+          <LanguageSwitcher />
 
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
@@ -111,7 +111,6 @@ export default function Navbar() {
         <LanguageSwitcher />
         {NavItems.map((item, index) => (
           <NavbarMenuItem
-            onClick={() => setIsMenuOpen(false)}
             className="p-5 hover:bg-main-background rounded-md"
             key={`${item}-${index}`}
           >
