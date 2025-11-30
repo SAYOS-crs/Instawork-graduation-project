@@ -48,7 +48,7 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-white font-poppins overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-white font-poppins `}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
