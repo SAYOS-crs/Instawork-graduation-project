@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <NavbarComponent
-      className="backgroundNavBar py-2  "
+      className="backgroundNavBar py-2 overflow-hidden  "
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent className="">
@@ -58,7 +58,10 @@ export default function Navbar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4 " justify="center">
+      <NavbarContent
+        className="hidden sm:flex gap-4 relative "
+        justify="center"
+      >
         {NavItems.map((item, index) => (
           <NavbarItem
             key={`${item}-${index}`}
@@ -70,6 +73,9 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
+        <div className="ms-20">
+          <LanguageSwitcher />
+        </div>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -102,6 +108,7 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarMenu className="py-10">
+        <LanguageSwitcher />
         {NavItems.map((item, index) => (
           <NavbarMenuItem
             onClick={() => setIsMenuOpen(false)}
@@ -124,7 +131,6 @@ export default function Navbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-      <LanguageSwitcher />
     </NavbarComponent>
   );
 }
