@@ -64,13 +64,12 @@ export default function Navbar() {
         className="hidden sm:flex gap-4 relative "
         justify="center"
       >
-        <LanguageSwitcher />
 
         {NavItems.map((item, index) => (
           <NavbarItem
-            key={`${item}-${index}`}
-            className="custom-active-class text-lg font-semibold mx-3 text-primry-background hover:text-white transition-all duration-300"
-            isActive={item.href === path}
+          key={`${item}-${index}`}
+          className="custom-active-class text-lg font-semibold mx-3 text-primry-background hover:text-white transition-all duration-300"
+          isActive={item.href === path}
           >
             <Link className="relative" color="foreground" href={item.href}>
               {item.lable}
@@ -79,6 +78,7 @@ export default function Navbar() {
         ))}
       </NavbarContent>
 
+        <LanguageSwitcher />
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
           {status === "authenticated" ? (
