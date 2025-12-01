@@ -7,20 +7,25 @@ import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { MdAddPhotoAlternate, MdCancel } from "react-icons/md";
 import { CiSquarePlus } from "react-icons/ci";
-import AddServiceAPI from "@/services/AddService";
+import AddServiceAPI from "@/services/ServicesAPI/AddService";
 import AddServiceRespons from "@/Interface/Service/AddService";
 import { GoPlus } from "react-icons/go";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
-import GetUserServices from "@/services/GetUserServices";
+import GetUserServices from "@/services/ServicesAPI/GetUserServices";
 import { useSession } from "next-auth/react";
 import ServiceCard from "@/components/Services Commponents/ServiceCard";
 import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-
+import { fromUnixTime, format, formatDistanceToNow } from "date-fns";
+import { ar } from "date-fns/locale/ar";
+{
+  /* يتوفيييق انا عامل التاريخ عربي */
+}
 export default function page() {
   const { data } = useSession();
   const t = useTranslations("MyServices");
+
   // {-----------------------------------State section----------------------------------------}
   const [TitelInput, setTitelInput] = useState<string | null>(null);
   const [ErrorTitelInput, setErrorTitelInput] = useState<string | null>(null);
@@ -72,7 +77,7 @@ export default function page() {
     if (data?.user.userId) {
       CallingUserServicesAPI(data.user.userId);
     }
-  }, []);
+  }, [data?.user.userId]);
 
   useEffect(() => {
     if (Imge_1 && Imge_1.type === "image/jpeg") {
@@ -190,7 +195,9 @@ export default function page() {
         color: "success",
       });
       setIsloading(false);
-
+      if (data?.user.userId) {
+        CallingUserServicesAPI(data?.user.userId);
+      }
       ClearServiceFilds();
       console.log(respons);
       setAddServiceTogel(false);
@@ -485,6 +492,17 @@ export default function page() {
                   className="z-10 relative group-hover:translate-x-17 bg-white  border border-orange-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   <div className="p-6 md:p-8 border-l-5  border-main-background">
+                    <span className=" pb-3 block text-right text-main-background">
+                      {" "}
+                      {formatDistanceToNow(
+                        fromUnixTime(UserService.createdAt),
+                        {
+                          addSuffix: true,
+                          locale: ar,
+                        }
+                      )}{" "}
+                      {/* يتوفيييق انا عامل التاريخ عربي */}
+                    </span>
                     {/* Top section: Title + Meta */}
                     <div className="mb-2 pb-3 border-b border-orange-100">
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
@@ -564,6 +582,7 @@ export default function page() {
                           </p>
                         </div>
                       </div>
+
                       <div className="flex items-center gap-4 text-sm text-gray-600">
                         <span className="px-3 py-1 bg-gray-100 rounded-lg">
                           User ID:{" "}
@@ -582,9 +601,9 @@ export default function page() {
                   </div>
                 </article>
                 {/*  Delete & Edite ICons -- */}
-                <span className=" bg-linear-to-r from-[#ea6412] to-[#DE3602] absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
+                <span className=" bg-green-500 absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
                   <MdDelete className=" cursor-pointer  hover:text-red-600 transition-all " />
-                  <FaEdit className="  cursor-pointer  hover:text-green-600  transition-all" />
+                  <FaEdit className="  cursor-pointer  hover:text-yellow-300  transition-all" />
                 </span>
               </div>
             </>

@@ -5,7 +5,7 @@ import { Governorates } from "@/components/DashBord Commponents/Profile/Governor
 import AllServicesRespons, {
   ServicesInterface,
 } from "@/Interface/Service/allServicesInterface";
-import GetAllServices from "@/services/GetAllServices";
+import GetAllServices from "@/services/ServicesAPI/GetAllServices";
 import { Autocomplete, AutocompleteItem, Button } from "@heroui/react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
