@@ -1,7 +1,7 @@
 "use client";
 import { UserData, UserDataRespons } from "@/app/types/UserInterface";
-import UpdateingUserInfo from "@/services/UpdateUserInfo";
-import CallingUserInfoAPI from "@/services/UserInfoAPI";
+import UpdateingUserInfo from "@/services/ProfileAPI/UpdateUserInfo";
+import CallingUserInfoAPI from "@/services/ProfileAPI/UserInfoAPI";
 import { AiOutlineLoading } from "react-icons/ai";
 import { CalendarDate } from "@internationalized/date";
 import {
