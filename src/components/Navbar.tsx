@@ -64,8 +64,6 @@ export default function Navbar() {
         className="hidden sm:flex gap-4 relative "
         justify="center"
       >
-        <LanguageSwitcher />
-
         {NavItems.map((item, index) => (
           <NavbarItem
             key={`${item}-${index}`}
@@ -77,6 +75,9 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
+        <div className="  xl:translate-x-100 ">
+          <LanguageSwitcher />
+        </div>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -109,6 +110,12 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarMenu className="py-10">
+        <Link
+          className="w-full p-5 hover:bg-main-background rounded-md"
+          href={"/"}
+        >
+          Home
+        </Link>
         <LanguageSwitcher />
         {NavItems.map((item, index) => (
           <NavbarMenuItem
