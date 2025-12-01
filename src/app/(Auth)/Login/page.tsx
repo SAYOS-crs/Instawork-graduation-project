@@ -122,7 +122,7 @@ export default function Login() {
                 label="Phone Number"
                 placeholder="01XXXXXXXXX"
                 type="text"
-                className="bg-white/5"
+                className=""
                 {...register("phoneNumber")}
               />
             </motion.div>
@@ -142,7 +142,7 @@ export default function Login() {
                 label="Password"
                 placeholder="Enter your password"
                 type="password"
-                className="bg-white/5"
+                className=""
                 {...register("password")}
               />
             </motion.div>

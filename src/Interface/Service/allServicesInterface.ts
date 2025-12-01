@@ -21,7 +21,8 @@ export interface ServicesInterface {
 
 
 interface ServiceProviderInfo {
-                    userId: string
+                userId: string
                 fullname: string
                 profileImage: string
+                address : string | null
 }
