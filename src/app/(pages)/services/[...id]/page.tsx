@@ -123,8 +123,8 @@ export default async function page({ params }: { params: any }) {
               <p>Phone: {UserInfo.phoneNumber.replace("+", "")}</p>
               <p className="mt-2">
                 Second:{" "}
-                {UserInfo.SecondPhoneNumber
-                  ? UserInfo.SecondPhoneNumber.replace("+", "")
+                {UserInfo.secondPhoneNumber
+                  ? UserInfo.secondPhoneNumber.replace("+", "")
                   : UserInfo.phoneNumber.replace("+", "")}
               </p>
               <p className="mt-2">Address: {UserInfo.address}</p>

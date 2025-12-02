@@ -32,7 +32,6 @@ export default function Navbar() {
     { lable: t("jobs_lab"), href: "/Jobs" },
     { lable: t("dashbord_lab"), href: "/Dashbord/Profile" },
   ];
-  console.log(isMenuOpen);
 
   return (
     <NavbarComponent
