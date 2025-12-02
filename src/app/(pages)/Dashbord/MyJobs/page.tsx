@@ -15,22 +15,13 @@ import { Governorates } from "@/components/DashBord Commponents/Profile/Governor
 import { useSession } from "next-auth/react";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+
 import AddJobApi from "@/services/JobsAPI/AddJobAPI";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
+import GetUserJobs from "@/services/JobsAPI/GetUserJobs";
+import type { UserJobsRespons, UserJobsData, UserJobs } from "@/Interface/Service/UserJobs";
 
-interface JobData {
-  jobId: string;
-  jobHeader: string;
-  jobDescription: string;
-  jobBudget: number;
-  governorate: string;
-}
 
-interface MockUserJobs {
-  jobs: JobData[];
-  fullname: string;
-  userId: string;
-}
 
 export default function page() {
   const { data } = useSession();
@@ -57,29 +48,31 @@ export default function page() {
   const [AddJobToggle, setAddJobToggle] = useState<boolean>(false);
   const [IsLoading, setIsLoading] = useState<boolean>(false);
 
-  // Mock user jobs data
-  const [UserJobs, setUserJobs] = useState<MockUserJobs>({
-    jobs: [
-      {
-        jobId: "JOB001",
-        jobHeader: "Build Modern React Dashboard",
-        jobDescription:
-          "Need a professional React dashboard with TypeScript, Tailwind CSS, and real-time data visualization. Must integrate with REST APIs and include authentication.",
-        jobBudget: 1500,
-        governorate: "Giza",
-      },
-      {
-        jobId: "JOB002",
-        jobHeader: "Mobile App UI Design",
-        jobDescription:
-          "Design a beautiful and intuitive mobile app UI for iOS and Android platforms. Focus on user experience and modern design trends.",
-        jobBudget: 800,
-        governorate: "Cairo",
-      },
-    ],
-    fullname: "Ahmed Hassan",
-    userId: "USER123",
-  });
+  // User jobs state
+  const [UserJobs, setUserJobs] = useState<UserJobsData | null>(null);
+  const [loadingJobs, setLoadingJobs] = useState<boolean>(true);
+  const [jobsError, setJobsError] = useState<string | null>(null);
+
+  // Fetch user jobs on mount
+  useEffect(() => {
+    const fetchJobs = async () => {
+      if (!data?.user?.userId) return;
+      setLoadingJobs(true);
+      setJobsError(null);
+      try {
+        const res: UserJobsRespons = await GetUserJobs(data.user.userId);
+        if (res && res.data) {
+          setUserJobs(res.data);
+        } else {
+          setJobsError(res?.message || "Failed to fetch jobs");
+        }
+      } catch (err: any) {
+        setJobsError(err?.message || "Failed to fetch jobs");
+      }
+      setLoadingJobs(false);
+    };
+    fetchJobs();
+  }, [data?.user?.userId]);
 
   const handleJobSubmit = async () => {
     setIsLoading(true);
@@ -197,7 +190,6 @@ export default function page() {
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
                 {t("job_title_label")}
               </label>
-
               <Autocomplete
                 onInputChange={(S) => setJobHeader(S)}
                 isClearable={true}
@@ -317,7 +309,7 @@ export default function page() {
               {t("my_jobs_heading")}
             </h2>
             <span className="inline-block px-4 py-2 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-full text-sm font-medium text-orange-700">
-              {UserJobs.jobs.length} {UserJobs.jobs.length === 1 ? t("job_label_singular") : t("job_label_plural")}
+              {UserJobs?.jobs?.length || 0} {UserJobs?.jobs?.length === 1 ? t("job_label_singular") : t("job_label_plural")}
             </span>
           </div>
           <div className="h-1 w-16 bg-linear-to-r from-orange-500 to-orange-400 rounded-full"></div>
@@ -325,87 +317,98 @@ export default function page() {
 
         {/* Jobs Grid - Stacked Layout */}
         <div className="space-y-8">
-          {UserJobs.jobs.map((job, index) => (
-            <article
-              key={index}
-              className="group bg-linear-to-br from-white via-white to-orange-50 rounded-2xl border border-orange-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-            >
-              <div className="p-6 md:p-8">
-                {/* Top section: Title + Meta */}
-                <div className="mb-6 pb-6 border-b border-orange-100">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
-                      {job.jobHeader}
-                    </h3>
-                    <span className="inline-flex px-3 py-1 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg w-fit">
-                      ID: {job.jobId}
-                    </span>
-                  </div>
-                  <p className="text-gray-600 font-medium">
-                    {t("posted_by")}: {" "}
-                    <span className="text-orange-600 font-bold">
-                      {UserJobs.fullname}
-                    </span>
-                  </p>
-                </div>
-
-                {/* Description */}
-                <div className="mb-6">
-                  <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                    {job.jobDescription}
-                  </p>
-                </div>
-
-                {/* Job Details Grid */}
-                <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-linear-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
-                    <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                      {t("budget")}
-                    </p>
-                    <p className="text-2xl font-bold text-orange-600">
-                      {job.jobBudget} EGP
-                    </p>
-                  </div>
-                  <div className="bg-linear-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
-                    <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                      {t("location")}
-                    </p>
-                    <p className="text-2xl font-bold text-blue-600">
-                      {job.governorate}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Footer: Stats */}
-                <div className="pt-4 border-t border-orange-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold">
-                      {UserJobs.fullname.charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">
-                        {t("posted_by")}
-                      </p>
-                      <p className="text-sm font-semibold text-gray-900">
-                        {UserJobs.fullname}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-gray-100 rounded-lg text-sm font-medium text-gray-700">
-                      {t("user_id")}: {" "}
-                      <span className="font-mono font-bold">
-                        {UserJobs.userId}
-                      </span>
-                    </span>
-                  </div>
-                </div>
+          {loadingJobs ? (
+            <div className="py-16 text-center">
+              <div className="inline-block p-4 bg-orange-100 rounded-full mb-4 animate-pulse">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" strokeWidth="4" />
+                </svg>
               </div>
-            </article>
-          ))}
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("loading_jobs")}</h3>
+            </div>
+          ) : jobsError ? (
+            <div className="py-16 text-center">
+              <div className="inline-block p-4 bg-red-100 rounded-full mb-4">
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-red-900 mb-2">{t("error_loading_jobs")}</h3>
+              <p className="text-red-600 mb-6">{jobsError}</p>
+            </div>
+          ) : UserJobs && UserJobs.jobs && UserJobs.jobs.length > 0 ? (
+            UserJobs.jobs.map((job: UserJobs, index: number) => (
+              <article
+                key={index}
+                className="group bg-linear-to-br from-white via-white to-orange-50 rounded-2xl border border-orange-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+              >
+                <div className="p-6 md:p-8">
+                  {/* Top section: Title + Meta */}
+                  <div className="mb-6 pb-6 border-b border-orange-100">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3 mb-3">
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
+                        {job.servReqName}
+                      </h3>
+                      <span className="inline-flex px-3 py-1 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg w-fit">
+                        ID: {job.servReqId}
+                      </span>
+                    </div>
+                    <p className="text-gray-600 font-medium">
+                      {t("posted_by")}: {" "}
+                      <span className="text-orange-600 font-bold">
+                        {UserJobs.fullname}
+                      </span>
+                    </p>
+                  </div>
 
-          {/* Empty state */}
-          {UserJobs.jobs.length === 0 && (
+                  {/* Description */}
+                  <div className="mb-6">
+                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                      {job.description}
+                    </p>
+                  </div>
+
+                  {/* Job Details Grid */}
+                  <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-linear-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+                      <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+                        {t("budget")}
+                      </p>
+                      <p className="text-2xl font-bold text-orange-600">
+                        {job.budget} EGP
+                      </p>
+                    </div>
+                    {/* Governorate is not in UserJobs, so you may want to add it if available */}
+                  </div>
+
+                  {/* Footer: Stats */}
+                  <div className="pt-4 border-t border-orange-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold">
+                        {UserJobs.fullname.charAt(0).toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500 uppercase tracking-wide">
+                          {t("posted_by")}
+                        </p>
+                        <p className="text-sm font-semibold text-gray-900">
+                          {UserJobs.fullname}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="px-3 py-1 bg-gray-100 rounded-lg text-sm font-medium text-gray-700">
+                        {t("user_id")}: {" "}
+                        <span className="font-mono font-bold">
+                          {UserJobs.userId}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          ) : (
             <div className="py-16 text-center">
               <div className="inline-block p-4 bg-orange-100 rounded-full mb-4">
                 <svg
