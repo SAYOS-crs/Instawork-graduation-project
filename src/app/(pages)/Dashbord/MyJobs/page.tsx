@@ -88,28 +88,28 @@ export default function page() {
     let isValid = true;
 
     if (!jobHeader.trim()) {
-      setErrorJobHeader("Job header is required");
+      setErrorJobHeader(t("job_header_required"));
       isValid = false;
     } else {
       setErrorJobHeader(null);
     }
 
     if (!jobDescription.trim()) {
-      setErrorJobDescription("Job description is required");
+      setErrorJobDescription(t("job_description_required"));
       isValid = false;
     } else {
       setErrorJobDescription(null);
     }
 
     if (!jobBudget || parseFloat(jobBudget) <= 0) {
-      setErrorJobBudget("Job budget must be greater than 0");
+      setErrorJobBudget(t("job_budget_invalid"));
       isValid = false;
     } else {
       setErrorJobBudget(null);
     }
 
     if (!governorate) {
-      setErrorGovernorate("Governorate is required");
+      setErrorGovernorate(t("governorate_required"));
       isValid = false;
     } else {
       setErrorGovernorate(null);
@@ -145,7 +145,7 @@ export default function page() {
       // Clear form
     } else {
       addToast({
-        title: "Please fill all required fields",
+        title: t("fill_all_fields"),
         color: "danger",
       });
     }
@@ -185,7 +185,7 @@ export default function page() {
           {/* Form Header */}
           <div className="mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Post a New Job
+              {t("post_new_job")}
             </h2>
             <div className="h-1 w-16 bg-linear-to-r from-orange-500 to-orange-400 rounded-full"></div>
           </div>
@@ -195,7 +195,7 @@ export default function page() {
             {/* Job Header Input */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-                Job Title
+                {t("job_title_label")}
               </label>
 
               <Autocomplete
@@ -217,7 +217,7 @@ export default function page() {
             {/* Job Description Input */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-                Job Description
+                {t("job_description_label")}
               </label>
               <Textarea
                 value={jobDescription}
@@ -225,18 +225,18 @@ export default function page() {
                 isInvalid={Boolean(ErrorJobDescription)}
                 errorMessage={ErrorJobDescription}
                 maxLength={500}
-                placeholder="Describe the job details, requirements, and expectations..."
+                placeholder={t("job_description_placeholder")}
                 className="w-full"
               />
               <span className="text-xs text-gray-500">
-                {500 - jobDescription.length} characters remaining
+                {500 - jobDescription.length} {t("characters_remaining")}
               </span>
             </div>
 
             {/* Budget Input */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-                Budget (EGP)
+                {t("budget_label")}
               </label>
               <Input
                 type="number"
@@ -244,7 +244,7 @@ export default function page() {
                 onChange={(e) => setJobBudget(e.target.value)}
                 isInvalid={Boolean(ErrorJobBudget)}
                 errorMessage={ErrorJobBudget}
-                placeholder="Enter budget amount"
+                placeholder={t("budget_placeholder")}
                 min={1}
                 classNames={{
                   input: "font-medium",
@@ -256,7 +256,7 @@ export default function page() {
             {/* Governorate Select */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-                Governorate
+                {t("governorate_label")}
               </label>
               <Select
                 selectedKeys={governorate ? [governorate] : []}
@@ -266,7 +266,7 @@ export default function page() {
                 }}
                 isInvalid={Boolean(ErrorGovernorate)}
                 errorMessage={ErrorGovernorate}
-                placeholder="Select a governorate"
+                placeholder={t("governorate_placeholder")}
                 className="w-full"
               >
                 {Governorates.map((gov, index) => (
@@ -282,7 +282,7 @@ export default function page() {
                 onPress={handleJobSubmit}
                 className="bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3"
               >
-                Post Job
+                {t("post_job_button")}
               </Button>
               <Button
                 onPress={() => {
@@ -292,7 +292,7 @@ export default function page() {
                 variant="bordered"
                 className="border-gray-300 text-gray-700 font-semibold px-8 py-3"
               >
-                Cancel
+                {t("cancel_button")}
               </Button>
             </div>
           </div>
@@ -303,7 +303,7 @@ export default function page() {
             onPress={() => setAddJobToggle(true)}
             className="bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold px-6 py-3"
           >
-            <GoPlus className="text-2xl" /> Post New Job
+            <GoPlus className="text-2xl" /> {t("post_new_job_button")}
           </Button>
         </div>
       )}
@@ -314,10 +314,10 @@ export default function page() {
         <div className="mb-8">
           <div className="flex items-end justify-between gap-4 mb-2">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              My Jobs
+              {t("my_jobs_heading")}
             </h2>
             <span className="inline-block px-4 py-2 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-full text-sm font-medium text-orange-700">
-              {UserJobs.jobs.length} Job{UserJobs.jobs.length !== 1 ? "s" : ""}
+              {UserJobs.jobs.length} {UserJobs.jobs.length === 1 ? t("job_label_singular") : t("job_label_plural")}
             </span>
           </div>
           <div className="h-1 w-16 bg-linear-to-r from-orange-500 to-orange-400 rounded-full"></div>
@@ -342,7 +342,7 @@ export default function page() {
                     </span>
                   </div>
                   <p className="text-gray-600 font-medium">
-                    Posted by:{" "}
+                    {t("posted_by")}: {" "}
                     <span className="text-orange-600 font-bold">
                       {UserJobs.fullname}
                     </span>
@@ -360,7 +360,7 @@ export default function page() {
                 <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-linear-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
                     <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                      Budget
+                      {t("budget")}
                     </p>
                     <p className="text-2xl font-bold text-orange-600">
                       {job.jobBudget} EGP
@@ -368,7 +368,7 @@ export default function page() {
                   </div>
                   <div className="bg-linear-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
                     <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                      Location
+                      {t("location")}
                     </p>
                     <p className="text-2xl font-bold text-blue-600">
                       {job.governorate}
@@ -384,7 +384,7 @@ export default function page() {
                     </div>
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide">
-                        Posted by
+                        {t("posted_by")}
                       </p>
                       <p className="text-sm font-semibold text-gray-900">
                         {UserJobs.fullname}
@@ -393,7 +393,7 @@ export default function page() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="px-3 py-1 bg-gray-100 rounded-lg text-sm font-medium text-gray-700">
-                      User ID:{" "}
+                      {t("user_id")}: {" "}
                       <span className="font-mono font-bold">
                         {UserJobs.userId}
                       </span>
@@ -423,10 +423,10 @@ export default function page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                No Jobs Yet
+                {t("no_jobs_yet_title")}
               </h3>
               <p className="text-gray-600 mb-6">
-                Post your first job to find the right freelancer.
+                {t("no_jobs_yet_paragraph")}
               </p>
             </div>
           )}

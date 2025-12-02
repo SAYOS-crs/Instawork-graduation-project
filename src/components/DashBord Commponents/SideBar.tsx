@@ -4,6 +4,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 import Link from "next/link";
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   Dropdown,
   DropdownTrigger,
@@ -32,6 +33,7 @@ const items = [
 ];
 export default function SideBar() {
   const pathname = usePathname();
+  const t = useTranslations("SideBar");
 
   return (
     <>
@@ -46,7 +48,7 @@ export default function SideBar() {
             }`}
           >
             <MdDashboardCustomize className="text-xl" />
-            <span>Profile</span>
+            <span>{t("profile")}</span>
           </Link>
 
           <Link
@@ -58,7 +60,7 @@ export default function SideBar() {
             }`}
           >
             <MdArrowForwardIos className="text-sm rotate-180" />
-            <span>MyServices</span>
+            <span>{t("my_services")}</span>
           </Link>
 
           <Link
@@ -70,7 +72,7 @@ export default function SideBar() {
             }`}
           >
             <MdArrowForwardIos className="text-sm" />
-            <span>MyJobs</span>
+            <span>{t("my_jobs")}</span>
           </Link>
         </nav>
       </div>

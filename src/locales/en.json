@@ -24,10 +24,15 @@
     "jobs_lab":"Jobs",
     "english": "English",
     "arabic": "العربية"
-  
   },
-  
-  "hero-parallax": 
+
+  "SideBar": {
+    "profile": "Profile",
+    "my_services": "My Services",
+    "my_jobs": "My Jobs"
+  },
+
+  "hero-parallax":  
   {
     "instawork_header": "Instawork",
     "maintitle_hero_parallax": "Match your skills to your career opportunities"
@@ -80,6 +85,14 @@
     "card4_title": "24/7 Support",
     "card4_description": "Always here to help you"
   },
+  "InfiniteMovingCards": {
+    "items": [
+      { "label": "Welder" },
+      { "label": "Painter" },
+      { "label": "Carpenter" },
+      { "label": "Electrician" }
+    ]
+  },
   "SpotlightHero": {
     "header_title": "Match your skills to your career opportunities",
     "header_paragraph": "InstaWork is a platform that connects craftspeople with clients. Whether you're looking for a skilled craftsman or a new job opportunity, we're here to help.",
@@ -101,10 +114,120 @@
     "prov_4_header": "Display your Work",
     "prov_4_text": "Display photos of your most prominent work in the Gallery to reflect the quality of your work and build trust between the worker and the client."
   },
+  "Services": {
+    "header_title": "Available Services",
+    "header_paragraph": "Discover top services from the best specialists",
+    "filters": "Filters",
+    "skill_label": "Skill",
+    "search_skill_placeholder": "Search skill",
+    "reset": "Reset",
+    "location_label": "Location",
+    "search_location_placeholder": "Search location",
+    "no_services_found": "No services found"
+  },
+
+  "Jobs": {
+    "header_title": "Available Jobs",
+    "header_paragraph": "Find the perfect job opportunity that matches your skills",
+    "filters": "Filters",
+    "job_type_label": "Job Type",
+    "search_job_type_placeholder": "Search by job type",
+    "clear_job_type": "Clear Job Type",
+    "location_label": "Location",
+    "search_location_placeholder": "Search by location",
+    "clear_location": "Clear Location",
+    "reset_all_filters": "Reset All Filters",
+    "posted_by": "Posted by",
+    "description_label": "Description",
+    "budget_label": "Budget",
+    "location_card_label": "Location",
+    "view_details": "View Details →",
+    "no_jobs_found_title": "No jobs found",
+    "no_jobs_found_paragraph": "Try adjusting your filters to find more opportunities",
+    "reset_filters_button": "Reset Filters",
+    "id_label": "ID"
+  },
+  "ServiceDetails": {
+    "service_title": "Service",
+    "description_title": "Description",
+    "provider_bio": "Provider Bio",
+    "service_gallery": "Service Gallery",
+    "contact": "Contact",
+    "phone_label": "Phone",
+    "second_phone_label": "Second",
+    "address_label": "Address",
+    "meta": "Meta",
+    "rating_label": "Rating",
+    "service_id_label": "Service id",
+    "user_id_label": "User id"
+  },
+  "ServiceCard": {
+    "address_label": "Address",
+    "view_details": "View Details"
+  },
+  "MyJobs": {
+    "post_new_job": "Post a New Job",
+    "job_title_label": "Job Title",
+    "job_title_placeholder": "e.g., Build a React Dashboard",
+    "job_description_label": "Job Description",
+    "job_description_placeholder": "Describe the job details, requirements, and expectations...",
+    "characters_remaining": "characters remaining",
+    "budget_label": "Budget (EGP)",
+    "budget_placeholder": "Enter budget amount",
+    "governorate_label": "Governorate",
+    "governorate_placeholder": "Select a governorate",
+    "post_job_button": "Post Job",
+    "cancel_button": "Cancel",
+    "post_new_job_button": "Post New Job",
+    "my_jobs_heading": "My Jobs",
+    "job_label_singular": "Job",
+    "job_label_plural": "Jobs",
+    "posted_by": "Posted by",
+    "budget": "Budget",
+    "location": "Location",
+    "user_id": "User ID",
+    "no_jobs_yet_title": "No Jobs Yet",
+    "no_jobs_yet_paragraph": "Post your first job to find the right freelancer.",
+    "job_header_required": "Job header is required",
+    "job_description_required": "Job description is required",
+    "job_budget_invalid": "Job budget must be greater than 0",
+    "governorate_required": "Governorate is required",
+    "fill_all_fields": "Please fill all required fields",
+    "job_posted_success": "Job posted successfully!"
+  },
   "HomeCart": {
     "available_soon": "Available soon.",
     "notify_me": "Notify me"
   },
+  "Governorates": {
+  "cairo": "Cairo",
+  "giza": "Giza",
+  "alexandria": "Alexandria",
+  "dakahlia": "Dakahlia",
+  "red_sea": "Red Sea",
+  "beheira": "Beheira",
+  "gharbia": "Gharbia",
+  "port_said": "Port Said",
+  "suez": "Suez",
+  "ismailia": "Ismailia",
+  "kafr_el_sheikh": "Kafr El Sheikh",
+  "sharqia": "Sharqia",
+  "qalyubia": "Qalyubia",
+  "damietta": "Damietta",
+  "matrouh": "Matrouh",
+  "minya": "Minya",
+  "beni_suef": "Beni Suef",
+  "fayoum": "Fayoum",
+  "menoufia": "Menoufia",
+  "luxor": "Luxor",
+  "asyut": "Asyut",
+  "sohag": "Sohag",
+  "qena": "Qena",
+  "aswan": "Aswan",
+  "north_sinai": "North Sinai",
+  "south_sinai": "South Sinai",
+  "new_valley": "New Valley"
+},
   "MyServices": {
     "title_label": "Title",
     "skill_description": "Skill Description",
@@ -150,8 +273,17 @@
     "skill_plumber": "Plumber",
     "skill_welder": "Welder",
     "skill_ceramics": "Ceramics"
+    ,
+    "your_services": "Your Services",
+    "service_label_singular": "Service",
+    "service_label_plural": "Services",
+    "image_required": "There must be at least one image",
+    "title_or_description_required": "Title or description is required !!",
+    "no_services_yet_title": "No Services Yet",
+    "no_services_yet_paragraph": "Create your first service to showcase your skills."
   },
   "Profile": {
+    "characters": "characters",
     "loading": "Loading . . .",
     "about_yourself": "About Yourself",
     "bio_placeholder": "Write a brief bio about yourself and your experience",
@@ -221,7 +353,7 @@
     "full_name": "Full Name",
     "full_name_placeholder": "Tony Montana",
     "email": "Email",
-    "email_placeholder": "Montana@SAYOS.com",
+    "email_placeholder": "Tawfik@SAYOS.com",
     "password": "Password",
     "password_placeholder": "Enter your password",
     "confirm_password": "Confirm Password",
@@ -254,6 +386,46 @@
     "gender_required": "Gender is required",
     "date_required": "Date is required",
     "age_minimum": "You must be at least 13 years old"
+  },
+  "JobDetailsPage": {
+    "jobId": "Job ID:",
+    "budget": "Budget",
+    "currency": "EGP",
+    "jobType": "Job Type",
+    "jobDescription": "Job Description",
+    "location": "Location",
+    "aboutClient": "About Client",
+    "jobClient": "Job Client",
+    "userId": "User ID",
+    "contactInfo": "Contact Information",
+    "phone": "Phone:",
+    "secondary": "Secondary:",
+    "jobSummary": "Job Summary",
+    "posted": "Posted:",
+    "status": "Status:",
+    "statusOpen": "Open",
+    "jobDetails": "Job Details"
+  },
+  "skills": {
+    "naqash": "Painter",
+    "haddad": "Blacksmith",
+    "ceramic": "Ceramics",
+    "electrician": "Electrician",
+    "carpenter": "Carpenter",
+    "plumber": "Plumber"
+  },
+
+  "keywords": {
+    "modernPaint": "Modern painting",
+    "decor": "Decor",
+    "wallpaper": "Wallpaper",
+    "luxuryFinish": "Luxury finishing",
+    "securitySystems": "Security systems",
+    "maintenance": "Maintenance",
+    "wiring": "Electrical wiring",
+    "lighting": "Lighting",
+    "leakDetection": "Leak detection"
   }
 }
+
 

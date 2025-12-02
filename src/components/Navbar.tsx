@@ -74,11 +74,9 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
-        <div className="  xl:translate-x-100 ">
-          <LanguageSwitcher />
-        </div>
       </NavbarContent>
 
+          <LanguageSwitcher />
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
           {status === "authenticated" ? (

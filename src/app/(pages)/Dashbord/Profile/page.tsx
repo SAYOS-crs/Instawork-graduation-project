@@ -26,7 +26,7 @@ import Loader from "@/components/Loader";
 
 export default function page() {
   const t = useTranslations("Profile");
-  //
+    //
   //
   //
   const { data } = useSession();
@@ -525,7 +525,7 @@ export default function page() {
               {CountroledInputBIO && (
                 <span className="text-gray-500 text-sm mt-2 block">
                   {t("remaining_characters")}: {200 - CountroledInputBIO.length}{" "}
-                  أحرف
+                  {t("characters")}
                 </span>
               )}
             </div>
@@ -621,7 +621,7 @@ export default function page() {
                     >
                       {(Governorate) => (
                         <AutocompleteItem key={Governorate.label}>
-                          {Governorate.label}
+                          {(Governorate.label)}
                         </AutocompleteItem>
                       )}
                     </Autocomplete>

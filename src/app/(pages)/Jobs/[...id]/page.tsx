@@ -3,8 +3,10 @@ import React from "react";
 import GetJobDetails from "@/services/JobsAPI/GetJobDetails";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { ar } from "date-fns/locale/ar";
+import { getTranslations } from "next-intl/server";
 
 export default async function page({ params }: { params: any }) {
+  const t = await getTranslations("JobDetailsPage");
   const JobID = await (async function () {
     try {
       const { id } = await params;
@@ -23,7 +25,7 @@ export default async function page({ params }: { params: any }) {
   const UserInfo = await Respons.data.user;
   const Job = await Respons.data;
 
-  return (
+   return (
     <section className="min-h-screen bg-linear-to-b from-gray-50 to-white font-poppins">
       {/* Hero / Job Header Section */}
       <div className="relative bg-linear-to-r from-main-background to-orange-700 shadow-xl py-12">
@@ -36,7 +38,7 @@ export default async function page({ params }: { params: any }) {
               </h1>
               <div className="flex flex-col sm:flex-row gap-4 text-white/90 text-sm">
                 <span className="inline-block px-3 py-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                  Job ID:{" "}
+                  {t("jobId")}{" "}
                   <span className="font-mono font-bold">{Job.servReqId}</span>
                 </span>
                 <span className="inline-block px-3 py-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -50,11 +52,11 @@ export default async function page({ params }: { params: any }) {
 
             {/* Budget Highlight */}
             <div className="flex flex-col items-end gap-2">
-              <p className="text-white/80 text-sm font-medium">Budget</p>
+              <p className="text-white/80 text-sm font-medium">{t("budget")}</p>
               <div className="bg-white rounded-xl px-6 py-4 shadow-lg">
                 <p className="text-3xl font-bold text-main-background">
                   {Job.budget}
-                  <span className="text-lg ml-1">EGP</span>
+                  <span className="text-lg ml-1">{t("currency")}</span>
                 </p>
               </div>
             </div>
@@ -70,7 +72,7 @@ export default async function page({ params }: { params: any }) {
             {/* Job Type Card */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border-l-8 border-main-background hover:shadow-xl transition-shadow duration-300">
               <h3 className="text-lg font-bold text-main-background mb-4 uppercase tracking-wide">
-                Job Type
+                {t("jobType")}
               </h3>
               <p className="text-gray-700 text-lg font-semibold">
                 {Job.servReqName}
@@ -80,7 +82,7 @@ export default async function page({ params }: { params: any }) {
             {/* Description Card */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border-l-8 border-main-background hover:shadow-xl transition-shadow duration-300">
               <h3 className="text-lg font-bold text-main-background mb-4 uppercase tracking-wide">
-                Job Description
+                {t("jobDescription")}
               </h3>
               <p className="text-gray-700 text-base leading-relaxed whitespace-pre-wrap">
                 {Job.description}
@@ -91,7 +93,7 @@ export default async function page({ params }: { params: any }) {
             {Job.user.address && (
               <div className="bg-white rounded-2xl shadow-lg p-8 border-l-8 border-main-background hover:shadow-xl transition-shadow duration-300">
                 <h3 className="text-lg font-bold text-main-background mb-4 uppercase tracking-wide">
-                  Location
+                  {t("location")}
                 </h3>
                 <p className="text-gray-700 text-lg font-semibold">
                   {Job.user.address}
@@ -103,7 +105,7 @@ export default async function page({ params }: { params: any }) {
             {Job.user.bio && (
               <div className="bg-white rounded-2xl shadow-lg p-8 border-l-8 border-main-background hover:shadow-xl transition-shadow duration-300">
                 <h3 className="text-lg font-bold text-main-background mb-4 uppercase tracking-wide">
-                  About Client
+                  {t("aboutClient")}
                 </h3>
                 <p className="text-gray-700 text-base leading-relaxed">
                   {Job.user.bio}
@@ -138,7 +140,7 @@ export default async function page({ params }: { params: any }) {
                   <h4 className="text-2xl font-bold text-gray-900">
                     {Job.user.fullname}
                   </h4>
-                  <p className="text-sm text-gray-600 mt-1">Job Client</p>
+                  <p className="text-sm text-gray-600 mt-1">{t("jobClient")}</p>
                 </div>
               </div>
 
@@ -150,7 +152,7 @@ export default async function page({ params }: { params: any }) {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wide">
-                      User ID
+                      {t("userId")}
                     </p>
                     <p className="text-sm font-mono font-bold text-gray-700">
                       {Job.user.userId}
@@ -161,18 +163,18 @@ export default async function page({ params }: { params: any }) {
                 {/* Contact Info */}
                 <div className="space-y-3">
                   <h5 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-                    Contact Information
+                    {t("contactInfo")}
                   </h5>
                   <div className="space-y-2 text-sm text-gray-700">
                     {Job.user.phoneNumber && (
                       <p className="break-all">
-                        <span className="font-semibold">Phone:</span>{" "}
+                        <span className="font-semibold">{t("phone")}</span>{" "}
                         {Job.user.phoneNumber.replace("+", "")}
                       </p>
                     )}
                     {Job.user.secondPhoneNumber && (
                       <p className="break-all">
-                        <span className="font-semibold">Secondary:</span>{" "}
+                        <span className="font-semibold">{t("secondary")}</span>{" "}
                         {Job.user.secondPhoneNumber.replace("+", "")}
                       </p>
                     )}
@@ -184,15 +186,15 @@ export default async function page({ params }: { params: any }) {
             {/* Budget Summary Card */}
             <div className="bg-linear-to-br from-main-background to-orange-600 rounded-2xl shadow-lg p-6 text-white">
               <h5 className="text-lg font-bold mb-4 uppercase tracking-wide">
-                Job Summary
+                {t("jobSummary")}
               </h5>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center pb-3 border-b border-white/20">
-                  <span className="opacity-90">Budget:</span>
-                  <span className="text-2xl font-bold">{Job.budget} EGP</span>
+                  <span className="opacity-90">{t("budget")}</span>
+                  <span className="text-2xl font-bold">{Job.budget} {t("currency")}</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-white/20">
-                  <span className="opacity-90">Posted:</span>
+                  <span className="opacity-90">{t("posted")}</span>
                   <span className="font-semibold">
                     {formatDistanceToNow(fromUnixTime(Job.createdAt), {
                       addSuffix: true,
@@ -201,9 +203,9 @@ export default async function page({ params }: { params: any }) {
                   </span>
                 </div>
                 <div className="flex justify-between items-center pt-2">
-                  <span className="opacity-90">Status:</span>
+                  <span className="opacity-90">{t("status")}</span>
                   <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-semibold">
-                    Open
+                    {t("statusOpen")}
                   </span>
                 </div>
               </div>
@@ -212,7 +214,7 @@ export default async function page({ params }: { params: any }) {
             {/* Job Meta */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-gray-200">
               <h5 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4">
-                Job Details
+                {t("jobDetails")}
               </h5>
               <div className="space-y-3 text-sm text-gray-700">
                 <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
@@ -220,7 +222,7 @@ export default async function page({ params }: { params: any }) {
                     📋
                   </span>
                   <div>
-                    <p className="text-xs text-gray-500">Job Type</p>
+                    <p className="text-xs text-gray-500">{t("jobType")}</p>
                     <p className="font-semibold">{Job.servReqName}</p>
                   </div>
                 </div>
@@ -229,7 +231,7 @@ export default async function page({ params }: { params: any }) {
                     💼
                   </span>
                   <div>
-                    <p className="text-xs text-gray-500">Job ID</p>
+                    <p className="text-xs text-gray-500">{t("jobId")}</p>
                     <p className="font-mono font-bold">{Job.servReqId}</p>
                   </div>
                 </div>

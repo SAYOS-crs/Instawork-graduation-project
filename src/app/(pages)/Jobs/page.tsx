@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
 import { Governorates } from "@/components/DashBord Commponents/Profile/Governorates";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import GetAllJobs from "@/services/JobsAPI/GetAllJobs";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { ar } from "date-fns/locale/ar";
@@ -22,6 +23,7 @@ interface JobCardData {
 
 export default function page() {
   const Router = useRouter();
+  const t = useTranslations("Jobs");
 
   // Mock jobs data
 
@@ -66,10 +68,10 @@ export default function page() {
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white mb-3">
-              Available Jobs
+              {t("header_title")}
             </h1>
             <p className="text-lg text-primry-background opacity-90">
-              Find the perfect job opportunity that matches your skills
+              {t("header_paragraph")}
             </p>
           </div>
         </div>
@@ -86,19 +88,19 @@ export default function page() {
               className="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-main-background sticky top-20 space-y-6"
             >
               <h2 className="text-2xl font-bold text-main-background mb-6">
-                Filters
+                {t("filters")}
               </h2>
 
               {/* Skill Filter */}
               <div className="space-y-3">
                 <label className="block text-main-background font-semibold">
-                  Job Type
+                  {t("job_type_label")}
                 </label>
                 <Autocomplete
                   value={SkillFilter}
                   isClearable={true}
                   variant="faded"
-                  placeholder="Search by job type"
+                  placeholder={t("search_job_type_placeholder")}
                   className="bg-white/5"
                 >
                   {Skills.map((skill) => (
@@ -112,7 +114,7 @@ export default function page() {
                     size="sm"
                     className="w-full bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-all duration-300"
                   >
-                    Clear Job Type
+                    {t("clear_job_type")}
                   </Button>
                 )}
               </div>
@@ -120,13 +122,13 @@ export default function page() {
               {/* Location Filter */}
               <div className="space-y-3">
                 <label className="block text-main-background font-semibold">
-                  Location
+                  {t("location_label")}
                 </label>
                 <Autocomplete
                   value={GovernorateFilter}
                   isClearable={true}
                   variant="faded"
-                  placeholder="Search by location"
+                  placeholder={t("search_location_placeholder")}
                   className="bg-white/5"
                 >
                   {Governorates.map((gov) => (
@@ -142,9 +144,9 @@ export default function page() {
                       setGovernorateFilter("");
                     }}
                     className="w-full bg-linear-to-r from-gray-500 to-gray-600 text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-all duration-300"
-                  >
-                    Clear Location
-                  </Button>
+                    >
+                      {t("clear_location")}
+                    </Button>
                 )}
               </div>
 
@@ -154,7 +156,7 @@ export default function page() {
                   onPress={resetFilters}
                   className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-all duration-300"
                 >
-                  Reset All Filters
+                  {t("reset_all_filters")}
                 </Button>
               )}
             </motion.div>
@@ -181,7 +183,7 @@ export default function page() {
 
                         <div className="">
                           <span className="inline-flex px-3 py-1 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg w-fit shrink-0">
-                            ID: {job.servReqId}
+                            {t("id_label")}:{" "}{job.servReqId}
                           </span>
                           <span className=" p-3 block text-right text-main-background">
                             {" "}
@@ -195,7 +197,7 @@ export default function page() {
                       </div>
                       <p className="text-gray-600 font-medium">
                         <span className="text-orange-600 font-bold">
-                          Posted by:{" "}
+                          {t("posted_by")}:{" "}
                         </span>
                         {job.user.fullname}
                       </p>
@@ -205,7 +207,7 @@ export default function page() {
                     <div className="mb-6">
                       <p className="text-gray-700 leading-relaxed text-base md:text-lg line-clamp-3">
                         <span className="text-main-background font-bold">
-                          description :
+                          {t("description_label")}:
                         </span>{" "}
                         {job.description}
                       </p>
@@ -215,7 +217,7 @@ export default function page() {
                     <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-linear-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
                         <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                          Budget
+                          {t("budget_label")}
                         </p>
                         <p className="text-2xl font-bold text-orange-600">
                           {job.budget} EGP
@@ -223,7 +225,7 @@ export default function page() {
                       </div>
                       <div className="bg-linear-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
                         <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
-                          Location
+                          {t("location_card_label")}
                         </p>
                         <p className="text-2xl font-bold text-blue-600">
                           {job.user.address ? job.user.address : "N/A"}
@@ -239,7 +241,7 @@ export default function page() {
                         </div>
                         <div>
                           <p className="text-xs text-gray-500 uppercase tracking-wide">
-                            Posted by
+                            {t("posted_by")}
                           </p>
                           <p className="text-sm font-semibold text-gray-900">
                             {job.user.fullname}
@@ -250,7 +252,7 @@ export default function page() {
                         onPress={() => Router.push(`/Jobs/${job.servReqId}`)}
                         className="inline-flex items-center justify-center px-6 py-2 bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
                       >
-                        View Details →
+                        {t("view_details")}
                       </Button>
                     </div>
                   </div>
@@ -279,16 +281,16 @@ export default function page() {
                     </svg>
                   </div>
                   <p className="text-2xl text-gray-700 font-semibold mb-2">
-                    No jobs found
+                    {t("no_jobs_found_title")}
                   </p>
                   <p className="text-gray-600 mb-6">
-                    Try adjusting your filters to find more opportunities
+                    {t("no_jobs_found_paragraph")}
                   </p>
                   <Button
                     onPress={resetFilters}
                     className="bg-linear-to-r from-orange-500 to-orange-600 text-white font-semibold px-6 py-2"
                   >
-                    Reset Filters
+                    {t("reset_filters_button")}
                   </Button>
                 </div>
               )}
