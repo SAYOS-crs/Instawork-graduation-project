@@ -486,7 +486,7 @@ export default function page() {
           <div className="flex items-end justify-between gap-4 mb-2">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               {" "}
-             {t("your_services")}{" "}
+              {t("your_services")}{" "}
             </h2>
             <span className="inline-block px-4 py-2 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-full text-sm font-medium text-orange-700">
               {UserServices?.services.length ?? 0} {t("service_label_plural")}
@@ -614,7 +614,7 @@ export default function page() {
                   </div>
                 </article>
                 {/*  Delete & Edite ICons -- */}
-                <span className=" bg-green-500 absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
+                <span className=" bg-orange-400 absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
                   <MdDelete
                     onClick={() => DeleteService(UserService.serviceId)}
                     className=" cursor-pointer  hover:text-red-600 transition-all "
@@ -643,8 +643,12 @@ export default function page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("no_services_yet_title")}</h3>
-              <p className="text-gray-600 mb-6">{t("no_services_yet_paragraph")}</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {t("no_services_yet_title")}
+              </h3>
+              <p className="text-gray-600 mb-6">
+                {t("no_services_yet_paragraph")}
+              </p>
             </div>
           )}
         </div>
