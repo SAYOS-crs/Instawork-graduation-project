@@ -6,6 +6,7 @@ import {
   useSearchParams,
 } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import { useTranslations } from "use-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SlLogin } from "react-icons/sl";
@@ -19,6 +20,7 @@ import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.s
 import { motion } from "framer-motion";
 
 export default function Login() {
+  const t = useTranslations("Login");
   const serchPrams = useSearchParams();
   const Route = useRouter();
   const {
@@ -96,10 +98,8 @@ export default function Login() {
                 <SlLogin className="" />
               </span>
             </div>
-            <h1 className="text-4xl font-bold text-white">SIGN IN</h1>
-            <p className="text-gray-300 text-sm mt-2">
-              Welcome back to InstaWork
-            </p>
+            <h1 className="text-4xl font-bold text-white">{t("sign_in_title")}</h1>
+            <p className="text-gray-300 text-sm mt-2">{t("welcome_back")}</p>
           </motion.div>
 
           <form
@@ -119,8 +119,8 @@ export default function Login() {
                 }
                 errorMessage={errors.phoneNumber?.message}
                 color="primary"
-                label="Phone Number"
-                placeholder="01XXXXXXXXX"
+                label={t("phone_label")}
+                placeholder={t("phone_placeholder")}
                 type="text"
                 className=""
                 {...register("phoneNumber")}
@@ -139,21 +139,21 @@ export default function Login() {
                   Boolean(errors.password?.message) && dirtyFields.password
                 }
                 errorMessage={errors.password?.message}
-                label="Password"
-                placeholder="Enter your password"
+                label={t("password_label")}
+                placeholder={t("password_placeholder")}
                 type="password"
                 className=""
                 {...register("password")}
               />
             </motion.div>
 
-            {errorMsg === "Invalid phone number or password." && (
+            {errorMsg && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-red-400 text-center text-sm bg-red-500/10 p-3 rounded-lg border border-red-500/20"
               >
-                ❌ {errorMsg}
+                ❌ {errorMsg === "Invalid phone number or password." ? t("invalid_credentials") : errorMsg}
               </motion.p>
             )}
 
@@ -169,7 +169,7 @@ export default function Login() {
                 type="submit"
                 className="flex-1 bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-main-background/50 transition-all duration-300"
               >
-                {isLooding ? "Signing In..." : "Sign In"}
+                {isLooding ? t("signing_in") : t("sign_in_button")}
               </Button>
             </motion.div>
           </form>
@@ -181,12 +181,12 @@ export default function Login() {
             className="text-center mt-8 pt-6 border-t border-white/10"
           >
             <p className="text-gray-300 text-sm">
-              Don't have an account yet?{" "}
+              {t("no_account")} {" "}
               <span
                 className="text-main-background font-semibold cursor-pointer hover:text-orange-600 transition-colors duration-300"
                 onClick={() => Route.push("/Register")}
               >
-                Register here
+                {t("register_link")}
               </span>
             </p>
           </motion.div>

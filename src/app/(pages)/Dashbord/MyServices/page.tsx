@@ -173,13 +173,13 @@ export default function page() {
         setIsloading(false);
       } else {
         addToast({
-          title: "there must at least one Image",
+          title: t("image_required"),
           color: "danger",
         });
       }
     } else {
       addToast({
-        title: "title or description is Required !!",
+        title: t("title_or_description_required"),
         color: "danger",
       });
       setIsloading(false);
@@ -474,10 +474,10 @@ export default function page() {
           <div className="flex items-end justify-between gap-4 mb-2">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               {" "}
-              Your Services{" "}
+             {t("your_services")}{" "}
             </h2>
             <span className="inline-block px-4 py-2 bg-linear-to-r from-orange-100 to-orange-50 border border-orange-200 rounded-full text-sm font-medium text-orange-700">
-              {UserServices?.services.length ?? 0} Service
+              {UserServices?.services.length ?? 0} {t("service_label_plural")}
             </span>
           </div>
           <div className="h-1 w-16 bg-linear-to-r from-orange-500 to-orange-400 rounded-full"></div>
@@ -628,12 +628,8 @@ export default function page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                No Services Yet
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Create your first service to showcase your skills.
-              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("no_services_yet_title")}</h3>
+              <p className="text-gray-600 mb-6">{t("no_services_yet_paragraph")}</p>
             </div>
           )}
         </div>

@@ -12,10 +12,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import ServiceCard from "@/components/Services Commponents/ServiceCard";
 
 export default function page() {
+  const t = useTranslations("Services");
   const Router = useRouter();
   // ---------------------------------------------------------------------------//
   const [FilteredService, setFilteredService] = useState<
@@ -56,12 +58,8 @@ export default function page() {
       <header className="bg-linear-to-r from-main-background to-orange-700 shadow-xl py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-white mb-3">
-              الخدمات المتاحة
-            </h1>
-            <p className="text-lg text-primry-background opacity-90">
-              اكتشف أفضل الخدمات من أفضل المتخصصين
-            </p>
+            <h1 className="text-5xl font-bold text-white mb-3">{t("header_title")}</h1>
+            <p className="text-lg text-primry-background opacity-90">{t("header_paragraph")}</p>
           </div>
         </div>
       </header>
@@ -76,20 +74,16 @@ export default function page() {
               transition={{ duration: 0.5 }}
               className="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-main-background sticky top-20"
             >
-              <h2 className="text-2xl font-bold text-main-background mb-6">
-                الفلاتر
-              </h2>
+              <h2 className="text-2xl font-bold text-main-background mb-6">{t("filters")}</h2>
 
               {/* Skill Filter */}
               <div className="mb-6">
-                <label className="block text-main-background font-semibold mb-3">
-                  المهارة
-                </label>
+                <label className="block text-main-background font-semibold mb-3">{t("skill_label")}</label>
                 <Autocomplete
                   onInputChange={(S) => FilterServces(S)}
                   isClearable={true}
                   variant="faded"
-                  placeholder="ابحث عن مهارة"
+                  placeholder={t("search_skill_placeholder")}
                   className="bg-white/5"
                 >
                   {Skills.map((skill) => (
@@ -102,20 +96,18 @@ export default function page() {
                   onPress={() => setFilteredService(null)}
                   className="w-full mt-3 bg-linear-to-r from-main-background to-orange-600 text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-all duration-300"
                 >
-                  إعادة تعيين
+                  {t("reset")}
                 </Button>
               </div>
 
               {/* Location Filter */}
               <div>
-                <label className="block text-main-background font-semibold mb-3">
-                  الموقع
-                </label>
+                <label className="block text-main-background font-semibold mb-3">{t("location_label")}</label>
                 <Autocomplete
                   onInputChange={(S) => console.log(S)}
                   isClearable={true}
                   variant="faded"
-                  placeholder="ابحث عن موقع"
+                  placeholder={t("search_location_placeholder")}
                   className="bg-white/5"
                 >
                   {Governorates.map((gov) => (
@@ -125,7 +117,7 @@ export default function page() {
                   ))}
                 </Autocomplete>
                 <Button className="w-full mt-3 bg-linear-to-r from-gray-500 to-gray-600 text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-all duration-300">
-                  إعادة تعيين
+                  {t("reset")}
                 </Button>
               </div>
             </motion.div>
@@ -145,9 +137,7 @@ export default function page() {
             {/* Empty State */}
             {(!AllServices || AllServices.length === 0) && (
               <div className="text-center py-20">
-                <p className="text-2xl text-gray-500 font-semibold">
-                  لم يتم العثور على خدمات
-                </p>
+                <p className="text-2xl text-gray-500 font-semibold">{t("no_services_found")}</p>
               </div>
             )}
           </div>

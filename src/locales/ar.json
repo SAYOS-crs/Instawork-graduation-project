@@ -4,7 +4,7 @@
     "description": "منصة تربط الحرفيين بالعملاء في جميع أنحاء الوطن العربي"
   },
   "HomePage": {
-    "page_ad1":"مميز عرضك ",
+    "page_ad1":"ميز عرضك ",
     "page_ad2":"خلي العميل يلاحظك الأول",
     "title":"ابحث عن إجابات للأسئلة الشائعة حول إنستاوورك"
   },
@@ -18,6 +18,11 @@
     "jobs_lab":"الأعمال ",
     "english": "English",
     "arabic": "العربية"
+  },
+  "SideBar": {
+    "profile": "الملف الشخصي",
+    "my_services": "خدماتي",
+    "my_jobs": "وظائفي"
   },
   "hero-parallax": 
   {
@@ -74,6 +79,43 @@
     "card4_title": "دعم 24/7",
     "card4_description": "دائماً هنا لمساعدتك"
   },
+  "InfiniteMovingCards": {
+    "items": [
+      { "label": "حداد"},
+      { "label": "نقاش"},
+      { "label": "نجار"},
+      { "label": "كهربائي" }
+    ]
+  },
+  "Governorates": {
+    "cairo": "القاهرة",
+    "giza": "الجيزة",
+    "alexandria": "الإسكندرية",
+    "dakahlia": "الدقهلية",
+    "red_sea": "البحر الأحمر",
+    "beheira": "البحيرة",
+    "gharbia": "الغربية",
+    "port_said": "بورسعيد",
+    "suez": "السويس",
+    "ismailia": "الإسماعيلية",
+    "kafr_el_sheikh": "كفر الشيخ",
+    "sharqia": "الشرقية",
+    "qalyubia": "القليوبية",
+    "damietta": "دمياط",
+    "matrouh": "مرسى مطروح",
+    "minya": "المنيا",
+    "beni_suef": "بني سويف",
+    "fayoum": "الفيوم",
+    "menoufia": "المنوفية",
+    "luxor": "الأقصر",
+    "asyut": "أسيوط",
+    "sohag": "سوهاج",
+    "qena": "قنا",
+    "aswan": "أسوان",
+    "north_sinai": "شمال سيناء",
+    "south_sinai": "جنوب سيناء",
+    "new_valley": "الوادي الجديد"
+  },
   "SpotlightHero": {
     "header_title": "طابق مهاراتك مع فرص عملك",
     "header_paragraph": "إنستا ورك هي منصة تربط الحرفيين بالعملاء. سواء كنت تبحث عن حرفي ماهر أو فرصة عمل جديدة، نحن هنا لمساعدتك.",
@@ -94,6 +136,65 @@
     "prov_3_text": "ابحث في قسم الوظائف عن المناسبة لمجال عملك وتعرف على تفاصيل المهمة والميزانية والمواصفات.",
     "prov_4_header": "اعرض أعمالك",
     "prov_4_text": "اعرض صورًا لأبرز أعمالك في المعرض لتعكس جودة عملك وبناء الثقة بين العامل والعميل."
+  },
+  "Services": {
+    "header_title": "الخدمات المتاحة",
+    "header_paragraph": "اكتشف أفضل الخدمات من أفضل المتخصصين",
+    "filters": "الفلاتر",
+    "skill_label": "المهارة",
+    "search_skill_placeholder": "ابحث عن مهارة",
+    "reset": "إعادة تعيين",
+    "location_label": "الموقع",
+    "search_location_placeholder": "ابحث عن موقع",
+    "no_services_found": "لم يتم العثور على خدمات"
+  },
+  "ServiceDetails": {
+    "service_title": "الخدمة",
+    "description_title": "الوصف",
+    "provider_bio": "نبذة المزود",
+    "service_gallery": "معرض الخدمة",
+    "contact": "تواصل",
+    "phone_label": "هاتف",
+    "second_phone_label": "ثاني",
+    "address_label": "العنوان",
+    "meta": "بيانات",
+    "rating_label": "التقييم",
+    "service_id_label": "معرّف الخدمة",
+    "user_id_label": "معرّف المستخدم"
+  },
+  "ServiceCard": {
+    "address_label": "العنوان",
+    "view_details": "عرض التفاصيل"
+  },
+  "MyJobs": {
+    "post_new_job": "نشر وظيفة جديدة",
+    "job_title_label": "عنوان الوظيفة",
+    "job_title_placeholder": "مثال: بناء لوحة تحكم React",
+    "job_description_label": "وصف الوظيفة",
+    "job_description_placeholder": "صف تفاصيل الوظيفة والمتطلبات والتوقعات...",
+    "characters_remaining": "حرف متبقي",
+    "budget_label": "الميزانية (جنيه مصري)",
+    "budget_placeholder": "أدخل مبلغ الميزانية",
+    "governorate_label": "المحافظة",
+    "governorate_placeholder": "اختر محافظة",
+    "post_job_button": "نشر الوظيفة",
+    "cancel_button": "إلغاء",
+    "post_new_job_button": "نشر وظيفة جديدة",
+    "my_jobs_heading": "وظائفي",
+    "job_label_singular": "وظيفة",
+    "job_label_plural": "وظائف",
+    "posted_by": "نشره",
+    "budget": "الميزانية",
+    "location": "الموقع",
+    "user_id": "معرّف المستخدم",
+    "no_jobs_yet_title": "لا توجد وظائف بعد",
+    "no_jobs_yet_paragraph": "انشر وظيفتك الأولى للعثور على المستقل المناسب.",
+    "job_header_required": "عنوان الوظيفة مطلوب",
+    "job_description_required": "وصف الوظيفة مطلوب",
+    "job_budget_invalid": "ميزانية الوظيفة يجب أن تكون أكبر من 0",
+    "governorate_required": "المحافظة مطلوبة",
+    "fill_all_fields": "يرجى ملء جميع الحقول المطلوبة",
+    "job_posted_success": "تم نشر الوظيفة بنجاح!"
   },
   "HomeCart": {
     "available_soon": "متاح قريباً",
@@ -144,8 +245,18 @@
     "skill_plumber": "سباك",
     "skill_welder": "حداد",
     "skill_ceramics": "سيراميك"
+    ,
+    "your_services": "خدماتك",
+    "service_label_singular": "خدمة",
+    "service_label_plural": "خدمات",
+    "image_required": "يجب أن تكون هناك صورة واحدة على الأقل",
+    "title_or_description_required": "العنوان أو الوصف مطلوب!!",
+    "no_services_yet_title": "لا توجد خدمات بعد",
+    "no_services_yet_paragraph": "أنشئ أول خدمة لك لعرض مهاراتك."
+    
   },
   "Profile": {
+    "characters": "حروف",
     "loading": "جاري التحميل . . .",
     "about_yourself": "نبذة عن نفسك",
     "bio_placeholder": "اكتب نبذة عن نفسك وخبرتك",
@@ -213,9 +324,9 @@
     "create_account": "إنشاء حساب",
     "join_instawork": "انضم إلى InstaWork وابدأ رحلتك في العمل الحر",
     "full_name": "الاسم الكامل",
-    "full_name_placeholder": "Tony Montana",
+    "full_name_placeholder": "توني فوزي",
     "email": "البريد الإلكتروني",
-    "email_placeholder": "Montana@SAYOS.com",
+    "email_placeholder": "Tawfik@SAYOS.com",
     "password": "كلمة المرور",
     "password_placeholder": "أدخل كلمة المرور",
     "confirm_password": "تأكيد كلمة المرور",
