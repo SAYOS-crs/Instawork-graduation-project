@@ -1,5 +1,10 @@
 "use client";
-import { addToast, Button } from "@heroui/react";
+import {
+  addToast,
+  Autocomplete,
+  AutocompleteItem,
+  Button,
+} from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { Textarea } from "@heroui/react";
 import { Select, SelectItem } from "@heroui/react";
@@ -10,6 +15,8 @@ import { Governorates } from "@/components/DashBord Commponents/Profile/Governor
 import { useSession } from "next-auth/react";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import AddJobApi from "@/services/JobsAPI/AddJobAPI";
+import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
 
 interface JobData {
   jobId: string;
@@ -28,6 +35,8 @@ interface MockUserJobs {
 export default function page() {
   const { data } = useSession();
   const t = useTranslations("MyJobs");
+
+  // data state
 
   // Form states
   const [jobHeader, setJobHeader] = useState<string>("");
@@ -109,26 +118,31 @@ export default function page() {
     if (isValid) {
       // Create FormData
       const formData = new FormData();
-      formData.append("jobHeader", jobHeader);
-      formData.append("jobDescription", jobDescription);
-      formData.append("jobBudget", jobBudget);
-      formData.append("governorate", governorate);
+
+      formData.append("title", jobHeader);
+      formData.append("description", jobDescription);
+      formData.append("budget", jobBudget);
 
       // Log to console
       console.log("Job Form Data:");
-      console.log(formData.get("jobHeader"));
-      console.log(formData.get("jobDescription"));
-      console.log(formData.get("jobBudget"));
-      console.log(formData.get("governorate"));
+      console.log(formData.get("title"));
+      console.log(formData.get("description"));
+      console.log(formData.get("budget"));
 
-      addToast({
-        title: t("job_posted_success"),
-        color: "success",
-      });
+      if (
+        formData.has("title") &&
+        formData.has("description") &&
+        formData.has("budget")
+      ) {
+        CallingPostJobAPI(formData);
+      } else {
+        addToast({
+          title: "Error",
+          color: "danger",
+        });
+      }
 
       // Clear form
-      clearJobFields();
-      setAddJobToggle(false);
     } else {
       addToast({
         title: t("fill_all_fields"),
@@ -138,6 +152,20 @@ export default function page() {
 
     setIsLoading(false);
   };
+
+  async function CallingPostJobAPI(x: FormData) {
+    const res = await AddJobApi(x);
+    console.log(res);
+
+    if (res.message) {
+      clearJobFields();
+      setAddJobToggle(false);
+      addToast({
+        title: res.message,
+        color: "success",
+      });
+    }
+  }
 
   const clearJobFields = () => {
     setJobHeader("");
@@ -169,18 +197,21 @@ export default function page() {
               <label className="text-sm font-bold text-gray-900 uppercase tracking-wide">
                 {t("job_title_label")}
               </label>
-              <Input
-                value={jobHeader}
-                onChange={(e) => setJobHeader(e.target.value)}
+
+              <Autocomplete
+                onInputChange={(S) => setJobHeader(S)}
+                isClearable={true}
+                className=" cursor-pointer"
+                label={"Skill type"}
                 isInvalid={Boolean(ErrorJobHeader)}
                 errorMessage={ErrorJobHeader}
-                placeholder={t("job_title_placeholder")}
-                classNames={{
-                  input: "font-medium",
-                  label: "text-gray-700",
-                }}
-                className="w-full"
-              />
+              >
+                {Skills.map((skill) => (
+                  <AutocompleteItem key={skill.label}>
+                    {skill.label}
+                  </AutocompleteItem>
+                ))}
+              </Autocomplete>
             </div>
 
             {/* Job Description Input */}

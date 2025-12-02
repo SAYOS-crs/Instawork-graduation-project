@@ -20,6 +20,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { fromUnixTime, format, formatDistanceToNow } from "date-fns";
 import { ar } from "date-fns/locale/ar";
+import DeleteUserService from "@/services/ServicesAPI/DeleteService";
 {
   /* يتوفيييق انا عامل التاريخ عربي */
 }
@@ -233,6 +234,17 @@ export default function page() {
     //
   }
 
+  async function DeleteService(ServiceID: string) {
+    const res = await DeleteUserService(ServiceID);
+    console.log(res);
+    if (res.message) {
+      CallingUserServicesAPI(data?.user.userId!);
+      addToast({
+        title: res.message,
+        color: "danger",
+      });
+    }
+  }
   return (
     <section className="min-h-screen w-full flex flex-col bg-linear-to-b from-white to-gray-50 py-8">
       {AddServiceTogel ? (
@@ -603,7 +615,10 @@ export default function page() {
                 </article>
                 {/*  Delete & Edite ICons -- */}
                 <span className=" bg-green-500 absolute left-0 top-0 bottom-0 z-0 text-5xl flex flex-col rounded-md  justify-evenly p-3">
-                  <MdDelete className=" cursor-pointer  hover:text-red-600 transition-all " />
+                  <MdDelete
+                    onClick={() => DeleteService(UserService.serviceId)}
+                    className=" cursor-pointer  hover:text-red-600 transition-all "
+                  />
                   <FaEdit className="  cursor-pointer  hover:text-yellow-300  transition-all" />
                 </span>
               </div>

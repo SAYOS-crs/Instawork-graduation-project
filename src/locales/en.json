@@ -125,6 +125,28 @@
     "search_location_placeholder": "Search location",
     "no_services_found": "No services found"
   },
+
+  "Jobs": {
+    "header_title": "Available Jobs",
+    "header_paragraph": "Find the perfect job opportunity that matches your skills",
+    "filters": "Filters",
+    "job_type_label": "Job Type",
+    "search_job_type_placeholder": "Search by job type",
+    "clear_job_type": "Clear Job Type",
+    "location_label": "Location",
+    "search_location_placeholder": "Search by location",
+    "clear_location": "Clear Location",
+    "reset_all_filters": "Reset All Filters",
+    "posted_by": "Posted by",
+    "description_label": "Description",
+    "budget_label": "Budget",
+    "location_card_label": "Location",
+    "view_details": "View Details →",
+    "no_jobs_found_title": "No jobs found",
+    "no_jobs_found_paragraph": "Try adjusting your filters to find more opportunities",
+    "reset_filters_button": "Reset Filters",
+    "id_label": "ID"
+  },
   "ServiceDetails": {
     "service_title": "Service",
     "description_title": "Description",
@@ -364,6 +386,46 @@
     "gender_required": "Gender is required",
     "date_required": "Date is required",
     "age_minimum": "You must be at least 13 years old"
+  },
+  "JobDetailsPage": {
+    "jobId": "Job ID:",
+    "budget": "Budget",
+    "currency": "EGP",
+    "jobType": "Job Type",
+    "jobDescription": "Job Description",
+    "location": "Location",
+    "aboutClient": "About Client",
+    "jobClient": "Job Client",
+    "userId": "User ID",
+    "contactInfo": "Contact Information",
+    "phone": "Phone:",
+    "secondary": "Secondary:",
+    "jobSummary": "Job Summary",
+    "posted": "Posted:",
+    "status": "Status:",
+    "statusOpen": "Open",
+    "jobDetails": "Job Details"
+  },
+  "skills": {
+    "naqash": "Painter",
+    "haddad": "Blacksmith",
+    "ceramic": "Ceramics",
+    "electrician": "Electrician",
+    "carpenter": "Carpenter",
+    "plumber": "Plumber"
+  },
+
+  "keywords": {
+    "modernPaint": "Modern painting",
+    "decor": "Decor",
+    "wallpaper": "Wallpaper",
+    "luxuryFinish": "Luxury finishing",
+    "securitySystems": "Security systems",
+    "maintenance": "Maintenance",
+    "wiring": "Electrical wiring",
+    "lighting": "Lighting",
+    "leakDetection": "Leak detection"
   }
 }
+
 

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
 
 export default async function page({ params }: { params: any }) {
-  const t = useTranslations("ServiceDetails");
   const ServiceID = await (async function () {
     try {
       const { id } = await params;
@@ -25,6 +25,7 @@ export default async function page({ params }: { params: any }) {
   console.log(Respons.data);
   const UserInfo = await Respons.data.user;
   const Service = await Respons.data;
+  const t = await getTranslations("ServiceDetails");
 
   return (
     <section className="min-h-screen container mx-auto px-4 pb-8">
@@ -111,7 +112,12 @@ export default async function page({ params }: { params: any }) {
             <h4 className="text-lg font-semibold">{t("contact")}</h4>
             <div className="mt-3 text-gray-700">
               <p>{t("phone_label")}: {UserInfo.phoneNumber.replace("+", "")}</p>
-              <p className="mt-2">{t("second_phone_label")}: {UserInfo.SecondPhoneNumber ? UserInfo.SecondPhoneNumber.replace("+", "") : UserInfo.phoneNumber.replace("+", "")}</p>
+              <p className="mt-2">
+                {t("second_phone_label")}:{" "}
+                {UserInfo.secondPhoneNumber
+                  ? UserInfo.secondPhoneNumber.replace("+", "")
+                  : UserInfo.phoneNumber.replace("+", "")}
+              </p>
               <p className="mt-2">{t("address_label")}: {UserInfo.address}</p>
             </div>
           </div>

@@ -26,8 +26,7 @@ import Loader from "@/components/Loader";
 
 export default function page() {
   const t = useTranslations("Profile");
-  const tGov = useTranslations("Governorates");
-  //
+    //
   //
   //
   const { data } = useSession();
@@ -622,7 +621,7 @@ export default function page() {
                     >
                       {(Governorate) => (
                         <AutocompleteItem key={Governorate.label}>
-                          {tGov(Governorate.label)}
+                          {(Governorate.label)}
                         </AutocompleteItem>
                       )}
                     </Autocomplete>

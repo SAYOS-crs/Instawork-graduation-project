@@ -148,6 +148,28 @@
     "search_location_placeholder": "ابحث عن موقع",
     "no_services_found": "لم يتم العثور على خدمات"
   },
+
+  "Jobs": {
+    "header_title": "الوظائف المتاحة",
+    "header_paragraph": "اعثر على فرصة العمل المناسبة التي تتناسب مع مهاراتك",
+    "filters": "الفلاتر",
+    "job_type_label": "نوع الوظيفة",
+    "search_job_type_placeholder": "ابحث عن نوع الوظيفة",
+    "clear_job_type": "مسح نوع الوظيفة",
+    "location_label": "الموقع",
+    "search_location_placeholder": "ابحث عن موقع",
+    "clear_location": "مسح الموقع",
+    "reset_all_filters": "إعادة تعيين جميع الفلاتر",
+    "posted_by": "نشره",
+    "description_label": "الوصف",
+    "budget_label": "الميزانية",
+    "location_card_label": "الموقع",
+    "view_details": "عرض التفاصيل →",
+    "no_jobs_found_title": "لم يتم العثور على وظائف",
+    "no_jobs_found_paragraph": "جرّب تعديل الفلاتر الخاصة بك للعثور على مزيد من الفرص",
+    "reset_filters_button": "إعادة تعيين الفلاتر",
+    "id_label": "المعرف"
+  },
   "ServiceDetails": {
     "service_title": "الخدمة",
     "description_title": "الوصف",
@@ -359,5 +381,45 @@
     "gender_required": "النوع مطلوب",
     "date_required": "التاريخ مطلوب",
     "age_minimum": "يجب أن تكون في الأقل 13 سنة"
+  },
+  "JobDetailsPage": {
+    "jobId": "معرف الوظيفة:",
+    "budget": "الميزانية",
+    "currency": "جنيه",
+    "jobType": "نوع الوظيفة",
+    "jobDescription": "وصف الوظيفة",
+    "location": "الموقع",
+    "aboutClient": "عن العميل",
+    "jobClient": "عميل الوظيفة",
+    "userId": "معرف المستخدم",
+    "contactInfo": "معلومات الاتصال",
+    "phone": "الهاتف:",
+    "secondary": "الهاتف الثانوى:",
+    "jobSummary": "ملخص الوظيفة",
+    "posted": "نشرت:",
+    "status": "الحالة:",
+    "statusOpen": "مفتوحة",
+    "jobDetails": "تفاصيل الوظيفة"
+  },
+  
+  "skills": {
+    "naqash": "نقاش",
+    "haddad": "حداد",
+    "ceramic": "سيراميك",
+    "electrician": "كهربائي",
+    "carpenter": "نجار",
+    "plumber": "سباك"
+  },
+
+  "keywords": {
+    "modernPaint": "دهانات حديثة",
+    "decor": "ديكور",
+    "wallpaper": "ورق حائط",
+    "luxuryFinish": "تشطيبات فاخرة",
+    "securitySystems": "أنظمة أمان",
+    "maintenance": "صيانة",
+    "wiring": "تمديدات كهربائية",
+    "lighting": "إضاءة",
+    "leakDetection": "كشف تسربات"
   }
 }
