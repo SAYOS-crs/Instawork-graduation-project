@@ -20,7 +20,7 @@ interface User {
         fullname: string
         profileImage: string
         phoneNumber: string
-        SecondPhoneNumber : string
+        secondPhoneNumber : string
         bio:string
         address: string
 }
