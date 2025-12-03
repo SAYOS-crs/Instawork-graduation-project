@@ -14,7 +14,7 @@ import {
   Textarea,
   ToastProvider,
 } from "@heroui/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
@@ -23,10 +23,11 @@ import { MdEdit, MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 import { Governorates } from "@/components/DashBord Commponents/Profile/Governorates";
 import Loader from "@/components/Loader";
+import DeleteUser from "@/services/ProfileAPI/DeleteUser";
 
 export default function page() {
   const t = useTranslations("Profile");
-    //
+  //
   //
   //
   const { data } = useSession();
@@ -405,6 +406,14 @@ export default function page() {
     //
   }, []);
 
+  async function DeleteAccount() {
+    const respons = await DeleteUser();
+    if (respons) {
+      signOut();
+      console.log(respons);
+    }
+  }
+
   return (
     <>
       {LoadingPage ? (
@@ -621,7 +630,7 @@ export default function page() {
                     >
                       {(Governorate) => (
                         <AutocompleteItem key={Governorate.label}>
-                          {(Governorate.label)}
+                          {Governorate.label}
                         </AutocompleteItem>
                       )}
                     </Autocomplete>
@@ -690,6 +699,13 @@ export default function page() {
                 </div>
               </div>
             </div>
+          </div>
+          {/* //////// delete account  */}
+          <div className=" border-y-2 p-4 border-red-600 text-center">
+            <Button onPress={DeleteAccount} className="px-10" color="danger">
+              Delete
+            </Button>
+            <span className="px-3 text-red-600 "> : Delete Account</span>
           </div>
         </section>
       )}
