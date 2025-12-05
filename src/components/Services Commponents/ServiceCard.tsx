@@ -12,7 +12,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 export default function ServiceCard({
@@ -61,7 +60,9 @@ export default function ServiceCard({
               <h3 className="text-lg font-bold text-main-background truncate">
                 {service.user.fullname}
               </h3>
-              <p className="text-sm text-gray-600 truncate">{t("address_label")}</p>
+              <p className="text-sm text-gray-600 truncate">
+                {t("address_label")}
+              </p>
             </div>
 
             <div>
