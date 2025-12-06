@@ -5,7 +5,7 @@
   export default async function CallingUserInfoAPI(id : string )  {
 
     try {
-    const req = await fetch(`${process.env.API_BASE_URL}/users/${id}`,{
+    const req = await fetch(`https://gp2025.runasp.net/api/v1/users/${id}`,{
         headers : {
             "Content-Type": "application/json"
         }

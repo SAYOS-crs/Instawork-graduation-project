@@ -6,7 +6,7 @@
 
 export default async function GetAllJobs() {
     try {
-        const req = await fetch(`${process.env.API_BASE_URL}/jobs`,{
+        const req = await fetch(`https://gp2025.runasp.net/api/v1/jobs`,{
             next : {
                 revalidate : 30
             }

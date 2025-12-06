@@ -8,7 +8,7 @@ export default async function AddJobApi(formdata : FormData) {
     const token = await GetToken()
     try {
         
-        const requst = await fetch(`${process.env.API_BASE_URL}/jobs`,{
+        const requst = await fetch(`https://gp2025.runasp.net/api/v1/jobs`,{
             method : 'POST',
             headers : {
                 token : token+''

@@ -5,7 +5,7 @@ import GetToken from "@/helpers/GetTokenSSR"
 export default async function DeleteUser() {
     const User_Token = await GetToken()
     try {
-            const req = await fetch(`${process.env.API_BASE_URL}/users`,{
+            const req = await fetch(`https://gp2025.runasp.net/api/v1/users`,{
         method : 'DELETE',
         headers : {
             token : User_Token

@@ -11,7 +11,7 @@ export default async function UpdateingUserInfo(UpdatedData : FormData) {
 
 
     try {
-        const req = await fetch( `${process.env.API_BASE_URL}/users`,{
+        const req = await fetch( `https://gp2025.runasp.net/api/v1/users`,{
         method : 'PATCH',
         headers : {
             token : token+""

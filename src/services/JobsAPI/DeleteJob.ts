@@ -12,7 +12,7 @@ export default async function DeleteUserJob(JobID : string) {
     const User_Token = await GetToken()
 
     try {
-            const req = await fetch(`${process.env.API_BASE_URL}/jobs/${JobID}`,{
+            const req = await fetch(`https://gp2025.runasp.net/api/v1/jobs/${JobID}`,{
         method : 'DELETE',
         headers : {
             token : User_Token

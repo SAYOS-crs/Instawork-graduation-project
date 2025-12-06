@@ -10,7 +10,7 @@ import GetToken from "@/helpers/GetTokenSSR"
 export default async function DeleteUserService(id : string) {
     const token = await GetToken()
     try {
-            const req = await fetch(`${process.env.API_BASE_URL}/services/${id}`,{
+            const req = await fetch(`https://gp2025.runasp.net/api/v1/services/${id}`,{
         method : 'DELETE',
         headers : {
             token : token

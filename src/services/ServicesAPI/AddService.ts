@@ -8,7 +8,7 @@ export default async function AddServiceAPI(formdata : FormData) {
     const token = await GetToken()
     try {
         
-        const requst = await fetch(`${process.env.API_BASE_URL}/services`,{
+        const requst = await fetch(`https://gp2025.runasp.net/api/v1/services`,{
             method : 'POST',
             body : formdata ,
             headers : {

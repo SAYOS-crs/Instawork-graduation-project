@@ -8,7 +8,7 @@ import GetToken from "@/helpers/GetTokenSSR"
 export default async function GetJobDetails(JobID : string) {
     const ssr_Token = await GetToken()
     try {
-    const req = await fetch(`${process.env.API_BASE_URL}/jobs/${JobID}`,{
+    const req = await fetch(`https://gp2025.runasp.net/api/v1/jobs/${JobID}`,{
         headers : {
             token : ssr_Token
         }

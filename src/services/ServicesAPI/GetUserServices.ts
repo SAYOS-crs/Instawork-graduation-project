@@ -4,7 +4,7 @@
 
 export default async function GetUserServices(id : string) {
     try {
-        const requst = await fetch(`${process.env.API_BASE_URL}/users/${id}/services`,{
+        const requst = await fetch(`https://gp2025.runasp.net/api/v1/users/${id}/services`,{
             method : 'GET',
 
         })
