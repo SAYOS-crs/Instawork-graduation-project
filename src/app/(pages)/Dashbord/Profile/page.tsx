@@ -403,6 +403,7 @@ export default function page() {
   useEffect(() => {
     //
     settest(!test);
+    UserInfo();
     //
   }, []);
 
