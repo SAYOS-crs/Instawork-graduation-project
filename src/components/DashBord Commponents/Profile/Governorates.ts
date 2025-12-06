@@ -18,6 +18,7 @@ export const Governorates = [
   { label: "بني سويف" },
   { label: "الفيوم" },
   { label: "المنوفية" },
+  { label: "turky" },
   { label: "الأقصر" },
   { label: "أسيوط" },
   { label: "سوهاج" },

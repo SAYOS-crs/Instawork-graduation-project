@@ -5,6 +5,8 @@
     { label: "كهربائي" },
     { label: "نجار" },
     { label: "سباك" },
+    { label: "porn star" },
+
   ];
 
  export const KeyWords = [

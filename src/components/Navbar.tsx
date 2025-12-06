@@ -74,9 +74,11 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
+        <div>
+          <LanguageSwitcher />
+        </div>
       </NavbarContent>
 
-          <LanguageSwitcher />
       <NavbarContent justify="end">
         <NavbarItem className="flex ">
           {status === "authenticated" ? (
@@ -113,7 +115,7 @@ export default function Navbar() {
         >
           Home
         </Link>
-        <LanguageSwitcher />
+
         {NavItems.map((item, index) => (
           <NavbarMenuItem
             className="p-5 hover:bg-main-background rounded-md"
@@ -134,6 +136,7 @@ export default function Navbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <LanguageSwitcher />
       </NavbarMenu>
     </NavbarComponent>
   );
