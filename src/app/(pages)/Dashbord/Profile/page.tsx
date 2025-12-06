@@ -351,7 +351,6 @@ export default function page() {
   //
   //
   // did amount
-  const [test, settest] = useState<boolean>(false);
   // amount update
   useEffect(() => {
     //
@@ -397,15 +396,11 @@ export default function page() {
   ]);
 
   useEffect(() => {
-    UserInfo();
-  }, [test]);
+    //
 
-  useEffect(() => {
-    //
-    settest(!test);
     UserInfo();
     //
-  }, []);
+  }, [data?.user.userId]);
 
   async function DeleteAccount() {
     const respons = await DeleteUser();
