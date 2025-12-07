@@ -3,7 +3,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";              // ← سطر 2 (جديد)
+import { useEffect, useState } from "react";             
 import { useTranslations } from "next-intl";
 import {
   Dropdown,
@@ -13,7 +13,7 @@ import {
   Button,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";           // ← سطر 1 (جديد)
+import { useSession } from "next-auth/react";          
 const items = [
   {
     key: "new",
