@@ -47,6 +47,7 @@ const handler = NextAuth({
             if(user){
                 token.accessToken = user.token
                 token.user = user.LogedUser
+                token.role = user.LogedUser.role
             }
             return token
         },

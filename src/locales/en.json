@@ -27,9 +27,11 @@
   },
 
   "SideBar": {
+    
     "profile": "Profile",
     "my_services": "My Services",
-    "my_jobs": "My Jobs"
+    "my_jobs": "My Jobs",
+    "Admin": "Admin"
   },
 
   "hero-parallax":  
@@ -166,6 +168,8 @@
     "view_details": "View Details"
   },
   "MyJobs": {
+    "error_loading_jobs": "Error loading jobs.",
+    "loading_jobs": "Loading jobs...",
     "post_new_job": "Post a New Job",
     "job_title_label": "Job Title",
     "job_title_placeholder": "e.g., Build a React Dashboard",

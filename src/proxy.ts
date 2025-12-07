@@ -9,6 +9,7 @@ import { getSession } from 'next-auth/react';
 const protectedAuth = ['/Login', '/Register'];
 const protectedRoutes = ['/Dashbord', '/services', '/Jobs'];
 
+const adminRoute = '/Dashbord/Admin';
 export async function proxy(request: NextRequest) {
     const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
@@ -25,6 +26,12 @@ export async function proxy(request: NextRequest) {
   }
 
 
+  if (pathname.startsWith(adminRoute)) {
+    const userRole = (token as any)?.role;
+    if (!token || userRole !== 'Admin') {
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+  }
 
   return NextResponse.next();
 }
