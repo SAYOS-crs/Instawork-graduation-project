@@ -3,7 +3,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";             
 import { useTranslations } from "next-intl";
 import {
   Dropdown,
@@ -13,6 +13,7 @@ import {
   Button,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";          
 const items = [
   {
     key: "new",
@@ -35,6 +36,16 @@ export default function SideBar() {
   const pathname = usePathname();
   const t = useTranslations("SideBar");
 
+  const { data: session, status } = useSession();         
+const [isAdmin, setIsAdmin] = useState(false);         
+
+useEffect(() => {
+  if (status === "authenticated" && (session?.user as any)?.role === "Admin") {
+    setIsAdmin(true);
+  } else {
+    setIsAdmin(false);
+  }
+}, [session, status]);
   return (
     <>
       <div className="h-fit w-full md:h-screen  border-primry-background bg-white/5 rounded-r-xl">
@@ -74,6 +85,19 @@ export default function SideBar() {
             <MdArrowForwardIos className="text-sm" />
             <span>{t("my_jobs")}</span>
           </Link>
+           {isAdmin && (
+          <Link
+            href="/Dashbord/Admin"
+            className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+              pathname.includes("/Dashbord/Admin")
+                ? "bg-linear-to-r from-main-background to-primry-background text-black"
+                : "hover:bg-primry-background/20"
+            }`}
+          >
+            <MdArrowForwardIos className="text-sm" />
+            <span>{t("Admin")}</span>
+          </Link>
+        )}
         </nav>
       </div>
     </>

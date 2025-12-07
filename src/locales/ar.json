@@ -20,6 +20,7 @@
     "arabic": "العربية"
   },
   "SideBar": {
+    "Admin": "الإدارة",
     "profile": "الملف الشخصي",
     "my_services": "خدماتي",
     "my_jobs": "وظائفي"
@@ -189,6 +190,7 @@
     "view_details": "عرض التفاصيل"
   },
   "MyJobs": {
+    "loading_jobs": "جاري تحميل الوظائف...",
     "post_new_job": "نشر وظيفة جديدة",
     "job_title_label": "عنوان الوظيفة",
     "job_title_placeholder": "مثال: بناء لوحة تحكم React",
