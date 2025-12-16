@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/service/**',
       },
+       {
+      protocol: 'https',
+      hostname: 'gp2025.runasp.net',
+      port: '',
+      pathname: '/Jobs/**',
+    }
     ],
   },
 
