@@ -1,6 +1,6 @@
 
 
-export interface AddJobInterface {
+ interface AddJobInterface {
     
     message: string
     data: JobData[]
@@ -8,7 +8,7 @@ export interface AddJobInterface {
 }
 
 
-export interface JobData {
+ interface JobData {
      servReqId: string
         servReqName: string
         description: string
