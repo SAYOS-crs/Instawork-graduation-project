@@ -19,11 +19,7 @@ import { FaEdit } from "react-icons/fa";
 import AddJobApi from "@/services/JobsAPI/AddJobAPI";
 import { Skills } from "@/components/DashBord Commponents/MyService/ServiceLists";
 import GetUserJobs from "@/services/JobsAPI/GetUserJobs";
-import type {
-  UserJobsRespons,
-  UserJobsData,
-  UserJobs,
-} from "@/Interface/Service/UserJobs";
+
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { ar } from "date-fns/locale/ar";
 import DeleteUserJob from "@/services/JobsAPI/DeleteJob";

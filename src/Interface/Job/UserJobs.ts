@@ -1,19 +1,19 @@
 
-export interface UserJobsRespons {
+ interface UserJobsRespons {
         message: string
         data: UserJobsData
 }
 
 
 
-export interface UserJobsData {
+ interface UserJobsData {
         userId: string
         fullname: string
         jobs: UserJobs[]
 }
 
 
-export interface UserJobs {
+ interface UserJobs {
         servReqId: string;
         servReqName: string;
         description: string;
