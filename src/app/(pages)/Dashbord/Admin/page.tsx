@@ -1,20 +1,39 @@
 "use client";
-import { addToast, Button, Card, CardBody, CardHeader, Chip, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Tabs, Tab } from "@heroui/react";
+import {
+  addToast,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Chip,
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Tabs,
+  Tab,
+} from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
-import { getAllServicesAction, getAllJobsAction, deleteServiceAction, deleteJobAction } from "@/services/Admin Api/adminAPI";
-import AllServicesRespons, { ServicesInterface } from "@/Interface/Service/allServicesInterface";
-import { AddJobInterface, JobData } from "@/Interface/Job/JobInterface";
+import {
+  getAllServicesAction,
+  getAllJobsAction,
+  deleteServiceAction,
+  deleteJobAction,
+} from "@/services/Admin Api/adminAPI";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { ar } from "date-fns/locale/ar";
 import { MdDelete, MdRefresh, MdDashboard } from "react-icons/md";
 import Image from "next/image";
+import { ServicesInterface } from "@/Interface/Service/allServicesInterface";
 
 export default function AdminPage() {
   const { data: session } = useSession();
   const t = useTranslations("Admin");
-  
+
   const [allServices, setAllServices] = useState<ServicesInterface[]>([]);
   const [allJobs, setAllJobs] = useState<JobData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,56 +43,55 @@ export default function AdminPage() {
   const totalServices = allServices.length;
   const totalJobs = allJobs.length;
   const totalUsers = new Set([
-    ...allServices.map(s => s.user.userId),
-    ...allJobs.map(j => j.user.userId)
+    ...allServices.map((s) => s.user.userId),
+    ...allJobs.map((j) => j.user.userId),
   ]).size;
 
- async function fetchAllServices() {
-  setIsLoading(true);
-  const data = await getAllServicesAction();
-  setAllServices(data);
-  setIsLoading(false);
-}
+  async function fetchAllServices() {
+    setIsLoading(true);
+    const data = await getAllServicesAction();
+    setAllServices(data);
+    setIsLoading(false);
+  }
 
-async function fetchAllJobs() {
-  setIsLoading(true);
-  const data = await getAllJobsAction();
-  setAllJobs(data);
-  setIsLoading(false);
-}
+  async function fetchAllJobs() {
+    setIsLoading(true);
+    const data = await getAllJobsAction();
+    setAllJobs(data);
+    setIsLoading(false);
+  }
 
-async function handleDeleteService(serviceId: string) {
-  
-  if (!confirm(t("confirm_delete_service"))) return;
-  
-  const result = await deleteServiceAction(serviceId);
-  addToast({
-    title: result.message,
-    color: result.success ? "success" : "danger",
-  });
-  
-  if (result.success) fetchAllServices();
-}
+  async function handleDeleteService(serviceId: string) {
+    if (!confirm(t("confirm_delete_service"))) return;
 
-async function handleDeleteJob(jobId: string) {
-  if (!confirm(t("confirm_delete_job"))) return;
-  
-  const result = await deleteJobAction(jobId);
-  addToast({
-    title: result.message,
-    color: result.success ? "success" : "danger",
-  });
-  
-  if (result.success) fetchAllJobs();
-}
+    const result = await deleteServiceAction(serviceId);
+    addToast({
+      title: result.message,
+      color: result.success ? "success" : "danger",
+    });
+
+    if (result.success) fetchAllServices();
+  }
+
+  async function handleDeleteJob(jobId: string) {
+    if (!confirm(t("confirm_delete_job"))) return;
+
+    const result = await deleteJobAction(jobId);
+    addToast({
+      title: result.message,
+      color: result.success ? "success" : "danger",
+    });
+
+    if (result.success) fetchAllJobs();
+  }
   // Refresh all data
   async function refreshAll() {
-  await Promise.all([fetchAllServices(), fetchAllJobs()]);
-  addToast({
-    title: t("data_refreshed"),
-    color: "success",
-  });
-}
+    await Promise.all([fetchAllServices(), fetchAllJobs()]);
+    addToast({
+      title: t("data_refreshed"),
+      color: "success",
+    });
+  }
 
   useEffect(() => {
     fetchAllServices();
@@ -112,7 +130,9 @@ async function handleDeleteJob(jobId: string) {
               </h3>
             </CardHeader>
             <CardBody className="px-6 pb-6">
-              <p className="text-3xl font-bold text-blue-600">{totalServices}</p>
+              <p className="text-3xl font-bold text-blue-600">
+                {totalServices}
+              </p>
             </CardBody>
           </Card>
 
@@ -149,7 +169,9 @@ async function handleDeleteJob(jobId: string) {
             <div className="mt-6">
               <Card>
                 <CardHeader>
-                  <h2 className="text-2xl font-bold">{t("dashboard_overview")}</h2>
+                  <h2 className="text-2xl font-bold">
+                    {t("dashboard_overview")}
+                  </h2>
                 </CardHeader>
                 <CardBody>
                   <p className="text-gray-600">{t("overview_description")}</p>
@@ -186,11 +208,15 @@ async function handleDeleteJob(jobId: string) {
                         {(service) => (
                           <TableRow key={service.serviceId}>
                             <TableCell>
-                              <span className="font-semibold">{service.serviceName}</span>
+                              <span className="font-semibold">
+                                {service.serviceName}
+                              </span>
                             </TableCell>
                             <TableCell>
                               <div className="flex items-center gap-3">
-                                {service.user.profileImage?.startsWith("data:") ? (
+                                {service.user.profileImage?.startsWith(
+                                  "data:"
+                                ) ? (
                                   <Image
                                     src={service.user.profileImage}
                                     alt={service.user.fullname}
@@ -208,14 +234,20 @@ async function handleDeleteJob(jobId: string) {
                                   />
                                 ) : (
                                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
-                                    {service.user.fullname.charAt(0).toUpperCase()}
+                                    {service.user.fullname
+                                      .charAt(0)
+                                      .toUpperCase()}
                                   </div>
                                 )}
-                                <span className="font-medium">{service.user.fullname}</span>
+                                <span className="font-medium">
+                                  {service.user.fullname}
+                                </span>
                               </div>
                             </TableCell>
                             <TableCell>
-                              <p className="max-w-xs truncate">{service.description}</p>
+                              <p className="max-w-xs truncate">
+                                {service.description}
+                              </p>
                             </TableCell>
                             <TableCell>
                               <Chip size="sm" variant="flat">
@@ -235,7 +267,9 @@ async function handleDeleteJob(jobId: string) {
                                 isIconOnly
                                 color="danger"
                                 variant="light"
-                                onPress={() => handleDeleteService(service.serviceId)}
+                                onPress={() =>
+                                  handleDeleteService(service.serviceId)
+                                }
                               >
                                 <MdDelete />
                               </Button>
@@ -278,9 +312,11 @@ async function handleDeleteJob(jobId: string) {
                         {(job) => (
                           <TableRow key={job.servReqId}>
                             <TableCell>
-                              <span className="font-semibold">{job.servReqName}</span>
+                              <span className="font-semibold">
+                                {job.servReqName}
+                              </span>
                             </TableCell>
-                          <TableCell>
+                            <TableCell>
                               <div className="flex items-center gap-3">
                                 {job.user.profileImage?.startsWith("data:") ? (
                                   <Image
@@ -303,11 +339,15 @@ async function handleDeleteJob(jobId: string) {
                                     {job.user.fullname.charAt(0).toUpperCase()}
                                   </div>
                                 )}
-                                <span className="font-medium">{job.user.fullname}</span>
+                                <span className="font-medium">
+                                  {job.user.fullname}
+                                </span>
                               </div>
                             </TableCell>
                             <TableCell>
-                              <p className="max-w-xs truncate">{job.description}</p>
+                              <p className="max-w-xs truncate">
+                                {job.description}
+                              </p>
                             </TableCell>
                             <TableCell>
                               <Chip color="success" variant="flat">
