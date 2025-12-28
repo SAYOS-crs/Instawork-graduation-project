@@ -7,4 +7,4 @@
 - For Translate : Next.js internationalization (i18n)
 
 # The project documentation -
-( https://instawork-graduation-project-xekb.vercel.app/ )
+( https://instawork-graduation-project-xekb-7k72184iy.vercel.app/ )
