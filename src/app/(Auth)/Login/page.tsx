@@ -35,7 +35,6 @@ export default function Login() {
     },
     resolver: zodResolver(LogInScheme),
     mode: "onBlur",
-    reValidateMode: "onBlur",
   });
 
   const session = useSession();
@@ -98,7 +97,9 @@ export default function Login() {
                 <SlLogin className="" />
               </span>
             </div>
-            <h1 className="text-4xl font-bold text-white">{t("sign_in_title")}</h1>
+            <h1 className="text-4xl font-bold text-white">
+              {t("sign_in_title")}
+            </h1>
             <p className="text-gray-300 text-sm mt-2">{t("welcome_back")}</p>
           </motion.div>
 
@@ -153,7 +154,10 @@ export default function Login() {
                 animate={{ opacity: 1 }}
                 className="text-red-400 text-center text-sm bg-red-500/10 p-3 rounded-lg border border-red-500/20"
               >
-                ❌ {errorMsg === "Invalid phone number or password." ? t("invalid_credentials") : errorMsg}
+                ❌{" "}
+                {errorMsg === "Invalid phone number or password."
+                  ? t("invalid_credentials")
+                  : errorMsg}
               </motion.p>
             )}
 
@@ -181,7 +185,7 @@ export default function Login() {
             className="text-center mt-8 pt-6 border-t border-white/10"
           >
             <p className="text-gray-300 text-sm">
-              {t("no_account")} {" "}
+              {t("no_account")}{" "}
               <span
                 className="text-main-background font-semibold cursor-pointer hover:text-orange-600 transition-colors duration-300"
                 onClick={() => Route.push("/Register")}

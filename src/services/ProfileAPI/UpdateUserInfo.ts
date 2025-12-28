@@ -12,7 +12,7 @@ export default async function UpdateingUserInfo(UpdatedData : FormData) {
     if (token) {
         
         try {
-            const req = await fetch( `https://gp2025.runasp.net/api/v1/users`,{
+            const req = await fetch( `${process.env.API_BASE_URL}/users`,{
             method : 'PATCH',
             headers : {
                 token : token+""

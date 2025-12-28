@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./language-switcher";
+// import { useTranslations } from "next-intl";
+// import LanguageSwitcher from "./language-switcher";
 import {
   Navbar as NavbarComponent,
   NavbarBrand,
@@ -12,7 +12,6 @@ import {
   NavbarMenuItem,
   Button,
 } from "@heroui/react";
-import { FaRegHandshake } from "react-icons/fa6";
 import Instawork_icon from "@/../public/Icon/Instawork-logo-white.png";
 
 import Link from "next/link";
@@ -22,15 +21,15 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const t = useTranslations("NavBar");
+  // const t = useTranslations("NavBar");
   const path = usePathname();
   const { status, data } = useSession();
   const session = useSession();
 
   const NavItems = [
-    { lable: t("services_lab"), href: "/services" },
-    { lable: t("jobs_lab"), href: "/Jobs" },
-    { lable: t("dashbord_lab"), href: "/Dashbord/Profile" },
+    { lable: "خدمات", href: "/services" },
+    { lable: "الأعمال", href: "/Jobs" },
+    { lable: "لوحه التحكم ", href: "/Dashbord/Profile" },
   ];
 
   return (
@@ -74,9 +73,7 @@ export default function Navbar() {
             </Link>
           </NavbarItem>
         ))}
-        <div>
-          <LanguageSwitcher />
-        </div>
+        <div>{/* <LanguageSwitcher /> */}</div>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -86,7 +83,7 @@ export default function Navbar() {
               onPress={() => signOut({ callbackUrl: "/" })}
               className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
             >
-              {t("logout")}
+              {"تسجيل الخروج"}
             </Button>
           ) : (
             <>
@@ -94,14 +91,14 @@ export default function Navbar() {
                 className="hover:bg-primry-background hover:text-main-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-main-background text-primry-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Register"}
               >
-                {t("signup")}
+                {"انشئ حساب"}
               </Link>
 
               <Link
                 className="hover:bg-main-background hover:text-primry-background transition-all duration-300 py-2 px-6 min-w-24 m-2 rounded-lg text-center bg-primry-background text-main-background border-2 border-primry-background font-semibold shadow-lg hover:shadow-xl"
                 href={"/Login"}
               >
-                {t("login")}
+                {"تسجيل الدخول"}
               </Link>
             </>
           )}
@@ -136,7 +133,7 @@ export default function Navbar() {
             </Link>
           </NavbarMenuItem>
         ))}
-        <LanguageSwitcher />
+        {/* <LanguageSwitcher /> */}
       </NavbarMenu>
     </NavbarComponent>
   );
