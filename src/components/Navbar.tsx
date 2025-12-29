@@ -141,12 +141,24 @@ export default function Navbar() {
           <LanguageSwitcher />
         </NavbarMenu>
       </NavbarComponent>
-      <div className="fixed  z-50  w-full h-8 bg-red-700 text-white text-center py-1">
-        <BiError className="inline-block size-5 mx-2" />
-        if the Routing not working try to change the language
-        <BiError className="inline-block size-5 mx-2" />
-        <span className="text-md bg-red-700 py-2 block">production bug</span>
-      </div>
+      {path === "/" && (
+        <div className="fixed  z-50  w-full h-8 bg-red-700 text-white text-center py-2 shadow-2xl animate-pulse">
+          <div className="bg-red-700 ">
+            <BiError className="inline-block size-7 mx-2 " />
+            <div className="inline-block my-0  text-2xl uppercase ">
+              Warning
+            </div>
+            <BiError className="inline-block size-7 mx-2" />
+          </div>
+          <div className="text-md bg-red-700 py-2 ">
+            <div>
+              if the Routing not working try to change the language - see the
+              issue on GitHub to know why that happens
+            </div>
+            <div>- production bug -</div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
